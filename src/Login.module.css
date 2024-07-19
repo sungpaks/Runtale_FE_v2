@@ -1,0 +1,40 @@
+.Container {
+    display: flex;
+    flex-direction: column;
+}
+
+.Container h3 {
+    font-size: 24px; /* 원하는 폰트 크기 */
+    font-weight: bold; /* 원하는 폰트 두께 */
+    margin-bottom: 20px; /* 원하는 하단 여백 */
+  }
+
+.TextBoxWrap {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+
+.SignupWrap {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.SignupText {
+    color: #92A3B2;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+}
+
+.Signupbtn {
+    color: #1890FF;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    background-color: white;
+    text-decoration : underline;
+}
