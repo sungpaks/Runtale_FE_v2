@@ -12,7 +12,7 @@ export default function Login() {
     <div className={`${styles['Container']}`}>
       <h3>로그인</h3>
       <div className={`${styles['TextBoxWrap']}`}>
-        <Box sx={{ '& > :not(style)': { m: 1 }, width: '300px'}}>
+        <Box sx={{ '& > :not(style)': { m: 1 }, width: '300px' }}>
           <Box sx={{ display: 'flex', alignItems: 'flex-end', mb: 2 }}>
             <TextField
               id="username"
@@ -33,6 +33,7 @@ export default function Login() {
               id="password"
               label="PASSWORD"
               fullWidth
+              type="password"
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -44,13 +45,13 @@ export default function Login() {
           </Box>
         </Box>
       </div>
-      <Button 
-        variant="contained" 
-        disableElevation 
-        sx={{ 
-          mt: 2, 
-          width: '300px', 
-          height: '50px', 
+      <Button
+        variant="contained"
+        disableElevation
+        sx={{
+          mt: 2,
+          width: '300px',
+          height: '50px',
           backgroundColor: '#1890FF', // 원하는 배경색
           color: '#FFFFFF', // 원하는 텍스트 색
           fontWeight: 'bold', // 텍스트 두께
