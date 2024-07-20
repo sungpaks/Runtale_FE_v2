@@ -6,8 +6,31 @@ import InputAdornment from "@mui/material/InputAdornment";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import Lock from "@mui/icons-material/Lock";
 import Button from "@mui/material/Button";
+import { useState } from 'react';
+import requestApi from '../../api/api';
 
 export default function Login() {
+	const [loginId, setLoginId] = useState('');
+  	const [password, setPassword] = useState('');
+  	const [error, setError] = useState('');
+
+  	const handleLogin = async () => {
+		try {
+		const response = await requestApi.post('/login', {
+			loginId,
+			password,
+		});
+		alert(response.data.message);
+		setError('');
+		} catch (err) {
+		if (err.response && err.response.status === 401) {
+			setError('Invalid credentials');
+		} else {
+			setError('An error occurred');
+		}
+    }
+  };
+
 	return (
 		<div className={`${styles["Container"]}`}>
 			<h3>로그인</h3>
@@ -17,9 +40,11 @@ export default function Login() {
 						sx={{ display: "flex", alignItems: "flex-end", mb: 2 }}
 					>
 						<TextField
-							id="username"
+							id="loginId"
 							label="ID"
 							fullWidth
+							value={loginId}
+							onChange={(e) => setLoginId(e.target.value)}
 							sx={{ marginBottom: "20px" }} // 각 TextField 간에 간격 추가
 							InputProps={{
 								startAdornment: (
@@ -44,6 +69,8 @@ export default function Login() {
 							label="PASSWORD"
 							fullWidth
 							type="password"
+							value={password}
+							onChange={(e) => setPassword(e.target.value)}
 							InputProps={{
 								startAdornment: (
 									<InputAdornment position="start">
@@ -75,6 +102,7 @@ export default function Login() {
 						backgroundColor: "#096DD9", // 호버 시 배경색
 					},
 				}}
+				onClick={handleLogin}
 			>
 				로그인
 			</Button>
