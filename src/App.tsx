@@ -13,6 +13,7 @@ import NotFound from "./pages/404/NotFound";
 import PrivateRoute from "./layouts/PrivateRoute";
 import PublicRoute from "./layouts/PublicRoute";
 import DefaultPage from "./pages/default-page/DefaultPage";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 interface AutocompletionOption {
 	label: string;
@@ -34,11 +35,15 @@ const router = createBrowserRouter(
 	),
 );
 
+const queryClient = new QueryClient();
+
 function App() {
 	return (
-		<AuthProvider>
-			<RouterProvider router={router}></RouterProvider>
-		</AuthProvider>
+		<QueryClientProvider client={queryClient}>
+			<AuthProvider>
+				<RouterProvider router={router}></RouterProvider>
+			</AuthProvider>
+		</QueryClientProvider>
 	);
 }
 
