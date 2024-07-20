@@ -5,6 +5,12 @@ import Login from "../pages/login/Login";
 
 export default function ProtectedRoute({ element, ...rest }) {
 	const isAuthenticated = useContext(AuthContext);
+	console.log("protected route call");
 
-	return <Route {...rest} element={isAuthenticated ? element : <Login />} />;
+	return (
+		<Route
+			{...rest}
+			element={isAuthenticated ? element : <h1>no authentication</h1>}
+		/>
+	);
 }
