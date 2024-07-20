@@ -4,17 +4,12 @@ import React, {
 	useState,
 	useEffect,
 	Dispatch,
-	SetStateAction,
-	DO_NOT_USE_OR_YOU_WILL_BE_FIRED_EXPERIMENTAL_FORM_ACTIONS,
-	useRef,
 	useMemo,
 } from "react";
-import { QueryClient, useQuery, useQueryClient } from "react-query";
-import requestApi from "../api/api";
+import { QueryClient } from "react-query";
 
 interface AuthInfo {
 	isAuthenticated: boolean;
-	//setIsAuthenticated: Dispatch<boolean>;
 	userId: number;
 	setUserId: Dispatch<number>;
 }
@@ -33,7 +28,12 @@ export function AuthProvider({ children }) {
 	);
 	useMemo(() => ({ isAuthenticated }), [isAuthenticated]);
 
-	useEffect(() => {}, []);
+	useEffect(() => {
+		/**
+		 * 여기에 "세션 확인" 로직 필요
+		 * 여기에 해야 마운트 시 매번 확인 (새로고침, 새로운 페이지 렌더 등)
+		 */
+	}, []);
 
 	useEffect(() => {
 		setIsAuthenticated(userId >= 0 ? true : false);
