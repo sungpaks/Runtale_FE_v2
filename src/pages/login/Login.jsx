@@ -6,30 +6,33 @@ import InputAdornment from "@mui/material/InputAdornment";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import Lock from "@mui/icons-material/Lock";
 import Button from "@mui/material/Button";
-import { useState } from 'react';
-import requestApi from '../../api/api';
+import { useState, useContext } from "react";
+import requestApi from "../../api/api";
+import AuthContext from "../../context/AuthContext";
 
 export default function Login() {
-	const [loginId, setLoginId] = useState('');
-  	const [password, setPassword] = useState('');
-  	const [error, setError] = useState('');
+	const [loginId, setLoginId] = useState("");
+	const [password, setPassword] = useState("");
+	const [error, setError] = useState("");
+	const authContext = useContext(AuthContext);
 
-  	const handleLogin = async () => {
+	const handleLogin = async () => {
 		try {
-		const response = await requestApi.post('/login', {
-			loginId,
-			password,
-		});
-		alert(response.data.message);
-		setError('');
+			const response = await requestApi.post("/login", {
+				loginId,
+				password,
+			});
+			alert(response.data.message);
+			setError("");
+			authContext.setUserId(response.data.data.userId);
 		} catch (err) {
-		if (err.response && err.response.status === 401) {
-			setError('Invalid credentials');
-		} else {
-			setError('An error occurred');
+			if (err.response && err.response.status === 401) {
+				setError("Invalid credentials");
+			} else {
+				setError("An error occurred");
+			}
 		}
-    }
-  };
+	};
 
 	return (
 		<div className={`${styles["Container"]}`}>
