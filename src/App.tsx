@@ -1,6 +1,7 @@
 import * as React from "react";
 import "./App.css";
 import Login from "./pages/login/Login";
+import Signup from "./pages/signup/Signup";
 import { AuthProvider } from "./context/AuthContext";
 import {
 	createBrowserRouter,
@@ -30,6 +31,7 @@ const router = createBrowserRouter(
 			<Route element={<PublicRoute />}>
 				{/* 로그인 없이 접근하는 페이지 정의 */}
 				<Route path="/login" element={<Login />} />
+				<Route path="/signup" element={<Signup />}/>
 			</Route>
 		</>,
 	),

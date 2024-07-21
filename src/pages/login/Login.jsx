@@ -9,13 +9,15 @@ import Button from "@mui/material/Button";
 import { useState, useContext } from "react";
 import requestApi from "../../api/api";
 import AuthContext from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
 	const [loginId, setLoginId] = useState("");
 	const [password, setPassword] = useState("");
 	const [error, setError] = useState("");
 	const authContext = useContext(AuthContext);
-
+	const navigate = useNavigate();
+	
 	const handleLogin = async () => {
 		try {
 			const response = await requestApi.post("/login", {
@@ -36,6 +38,7 @@ export default function Login() {
 
 	return (
 		<div className={`${styles["Container"]}`}>
+			<div className={`${styles["Content-Container"]}`}>
 			<h3>로그인</h3>
 			<div className={`${styles["TextBoxWrap"]}`}>
 				<Box sx={{ "& > :not(style)": { m: 1 }, width: "300px" }}>
@@ -109,12 +112,13 @@ export default function Login() {
 			>
 				로그인
 			</Button>
+			</div>
 			<div className={`${styles["SignupWrap"]}`}>
 				<div className={`${styles["SignupText"]}`}>
 					아직 회원이 아니신가요?
 				</div>
 				<div className={`${styles["Signupbtnbox"]}`}>
-					<button className={`${styles["Signupbtn"]}`}>
+					<button onClick={() => navigate('/signup')}className={`${styles["Signupbtn"]}`}>
 						회원가입
 					</button>
 				</div>

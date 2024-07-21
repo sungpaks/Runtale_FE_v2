@@ -9,6 +9,10 @@
     margin-bottom: 30px; /* 원하는 하단 여백 */
 }
 
+input::placeholder {
+    font-size: 12px;
+}
+
 .TextBoxWrap {
     display: flex;
     flex-direction: column;
