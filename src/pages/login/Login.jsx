@@ -118,7 +118,7 @@ export default function Login() {
 					아직 회원이 아니신가요?
 				</div>
 				<div className={`${styles["Signupbtnbox"]}`}>
-					<button onClick={() => navigate('/signup')}className={`${styles["Signupbtn"]}`}>
+					<button onClick={() => navigate('/signup')} className={`${styles["Signupbtn"]}`}>
 						회원가입
 					</button>
 				</div>
