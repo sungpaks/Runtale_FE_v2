@@ -9,13 +9,14 @@ import {
 	Route,
 	RouterProvider,
 } from "react-router-dom";
-import Root from "./pages/home/Home";
+import Root from "./pages/root/Root";
 import NotFound from "./pages/404/NotFound";
 import PrivateRoute from "./layouts/PrivateRoute";
 import PublicRoute from "./layouts/PublicRoute";
 import DefaultPage from "./pages/default-page/DefaultPage";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { CookiesProvider } from "react-cookie";
+import Home from "./pages/home/Home";
 
 interface AutocompletionOption {
 	label: string;
@@ -27,12 +28,13 @@ const router = createBrowserRouter(
 			<Route path="/" element={<DefaultPage />} />
 			<Route element={<PrivateRoute />}>
 				{/* 로그인이 필요한 페이지 정의 */}
-				<Route path="/home" element={<Root />} />
+				<Route path="/homeasdf" element={<Root />} />
 			</Route>
 			<Route element={<PublicRoute />}>
 				{/* 로그인 없이 접근하는 페이지 정의 */}
 				<Route path="/login" element={<Login />} />
 				<Route path="/signup" element={<Signup />} />
+				<Route path="/home" element={<Home />} />
 			</Route>
 		</>,
 	),
