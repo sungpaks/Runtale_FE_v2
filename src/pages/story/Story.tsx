@@ -1,6 +1,7 @@
 import { Box, List, ListItem, Stack } from "@mui/material";
 import TitleBar from "../../layouts/Layout/title-bar/TitleBar";
 import Title from "../../components/Title";
+import AnimalCrawls from "../../components/AnimalCrawls";
 
 function MockScenarioSquare() {
 	return (
@@ -21,20 +22,13 @@ export default function Story() {
 		<Box p={1}>
 			<TitleBar hasPreviousButton={false} />
 			<Title
-				level={4}
+				level={2}
 				style={{
 					textAlign: "left",
 					marginBottom: "50px",
 				}}
 			>
-				🐌🐌🐌
-				<div
-					style={{
-						position: "relative",
-						top: "-5px",
-						borderBottom: "1px solid gray",
-					}}
-				></div>
+				<AnimalCrawls animal="🐌" />
 			</Title>
 			<Stack textAlign="left">
 				<Title level={4}>Scenario</Title>
