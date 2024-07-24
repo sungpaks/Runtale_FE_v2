@@ -7,6 +7,7 @@ import BookIcon from '@mui/icons-material/Book';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import StarsIcon from '@mui/icons-material/Stars'; 
 import { useNavigate, useLocation } from 'react-router-dom';
+import "./NavBar.css";
 
 export default function NavBar() {
   const [value, setValue] = React.useState(0);
@@ -32,20 +33,22 @@ export default function NavBar() {
   };
 
   return (
-    <Box sx={{ width: '100%' }}>
-      <BottomNavigation
-        showLabels
-        value={value}
-        onChange={handleNavigation}
-      >
-        {navigationMap.map((navItem, index) => (
-          <BottomNavigationAction
-            key={index}
-            label={navItem.label}
-            icon={navItem.icon}
-          />
-        ))}
-      </BottomNavigation>
-    </Box>
+    <div className='nav-bar'>
+      <Box>
+        <BottomNavigation
+          showLabels
+          value={value}
+          onChange={handleNavigation}
+        >
+          {navigationMap.map((navItem, index) => (
+            <BottomNavigationAction
+              key={index}
+              label={navItem.label}
+              icon={navItem.icon}
+            />
+          ))}
+        </BottomNavigation>
+      </Box>
+    </div>
   );
 }
