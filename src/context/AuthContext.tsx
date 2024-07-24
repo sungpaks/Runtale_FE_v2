@@ -8,6 +8,7 @@ import React, {
 } from "react";
 import { QueryClient } from "react-query";
 import { getCookie } from "../utils/cookie";
+import { useCookies } from "react-cookie";
 
 interface AuthInfo {
 	isAuthenticated: boolean;
@@ -20,11 +21,10 @@ const AuthContext = createContext<AuthInfo>(null);
 const queryClient = new QueryClient();
 
 export function AuthProvider({ children }) {
-	const userIdItem = localStorage.getItem("userId");
+	const userIdItem = sessionStorage.getItem("userId");
 	const [userId, setUserId] = useState<number>(
 		userIdItem ? parseInt(userIdItem) : -1,
 	);
-	const hasSession = getCookie("JESSION");
 	const [isAuthenticated, setIsAuthenticated] = useState<boolean>(
 		userId !== -1,
 	);
@@ -39,7 +39,7 @@ export function AuthProvider({ children }) {
 
 	useEffect(() => {
 		setIsAuthenticated(userId >= 0 ? true : false);
-		localStorage.setItem("userId", userId.toString());
+		sessionStorage.setItem("userId", userId.toString());
 	}, [userId]);
 
 	return (
