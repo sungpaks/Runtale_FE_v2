@@ -34,7 +34,7 @@ export default function NavBar() {
 
   return (
     <div className='nav-bar'>
-      <Box>
+      <Box sx={{ width: '100%' }}>
         <BottomNavigation
           showLabels
           value={value}

@@ -25,7 +25,7 @@ export default function Home() {
 			<Profile />
 			<Tutorial />
 			<Box height="400px"></Box>
-			<Button variant="outlined" onClick={handleLogout}>
+			<Button variant="outlined" onClick={handleLogout} sx={{ marginBottom: '80px' }}>
 				로그아웃
 			</Button>
 		</Box>
