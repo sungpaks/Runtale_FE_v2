@@ -16,6 +16,7 @@ import DefaultPage from "./pages/default-page/DefaultPage";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { CookiesProvider } from "react-cookie";
 import Home from "./pages/home/Home";
+import Story from "./pages/story/Story";
 
 interface AutocompletionOption {
 	label: string;
@@ -29,6 +30,7 @@ const router = createBrowserRouter(
 				{/* 로그인이 필요한 페이지 정의 */}
 
 				<Route path="/home" element={<Home />} />
+				<Route path="/story" element={<Story />} />
 			</Route>
 			<Route element={<PublicRoute />}>
 				{/* 로그인 없이 접근하는 페이지 정의 */}
