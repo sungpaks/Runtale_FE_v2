@@ -1,8 +1,14 @@
+:root {
+	--blue: rgb(24, 144, 255);
+}
+
 .title-bar {
 	position: fixed 0 0;
 	text-align: left;
+
 	margin: 0;
 	height: 3rem;
 	width: 100%;
 	padding-left: 10px;
+	color: var(--blue);
 }

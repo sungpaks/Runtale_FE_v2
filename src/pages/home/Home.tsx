@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import TitleBar from "../../layouts/Layout/title-bar/TitleBar";
 import AuthContext from "../../context/AuthContext";
 import requestApi from "../../api/api";
+import Profile from "./profile/Profile";
 
 export default function Home() {
 	const { userId, setUserId } = useContext(AuthContext);
@@ -19,7 +20,7 @@ export default function Home() {
 	return (
 		<div>
 			<TitleBar hasPreviousButton={false} />
-
+			<Profile />
 			<Button variant="outlined" onClick={handleLogout}>
 				로그아웃
 			</Button>
