@@ -9,7 +9,6 @@ export default function Profile(
 		<Box
 			component="section"
 			sx={{
-				m: 2,
 				pt: 2,
 				pb: 2,
 				border: "1px solid gray",

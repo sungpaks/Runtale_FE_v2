@@ -8,7 +8,7 @@ export default function TitleBar({
 	return (
 		<div className="title-bar">
 			{hasPreviousButton ? <div>^</div> : undefined}
-			<h3>👟RunTale</h3>
+			<h2>👟RunTale</h2>
 		</div>
 	);
 }

@@ -4,6 +4,7 @@ import TitleBar from "../../layouts/Layout/title-bar/TitleBar";
 import AuthContext from "../../context/AuthContext";
 import requestApi from "../../api/api";
 import Profile from "./profile/Profile";
+import Tutorial from "./tutorial/Tutorial";
 
 export default function Home() {
 	const { userId, setUserId } = useContext(AuthContext);
@@ -18,12 +19,13 @@ export default function Home() {
 	};
 
 	return (
-		<div>
-			<TitleBar hasPreviousButton={false} />
+		<Box p={2}>
 			<Profile />
+			<Tutorial />
+			<Box height="400px"></Box>
 			<Button variant="outlined" onClick={handleLogout}>
 				로그아웃
 			</Button>
-		</div>
+		</Box>
 	);
 }
