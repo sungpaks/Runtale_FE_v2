@@ -36,7 +36,7 @@ export default function Statistics() {
 						textAlign: "center",
 					}}
 				>
-					<Grid xs={4}>
+					<Grid xs={4} item>
 						<div>
 							<h4 style={{ margin: 0 }}>달린 거리</h4>
 							<p style={{ margin: 0, fontSize: "1.5rem" }}>
@@ -44,13 +44,13 @@ export default function Statistics() {
 							</p>
 						</div>
 					</Grid>
-					<Grid xs={4}>
+					<Grid xs={4} item>
 						<div>
 							<h4 style={{ margin: 0 }}>러닝 횟수</h4>
 							<p style={{ margin: 0, fontSize: "1.5rem" }}>3</p>
 						</div>
 					</Grid>
-					<Grid xs={4}>
+					<Grid xs={4} item>
 						<div>
 							<h4 style={{ margin: 0 }}>평균 페이스</h4>
 							<p style={{ margin: 0, fontSize: "1.5rem" }}>
@@ -58,13 +58,13 @@ export default function Statistics() {
 							</p>
 						</div>
 					</Grid>
-					<Grid xs={4}>
+					<Grid xs={4} item>
 						<div>
 							<h4 style={{ margin: 0 }}>시나리오 완수</h4>
 							<p style={{ margin: 0, fontSize: "1.5rem" }}>2</p>
 						</div>
 					</Grid>
-					<Grid xs={4}>
+					<Grid xs={4} item>
 						<div>
 							<h4 style={{ margin: 0 }}>목표 페이스 달성</h4>
 							<p style={{ margin: 0, fontSize: "1.5rem" }}>2</p>
