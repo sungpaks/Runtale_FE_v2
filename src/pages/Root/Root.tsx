@@ -5,7 +5,7 @@ import AuthContext from "../../context/AuthContext";
 import axios from "axios";
 import requestApi from "../../api/api";
 
-export default function Home() {
+export default function Root() {
 	const { userId, setUserId } = useContext(AuthContext);
 	const handleLogout = async () => {
 		const response = await requestApi
