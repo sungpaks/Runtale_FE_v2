@@ -1,3 +1,5 @@
+import "./TitleBar.css";
+
 export default function TitleBar({
 	hasPreviousButton,
 }: {
@@ -6,7 +8,7 @@ export default function TitleBar({
 	return (
 		<div className="title-bar">
 			{hasPreviousButton ? <div>^</div> : undefined}
-			<h1>👟RunTale</h1>
+			<h3>👟RunTale</h3>
 		</div>
 	);
 }
