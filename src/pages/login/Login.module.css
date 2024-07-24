@@ -1,47 +1,48 @@
 .Container {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    justify-content: space-between;
+	display: flex;
+	flex-direction: column;
+	min-height: 95vh;
+	justify-content: space-between;
 }
 
 .Container h3 {
-    font-size: 20px; /* 원하는 폰트 크기 */
-    font-weight: 700; /* 원하는 폰트 두께 */
-    padding: 2rem;
-    text-shadow: 
-    -0.1px -0.1px 0 #000,  
-    0.1px -0.1px 0 #000,
-    -0.1px 0.1px 0 #000,
-    0.1px 0.1px 0 #000;
+	font-size: 20px; /* 원하는 폰트 크기 */
+	font-weight: 700; /* 원하는 폰트 두께 */
+	padding: 2rem;
+	text-shadow:
+		-0.1px -0.1px 0 #000,
+		0.1px -0.1px 0 #000,
+		-0.1px 0.1px 0 #000,
+		0.1px 0.1px 0 #000;
 }
 
 .TextBoxWrap {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 30px;
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 30px;
+	align-items: center;
 }
 
 .SignupWrap {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 20px;
 }
 
 .SignupText {
-    color: #92A3B2;
-    font-size: 14px;
-    font-weight: bold;
-    border: none;
+	color: #92a3b2;
+	font-size: 14px;
+	font-weight: bold;
+	border: none;
 }
 
 .Signupbtn {
-    color: #1890FF;
-    font-size: 14px;
-    font-weight: bold;
-    border: none;
-    background-color: white;
-    text-decoration : underline;
+	color: #1890ff;
+	font-size: 14px;
+	font-weight: bold;
+	border: none;
+	background-color: white;
+	text-decoration: underline;
 }
