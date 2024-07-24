@@ -1,0 +1,21 @@
+:root {
+	--blue: rgb(24, 144, 255);
+}
+
+.title-bar {
+	display: flex;
+	position: fixed;
+	top: 0;
+	z-index: 1;
+	text-align: left;
+	align-items: center;
+	padding-left: 10px;
+	height: 3.5rem;
+	width: 100%;
+	color: var(--blue);
+	background-color: rgb(253 253, 253);
+}
+
+.title-bar h2 {
+	margin: 0;
+}
