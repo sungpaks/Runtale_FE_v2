@@ -7,6 +7,7 @@ import React, {
 	useMemo,
 } from "react";
 import { QueryClient } from "react-query";
+import { getCookie } from "../utils/cookie";
 
 interface AuthInfo {
 	isAuthenticated: boolean;
@@ -23,6 +24,7 @@ export function AuthProvider({ children }) {
 	const [userId, setUserId] = useState<number>(
 		userIdItem ? parseInt(userIdItem) : -1,
 	);
+	const hasSession = getCookie("JESSION");
 	const [isAuthenticated, setIsAuthenticated] = useState<boolean>(
 		userId !== -1,
 	);
