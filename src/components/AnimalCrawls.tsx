@@ -6,7 +6,7 @@ export default function AnimalCrawls({ animal }: { animal: string }) {
 				style={{
 					position: "relative",
 					top: "-5px",
-					borderBottom: "1px solid gray",
+					borderBottom: "2px solid lightgray",
 				}}
 			></div>
 		</>

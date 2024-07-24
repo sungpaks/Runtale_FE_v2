@@ -17,6 +17,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { CookiesProvider } from "react-cookie";
 import Home from "./pages/home/Home";
 import Story from "./pages/story/Story";
+import Statistics from "./pages/statistics/Statistics";
 
 interface AutocompletionOption {
 	label: string;
@@ -31,6 +32,7 @@ const router = createBrowserRouter(
 
 				<Route path="/home" element={<Home />} />
 				<Route path="/story" element={<Story />} />
+				<Route path="/statistics" element={<Statistics />} />
 			</Route>
 			<Route element={<PublicRoute />}>
 				{/* 로그인 없이 접근하는 페이지 정의 */}
