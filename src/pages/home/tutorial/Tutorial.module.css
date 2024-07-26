@@ -1,0 +1,16 @@
+.Container {
+    padding: 20px; 
+    max-width: 400px; 
+    margin: 0 auto;
+}
+
+.Container p {
+    margin: 10px 7px;
+    font-size : 15px;
+    color: #626773;
+}
+
+.Title {
+    margin-top : 30px;
+    color: #626773;
+}
