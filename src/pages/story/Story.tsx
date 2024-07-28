@@ -20,7 +20,6 @@ function MockScenarioSquare() {
 export default function Story() {
 	return (
 		<Box p={1}>
-			<TitleBar hasPreviousButton={false} />
 			<Title
 				level={2}
 				style={{

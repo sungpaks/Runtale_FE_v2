@@ -1,12 +1,10 @@
 import { Box, Grid } from "@mui/material";
-import TitleBar from "../../layouts/Layout/title-bar/TitleBar";
 import AnimalCrawls from "../../components/AnimalCrawls";
 import Title from "../../components/Title";
 
 export default function Statistics() {
 	return (
 		<Box p={1}>
-			<TitleBar hasPreviousButton={false} />
 			<Title
 				style={{
 					textAlign: "left",
@@ -64,7 +62,7 @@ export default function Statistics() {
 							<p style={{ margin: 0, fontSize: "1.5rem" }}>2</p>
 						</div>
 					</Grid>
-					<Grid xs={4} item>
+					<Grid xs={5} item>
 						<div>
 							<h4 style={{ margin: 0 }}>목표 페이스 달성</h4>
 							<p style={{ margin: 0, fontSize: "1.5rem" }}>2</p>
