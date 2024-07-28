@@ -5,6 +5,7 @@ import AuthContext from "../../context/AuthContext";
 import requestApi from "../../api/api";
 import Profile from "./profile/Profile";
 import Tutorial from "./tutorial/Tutorial";
+import TopPercentage from "./toppercentage/TopPercentage";
 
 export default function Home() {
 	const { userId, setUserId } = useContext(AuthContext);
@@ -23,6 +24,7 @@ export default function Home() {
 	return (
 		<Box p={2}>
 			<Profile />
+			<TopPercentage />
 			<Tutorial />
 			<Box height="400px"></Box>
 			<Button variant="outlined" onClick={handleLogout} sx={{ marginBottom: '80px' }}>
