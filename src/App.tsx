@@ -9,7 +9,6 @@ import {
 	Route,
 	RouterProvider,
 } from "react-router-dom";
-import NotFound from "./pages/404/NotFound";
 import PrivateRoute from "./layouts/PrivateRoute";
 import PublicRoute from "./layouts/PublicRoute";
 import DefaultPage from "./pages/default-page/DefaultPage";

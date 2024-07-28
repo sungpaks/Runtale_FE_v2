@@ -5,4 +5,8 @@ const requestApi = axios.create({
 	withCredentials: true,
 });
 
+export const getUserTier = async ({ userId }) => {
+	return await requestApi.get(`/tier/user/${userId}`);
+};
+
 export default requestApi;
