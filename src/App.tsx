@@ -9,7 +9,6 @@ import {
 	Route,
 	RouterProvider,
 } from "react-router-dom";
-import NotFound from "./pages/404/NotFound";
 import PrivateRoute from "./layouts/PrivateRoute";
 import PublicRoute from "./layouts/PublicRoute";
 import DefaultPage from "./pages/default-page/DefaultPage";
@@ -19,10 +18,7 @@ import Home from "./pages/home/Home";
 import Story from "./pages/story/Story";
 import Statistics from "./pages/statistics/Statistics";
 import Tutorial from "./pages/home/tutorial/TutorialExplain";
-
-interface AutocompletionOption {
-	label: string;
-}
+import Activities from "./pages/activities/Activities";
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
@@ -35,6 +31,7 @@ const router = createBrowserRouter(
 				<Route path="/story" element={<Story />} />
 				<Route path="/statistics" element={<Statistics />} />
 				<Route path="/tutorial" element={<Tutorial />} />
+				<Route path="/activities" element={<Activities />} />
 			</Route>
 			<Route element={<PublicRoute />}>
 				{/* 로그인 없이 접근하는 페이지 정의 */}

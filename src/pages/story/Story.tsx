@@ -1,5 +1,4 @@
 import { Box, List, ListItem, Stack } from "@mui/material";
-import TitleBar from "../../layouts/Layout/title-bar/TitleBar";
 import Title from "../../components/Title";
 import AnimalCrawls from "../../components/AnimalCrawls";
 
@@ -20,7 +19,6 @@ function MockScenarioSquare() {
 export default function Story() {
 	return (
 		<Box p={1}>
-			<TitleBar hasPreviousButton={false} />
 			<Title
 				level={2}
 				style={{
