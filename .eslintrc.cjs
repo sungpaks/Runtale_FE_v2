@@ -18,6 +18,6 @@ module.exports = {
             "warn",
             { allowConstantExport: true },
         ],
-        "prettier/prettier": "warning",
+        "prettier/prettier": 1,
     },
 };
