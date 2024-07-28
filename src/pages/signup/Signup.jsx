@@ -34,7 +34,6 @@ export default function Signup() {
 				password,
 				nickname,
 			});
-			alert(response.data.message);
             navigate('/success', { state: { loginId, password, nickname } });
 
 		} catch (err) {
