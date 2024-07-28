@@ -1,5 +1,4 @@
 import { Box, List, ListItem, Stack } from "@mui/material";
-import TitleBar from "../../layouts/Layout/title-bar/TitleBar";
 import Title from "../../components/Title";
 import AnimalCrawls from "../../components/AnimalCrawls";
 
