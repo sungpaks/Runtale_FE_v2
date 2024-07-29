@@ -7,17 +7,21 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import Lock from "@mui/icons-material/Lock";
 import Flag from "@mui/icons-material/Flag";
 import Button from "@mui/material/Button";
+import { Typography } from "@mui/material";
 import { useState } from "react";
 import requestApi from "../../api/api";
 import { useNavigate } from "react-router-dom";
 
 export default function Signup() {
+	const SIZE = 150;
+
 	const [loginId, setLoginId] = useState('');
 	const [password, setPassword] = useState('');
 	const [confirmPassword, setConfirmPassword] = useState('');
 	const [nickname, setNickname] = useState('');
 	const [error, setError] = useState('');
 	const navigate = useNavigate();
+	const [signupSuccess, setSignupSuccess] = useState(false);
 
 	const handleSignup = async () => {
 		if (password !== confirmPassword) {
@@ -30,8 +34,7 @@ export default function Signup() {
 				password,
 				nickname,
 			});
-			alert(response.data.message);
-			navigate('/login'); // 회원가입 후 로그인 페이지로 이동
+            navigate('/success', { state: { loginId, password, nickname } });
 
 		} catch (err) {
 			if (err.response && err.response.status === 409) {

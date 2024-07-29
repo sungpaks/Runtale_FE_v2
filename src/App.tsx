@@ -20,6 +20,7 @@ import Statistics from "./pages/statistics/Statistics";
 import Tutorial from "./pages/home/tutorial/TutorialExplain";
 import Activities from "./pages/activities/Activities";
 import Running from "./pages/running/Running";
+import Success from "./pages/signup/SignupSuccess";
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
@@ -39,6 +40,7 @@ const router = createBrowserRouter(
 				{/* 로그인 없이 접근하는 페이지 정의 */}
 				<Route path="/login" element={<Login />} />
 				<Route path="/signup" element={<Signup />} />
+				<Route path="/success" element={<Success />} />
 			</Route>
 		</>,
 	),

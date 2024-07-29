@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Title from "../../../components/Title";
 import { useNavigate } from 'react-router-dom';
 
@@ -10,12 +10,11 @@ export default function Tutorial() {
 	};
 
 	return (
-		<Box mt={5} textAlign="left">
-			<Title level={4}>RunTail을 더 재미있게 즐기는 법!</Title>
+		<Box mt={3} textAlign="left">
 			<Box
 				display="flex"
 				sx={{
-					height: "150px",
+					height: "100px",
 					alignItems: "center",
 					justifyContent: "center",
 					backgroundColor: "lightgray",
@@ -27,7 +26,14 @@ export default function Tutorial() {
 				}}
 				onClick={handleBoxClick}
 			>
-				서비스 튜토리얼
+                <Box textAlign="left">
+                    <Typography sx={{ fontWeight: 'bold', color: '#626773' }}>
+                        Runtale을 더 재밌게 즐기는 방법
+                    </Typography>
+                    <Typography sx={{ color: '#8A8F9B'}}>
+                        서비스 튜토리얼
+                    </Typography>
+                </Box>
 			</Box>
 		</Box>
 	);

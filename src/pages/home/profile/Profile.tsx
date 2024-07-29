@@ -31,7 +31,7 @@ export default function Profile(
 			<Stack textAlign={"left"} spacing={0}>
 				<ListItem>레벨</ListItem>
 				<ListItem>총 달린 거리</ListItem>
-				<ListItem>이 달 러닝 횟수</ListItem>
+				<ListItem>총 러닝 횟수</ListItem>
 			</Stack>
 		</Box>
 	);

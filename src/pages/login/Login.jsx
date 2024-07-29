@@ -26,7 +26,6 @@ export default function Login() {
 			});
 			console.log(response);
 			authContext.setUserId(0);
-			alert(response.data.message);
 			setError("");
 			if (response.data.data)
 				authContext.setUserId(response.data.data.userId);

@@ -50,3 +50,17 @@ input::placeholder {
 	background-color: white;
 	text-decoration: underline;
 }
+
+.Success-Container {
+	display: flex;
+	min-height: 95vh;
+	justify-content: center;
+	align-items: center;
+}
+
+.Content-Wrap {
+	display: flex;
+	flex-direction: column;
+	justify-self: center;
+	align-items: center;
+}

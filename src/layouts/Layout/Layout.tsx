@@ -6,7 +6,7 @@ import { ReactNode } from "react";
 export default function Layout({ children }: { children: ReactNode }) {
 	const location = useLocation();
 
-	const hideNavBarPaths = ["/login", "/signup", "/tutorial"];
+	const hideNavBarPaths = ["/login", "/signup", "/tutorial", "/success"];
 	const shouldHideNavBar = hideNavBarPaths.includes(location.pathname);
 
 	const showTitleBarPaths: string[] = [
