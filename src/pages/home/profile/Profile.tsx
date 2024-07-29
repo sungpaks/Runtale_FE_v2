@@ -1,6 +1,8 @@
 import { Box, ListItem, Stack } from "@mui/material";
 import { Tier } from "../Home";
 import EmojiOfTier from "../../../components/EmojiOfTier";
+import getLevelNumber from "../../../utils/getLevelNumber";
+import LevelBar from "../../../components/LevelBar";
 
 export default function Profile({
 	tier,
@@ -15,7 +17,6 @@ export default function Profile({
 			sx={{
 				pt: 2,
 				pb: 2,
-				border: "1px solid gray",
 				borderRadius: 4,
 				height: "300px",
 			}}
@@ -32,7 +33,11 @@ export default function Profile({
 			</Box>
 			<h3>세종이</h3>
 			<Stack textAlign={"left"} spacing={0}>
-				<ListItem>레벨</ListItem>
+				<ListItem>
+					레벨&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<strong>LV.{getLevelNumber(tier.tierName)}</strong>{" "}
+					<LevelBar tier={tier} />
+				</ListItem>
 				<ListItem>총 달린 거리</ListItem>
 				<ListItem>총 러닝 횟수</ListItem>
 			</Stack>
