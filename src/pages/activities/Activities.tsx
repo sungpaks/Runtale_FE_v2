@@ -46,7 +46,9 @@ function Activities() {
 					setShowDetail((prev) => !prev);
 				}}
 			>
-				<EmojiOfTier tier={tierName} />
+				<Box sx={{ position: "relative", top: "-100px" }}>
+					<EmojiOfTier tier={tierName} />
+				</Box>
 				<Box sx={{ position: "relative", top: "-80px" }}>
 					<Title level={2}>세종이</Title>
 					<Title level={1}>Lv. 99</Title>

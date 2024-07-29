@@ -121,5 +121,5 @@ export default function EmojiOfTier({
 				</picture>
 			);
 	}
-	return <Box sx={{ position: "relative", top: "-100px" }}>{emoji}</Box>;
+	return <>{emoji}</>;
 }
