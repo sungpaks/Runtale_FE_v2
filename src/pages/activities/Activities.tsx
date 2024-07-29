@@ -4,61 +4,7 @@ import { getUserTier } from "../../api/api";
 import { useContext, useState } from "react";
 import AuthContext from "../../context/AuthContext";
 import Title from "../../components/Title";
-
-function EmojiOfTier({ tier }: { tier: string }) {
-	let emoji = <></>;
-	const SIZE = 196;
-	switch (tier) {
-		case "달팽이":
-			emoji = (
-				<picture>
-					<source
-						srcSet="https://fonts.gstatic.com/s/e/notoemoji/latest/1f40c/512.webp"
-						type="image/webp"
-					/>
-					<img
-						src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f40c/512.gif"
-						alt="🐌"
-						width={SIZE}
-						height={SIZE}
-					/>
-				</picture>
-			);
-			break;
-		case "거북이":
-			emoji = (
-				<picture>
-					<source
-						srcSet="https://fonts.gstatic.com/s/e/notoemoji/latest/1f422/512.webp"
-						type="image/webp"
-					/>
-					<img
-						src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f422/512.gif"
-						alt="🐢"
-						width={SIZE}
-						height={SIZE}
-					/>
-				</picture>
-			);
-			break;
-		case "토끼":
-			emoji = (
-				<picture>
-					<source
-						srcSet="https://fonts.gstatic.com/s/e/notoemoji/latest/1f407/512.webp"
-						type="image/webp"
-					/>
-					<img
-						src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f407/512.gif"
-						alt="🐇"
-						width={SIZE}
-						height={SIZE}
-					/>
-				</picture>
-			);
-	}
-	return <Box sx={{ position: "relative", top: "-100px" }}>{emoji}</Box>;
-}
+import EmojiOfTier from "../../components/EmojiOfTier";
 
 function Activities() {
 	const { userId } = useContext(AuthContext);
@@ -100,7 +46,9 @@ function Activities() {
 					setShowDetail((prev) => !prev);
 				}}
 			>
-				<EmojiOfTier tier={tierName} />
+				<Box sx={{ position: "relative", top: "-100px" }}>
+					<EmojiOfTier tier={tierName} />
+				</Box>
 				<Box sx={{ position: "relative", top: "-80px" }}>
 					<Title level={2}>세종이</Title>
 					<Title level={1}>Lv. 99</Title>

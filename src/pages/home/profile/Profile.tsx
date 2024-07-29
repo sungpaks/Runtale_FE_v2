@@ -1,17 +1,57 @@
 import { Box, ListItem, Stack } from "@mui/material";
+import { Tier } from "../Home";
+import EmojiOfTier from "../../../components/EmojiOfTier";
+import getLevelNumber from "../../../utils/getLevelNumber";
+import LevelBar from "../../../components/LevelBar";
+import { useQuery } from "react-query";
+import { getRunningRecord } from "../../../api/api";
+import { useEffect, useState } from "react";
 
-export default function Profile(
-	{
-		/* 유저 정보들 */
-	},
-) {
+export interface RunningRecord {
+	id: number;
+	endTime: Date;
+	distance: number;
+	pace: number;
+	createdDate: Date;
+	lastModifiedDate: Date;
+	userId: number;
+	status: string;
+}
+
+export default function Profile({
+	tier,
+	username,
+	userId,
+}: {
+	tier: Tier;
+	username: string;
+	userId: number;
+}) {
+	const { isSuccess, data } = useQuery({
+		queryKey: "runningRecord",
+		queryFn: async () => await getRunningRecord({ userId }),
+	});
+	const [runningRecord, setRunningRecord] = useState<RunningRecord[]>([]);
+	const [totalRunningCount, setTotalRunningCount] = useState<number>(0);
+	const [totalDistance, setTotalDistance] = useState<number>(0);
+	useEffect(() => {
+		if (!data || !data.data) return;
+		setRunningRecord(data?.data?.data);
+		setTotalRunningCount(runningRecord?.length || 0);
+		setTotalDistance(
+			runningRecord.reduce(
+				(total, record) => total + record?.distance,
+				0,
+			),
+		);
+	}, [isSuccess]);
+	if (!isSuccess) return;
 	return (
 		<Box
 			component="section"
 			sx={{
 				pt: 2,
 				pb: 2,
-				border: "1px solid gray",
 				borderRadius: 4,
 				height: "300px",
 			}}
@@ -19,19 +59,28 @@ export default function Profile(
 			<Box
 				sx={{
 					height: "120px",
-					border: "1px dashed gray",
 					ml: 2,
 					mr: 2,
 					borderRadius: 3,
 				}}
 			>
-				달팽이 그림.. <br /> 외곽선은 구분용으로 그려놓음
+				<EmojiOfTier tier={tier.tierName} size={120} />
 			</Box>
-			<h3>세종이</h3>
+			<h3>{username}</h3>
 			<Stack textAlign={"left"} spacing={0}>
-				<ListItem>레벨</ListItem>
-				<ListItem>총 달린 거리</ListItem>
-				<ListItem>총 러닝 횟수</ListItem>
+				<ListItem>
+					레벨&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<strong>LV.{getLevelNumber(tier.tierName)}</strong>{" "}
+					<LevelBar tier={tier} />
+				</ListItem>
+				<ListItem>
+					총 달린 거리 &nbsp;&nbsp;{" "}
+					<strong>{totalDistance} km </strong>
+				</ListItem>
+				<ListItem>
+					총 러닝 횟수 &nbsp;&nbsp;{" "}
+					<strong>{totalRunningCount} 회</strong>
+				</ListItem>
 			</Stack>
 		</Box>
 	);
