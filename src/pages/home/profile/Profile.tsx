@@ -1,10 +1,14 @@
 import { Box, ListItem, Stack } from "@mui/material";
+import { Tier } from "../Home";
+import EmojiOfTier from "../../../components/EmojiOfTier";
 
-export default function Profile(
-	{
-		/* 유저 정보들 */
-	},
-) {
+export default function Profile({
+	tier,
+	username,
+}: {
+	tier: Tier;
+	username: string;
+}) {
 	return (
 		<Box
 			component="section"
@@ -19,13 +23,12 @@ export default function Profile(
 			<Box
 				sx={{
 					height: "120px",
-					border: "1px dashed gray",
 					ml: 2,
 					mr: 2,
 					borderRadius: 3,
 				}}
 			>
-				달팽이 그림.. <br /> 외곽선은 구분용으로 그려놓음
+				<EmojiOfTier tier={tier.tierName} size={120} />
 			</Box>
 			<h3>세종이</h3>
 			<Stack textAlign={"left"} spacing={0}>
