@@ -48,7 +48,7 @@ export default function Home() {
 	console.log(user, tier);
 	return (
 		<Box p={2}>
-			<Profile tier={tier} username={user.nickname} />
+			<Profile tier={tier} username={user.nickname} userId={user.id} />
 			<TopPercentage />
 			<Tutorial />
 			<Box height="400px"></Box>

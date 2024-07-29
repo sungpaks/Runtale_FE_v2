@@ -3,14 +3,49 @@ import { Tier } from "../Home";
 import EmojiOfTier from "../../../components/EmojiOfTier";
 import getLevelNumber from "../../../utils/getLevelNumber";
 import LevelBar from "../../../components/LevelBar";
+import { useQuery } from "react-query";
+import { getRunningRecord } from "../../../api/api";
+import { useEffect, useState } from "react";
+
+export interface RunningRecord {
+	id: number;
+	endTime: Date;
+	distance: number;
+	pace: number;
+	createdDate: Date;
+	lastModifiedDate: Date;
+	userId: number;
+	status: string;
+}
 
 export default function Profile({
 	tier,
 	username,
+	userId,
 }: {
 	tier: Tier;
 	username: string;
+	userId: number;
 }) {
+	const { isSuccess, data } = useQuery({
+		queryKey: "runningRecord",
+		queryFn: async () => await getRunningRecord({ userId }),
+	});
+	const [runningRecord, setRunningRecord] = useState<RunningRecord[]>([]);
+	const [totalRunningCount, setTotalRunningCount] = useState<number>(0);
+	const [totalDistance, setTotalDistance] = useState<number>(0);
+	useEffect(() => {
+		if (!data || !data.data) return;
+		setRunningRecord(data?.data?.data);
+		setTotalRunningCount(runningRecord?.length || 0);
+		setTotalDistance(
+			runningRecord.reduce(
+				(total, record) => total + record?.distance,
+				0,
+			),
+		);
+	}, [isSuccess]);
+	if (!isSuccess) return;
 	return (
 		<Box
 			component="section"
@@ -38,8 +73,14 @@ export default function Profile({
 					<strong>LV.{getLevelNumber(tier.tierName)}</strong>{" "}
 					<LevelBar tier={tier} />
 				</ListItem>
-				<ListItem>총 달린 거리</ListItem>
-				<ListItem>총 러닝 횟수</ListItem>
+				<ListItem>
+					총 달린 거리 &nbsp;&nbsp;{" "}
+					<strong>{totalDistance} km </strong>
+				</ListItem>
+				<ListItem>
+					총 러닝 횟수 &nbsp;&nbsp;{" "}
+					<strong>{totalRunningCount} 회</strong>
+				</ListItem>
 			</Stack>
 		</Box>
 	);
