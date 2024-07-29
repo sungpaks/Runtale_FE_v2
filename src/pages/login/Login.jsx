@@ -24,7 +24,6 @@ export default function Login() {
 				loginId,
 				password,
 			});
-			console.log(response);
 			authContext.setUserId(0);
 			setError("");
 			if (response.data.data)
