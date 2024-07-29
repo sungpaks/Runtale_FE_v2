@@ -56,6 +56,70 @@ function EmojiOfTier({ tier }: { tier: string }) {
 					/>
 				</picture>
 			);
+			break;
+		case "말":
+			emoji = (
+				<picture>
+					<source
+						srcSet="https://fonts.gstatic.com/s/e/notoemoji/latest/1f40e/512.webp"
+						type="image/webp"
+					/>
+					<img
+						src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f40e/512.gif"
+						alt="🐎"
+						width={SIZE}
+						height={SIZE}
+					/>
+				</picture>
+			);
+			break;
+		case "독수리":
+			emoji = (
+				<picture>
+					<source
+						srcSet="https://fonts.gstatic.com/s/e/notoemoji/latest/1f985/512.webp"
+						type="image/webp"
+					/>
+					<img
+						src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f985/512.gif"
+						alt="🦅"
+						width={SIZE}
+						height={SIZE}
+					/>
+				</picture>
+			);
+			break;
+		case "치타":
+			emoji = (
+				<picture>
+					<source
+						srcSet="https://fonts.gstatic.com/s/e/notoemoji/latest/1f985/512.webp"
+						type="image/webp"
+					/>
+					<img
+						src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f985/512.gif"
+						alt="🦅"
+						width={SIZE}
+						height={SIZE}
+					/>
+				</picture>
+			);
+			break;
+		default:
+			emoji = (
+				<picture>
+					<source
+						srcSet="https://fonts.gstatic.com/s/e/notoemoji/latest/1f914/512.webp"
+						type="image/webp"
+					/>
+					<img
+						src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f914/512.gif"
+						alt="🤔"
+						width={SIZE}
+						height={SIZE}
+					/>
+				</picture>
+			);
 	}
 	return <Box sx={{ position: "relative", top: "-100px" }}>{emoji}</Box>;
 }
