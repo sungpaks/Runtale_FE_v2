@@ -31,7 +31,7 @@ export default function Profile({
 			>
 				<EmojiOfTier tier={tier.tierName} size={120} />
 			</Box>
-			<h3>세종이</h3>
+			<h3>{username}</h3>
 			<Stack textAlign={"left"} spacing={0}>
 				<ListItem>
 					레벨&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
