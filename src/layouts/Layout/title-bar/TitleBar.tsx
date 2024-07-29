@@ -22,7 +22,10 @@ export default function TitleBar({
 					}}
 				></div>
 			) : undefined}
-			<h2 onClick={handleTitleClick} style={{ cursor: "pointer" }}>
+			<h2
+				onClick={handleTitleClick}
+				style={{ cursor: "pointer", fontWeight: "1100" }}
+			>
 				👟RunTale
 			</h2>
 		</div>
