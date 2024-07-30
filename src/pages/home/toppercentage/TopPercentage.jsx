@@ -13,13 +13,14 @@ export default function TopPercentage() {
                     height: "250px",
                     alignItems: "center",
                     justifyContent: "center",
-                    backgroundColor: "lightgray",
+                    backgroundColor: "#DCE9F5",
                     borderRadius: 3,
                     m: 0,
                     cursor: 'pointer',
                     transition: 'background-color 0.3s ease',
-                    '&:hover': { backgroundColor: 'gray' },
-                    position: 'relative' // Added for absolute positioning of text
+                    '&:hover': { backgroundColor: '#B5DBFF' },
+                    position: 'relative', // Added for absolute positioning of text
+                    boxShadow: '0px 4px 16px rgba(0, 0, 0, 0.1)'
                 }}
             >
                 <Box
@@ -29,10 +30,10 @@ export default function TopPercentage() {
                         left: 20
                     }}
                 >
-                    <Typography variant="h5" component="div" sx={{ fontWeight: 'bold' }}>
+                    <span style={{ fontSize: "23px", fontFamily: "Pretendard-bold" }}>
                         상위 <br/>
                         12%
-                    </Typography>
+                    </span>
                 </Box>
                 <Box component="picture">
                     <source srcSet="https://fonts.gstatic.com/s/e/notoemoji/latest/1f30f/512.webp" type="image/webp" />
@@ -49,9 +50,9 @@ export default function TopPercentage() {
                         textAlign: 'center'
                     }}
                 >
-                    <Typography sx={{ fontWeight: 'bold' }}>
+                    <span style={{ fontSize: "15px", fontFamily: "Pretendard-bold" }}>
                         지구의 8분의 1지점을 달리고 있어요!
-                    </Typography>
+                    </span>
                 </Box>
             </Box>
         </Box>
