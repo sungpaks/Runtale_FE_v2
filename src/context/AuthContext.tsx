@@ -7,8 +7,7 @@ import React, {
 	useMemo,
 } from "react";
 import { QueryClient } from "react-query";
-import { getCookie } from "../utils/cookie";
-import { useCookies } from "react-cookie";
+import { getUserInfo } from "../api/api";
 
 interface AuthInfo {
 	isAuthenticated: boolean;
@@ -29,8 +28,13 @@ export function AuthProvider({ children }) {
 		userId !== -1,
 	);
 	useMemo(() => ({ isAuthenticated }), [isAuthenticated]);
+	const noLoginPaths = ["/login", "/", "/signup", "/success"];
 
 	useEffect(() => {
+		if (noLoginPaths.includes(location.pathname)) return;
+		getUserInfo({ userId })
+			.then((res) => setIsAuthenticated(true))
+			.catch((error) => setIsAuthenticated(false));
 		/**
 		 * 여기에 "세션 확인" 로직 필요
 		 * 여기에 해야 마운트 시 매번 확인 (새로고침, 새로운 페이지 렌더 등)
