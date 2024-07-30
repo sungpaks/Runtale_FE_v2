@@ -37,6 +37,7 @@ export default function Login() {
 		}
 	};
 
+
 	return (
 		<div className={`${styles["Container"]}`}>
 			<div className={`${styles["Content-Container"]}`}>
@@ -112,7 +113,7 @@ export default function Login() {
 						height: "50px",
 						backgroundColor: "#1890FF", // 원하는 배경색
 						color: "#FFFFFF", // 원하는 텍스트 색
-						fontWeight: "bold", // 텍스트 두께
+                        fontFamily: "Pretendard-bold",
 						"&:hover": {
 							backgroundColor: "#096DD9", // 호버 시 배경색
 						},

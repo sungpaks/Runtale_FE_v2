@@ -37,12 +37,10 @@ export default function Success() {
     return (
         <div className={`${styles["Success-Container"]}`}>
             <div className={`${styles["Content-Wrap"]}`}>
-                <Typography variant="h5" sx={{ fontWeight: 'bold' }}>
-                    {nickname}님 환영합니다!
-                </Typography>
-                <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+                <h2>
+                <span style={{ color: '#1890FF' }}>{nickname}</span>님 환영합니다! <br/>
                     런테일과 함께 달려볼까요?
-                </Typography>
+                </h2>
                 <Box component="picture">
                     <source srcSet="https://fonts.gstatic.com/s/e/notoemoji/latest/1f64c/512.webp" type="image/webp"/>
                     <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f64c/512.gif"
@@ -60,7 +58,7 @@ export default function Success() {
                         height: "50px",
                         backgroundColor: "#1890FF", // 원하는 배경색
                         color: "#FFFFFF", // 원하는 텍스트 색
-                        fontWeight: "bold", // 텍스트 두께
+                        fontFamily: "Pretendard-bold",
                         "&:hover": {
                             backgroundColor: "#096DD9", // 호버 시 배경색
                         },

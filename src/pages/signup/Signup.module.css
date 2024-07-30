@@ -9,11 +9,7 @@
 	font-size: 20px; /* 원하는 폰트 크기 */
 	font-weight: 700; /* 원하는 폰트 두께 */
 	padding: 2rem;
-	text-shadow:
-		-0.1px -0.1px 0 #000,
-		0.1px -0.1px 0 #000,
-		-0.1px 0.1px 0 #000,
-		0.1px 0.1px 0 #000;
+	font-family: "Pretendard-Bold";
 }
 
 input::placeholder {
@@ -49,6 +45,7 @@ input::placeholder {
 	border: none;
 	background-color: white;
 	text-decoration: underline;
+	font-family: "Pretendard-Bold";
 }
 
 .Success-Container {
@@ -64,3 +61,9 @@ input::placeholder {
 	justify-self: center;
 	align-items: center;
 }
+
+.Content-Wrap h2 {
+	font-family: "Pretendard-Bold";
+	margin-bottom: 50px;
+}
+

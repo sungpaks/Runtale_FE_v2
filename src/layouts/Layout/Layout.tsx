@@ -6,7 +6,7 @@ import { ReactNode } from "react";
 export default function Layout({ children }: { children: ReactNode }) {
 	const location = useLocation();
 
-	const hideNavBarPaths = ["/login", "/signup", "/tutorial", "/success"];
+	const hideNavBarPaths = ["/login", "/signup", "/tutorial", "/success", "/startrunning"];
 	const shouldHideNavBar = hideNavBarPaths.includes(location.pathname);
 
 	const showTitleBarPaths: string[] = [
@@ -15,13 +15,12 @@ export default function Layout({ children }: { children: ReactNode }) {
 		"/statistics",
 		"/activities",
 	];
-	const hasPreviousButton: boolean = !showTitleBarPaths.includes(
-		location.pathname,
-	);
+	const shouldShowTitleBar = showTitleBarPaths.includes(location.pathname) && location.pathname !== "/startrunning";
+	const hasPreviousButton: boolean = !showTitleBarPaths.includes(location.pathname);
 
 	return (
 		<>
-			<TitleBar hasPreviousButton={hasPreviousButton} />
+			{shouldShowTitleBar && <TitleBar hasPreviousButton={hasPreviousButton} />}
 			{children}
 			{!shouldHideNavBar && <NavBar />}
 		</>
