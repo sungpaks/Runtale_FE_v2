@@ -21,6 +21,8 @@ import Tutorial from "./pages/home/tutorial/TutorialExplain";
 import Activities from "./pages/activities/Activities";
 import Running from "./pages/running/Running";
 import Success from "./pages/signup/SignupSuccess";
+import SetPace from "./pages/story/SetPace";
+import StartRunning from "./pages/running/StartRunning";
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
@@ -35,6 +37,9 @@ const router = createBrowserRouter(
 				<Route path="/tutorial" element={<Tutorial />} />
 				<Route path="/activities" element={<Activities />} />
 				<Route path="/running" element={<Running />} />
+				<Route path="/setpace" element={<SetPace />} />
+				<Route path="/startrunning" element={<StartRunning />} />
+
 			</Route>
 			<Route element={<PublicRoute />}>
 				{/* 로그인 없이 접근하는 페이지 정의 */}

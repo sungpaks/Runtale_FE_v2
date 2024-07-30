@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Box, Button, Typography} from '@mui/material';
-import styles from './DefaultPage.module.css'; // 스타일 파일을 불러오는 부분을 추가
+import styles from './DefaultPage.module.css'; 
 
 export default function DefaultPage() {
-	const navigate = useNavigate(); // navigate 함수를 불러옴
+	const navigate = useNavigate();
 
 	return (
 		<div className={`${styles["Container"]}`}>

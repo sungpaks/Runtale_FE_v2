@@ -6,14 +6,10 @@
 }
 
 .Container h3 {
-	font-size: 20px; /* 원하는 폰트 크기 */
-	font-weight: 700; /* 원하는 폰트 두께 */
+	font-size: 20px; 
+	font-weight: 700; 
+	font-family: "Pretendard-Bold"; 
 	padding: 2rem;
-	text-shadow:
-		-0.1px -0.1px 0 #000,
-		0.1px -0.1px 0 #000,
-		-0.1px 0.1px 0 #000,
-		0.1px 0.1px 0 #000;
 }
 
 .TextBoxWrap {
@@ -45,4 +41,5 @@
 	border: none;
 	background-color: white;
 	text-decoration: underline;
+	font-family: "Pretendard-Bold";
 }
