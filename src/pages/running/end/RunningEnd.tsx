@@ -6,10 +6,10 @@ interface RunningResult {
 }
 
 export default function RunningEnd({ distance, pace }: RunningResult) {
-	const [km, m] = getFormattedDistance(distance);
+	const km = getFormattedDistance(distance);
 	return (
 		<>
-			총 거리 : {`${km}km ${m}m`} <br />
+			총 거리 : {`${km}km`} <br />
 			페이스 : {pace}
 		</>
 	);
