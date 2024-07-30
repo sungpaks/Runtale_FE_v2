@@ -1,6 +1,7 @@
 import { Box, List, ListItem, Stack } from "@mui/material";
 import Title from "../../components/Title";
 import AnimalCrawls from "../../components/AnimalCrawls";
+import { Navigate, useNavigate } from "react-router-dom";
 
 function MockScenarioSquare() {
 	return (
@@ -17,6 +18,10 @@ function MockScenarioSquare() {
 }
 
 export default function Story() {
+	const navigate = useNavigate();
+	const onClickRunningStart = (e) => {
+		navigate("/running");
+	};
 	return (
 		<Box p={1}>
 			<Title
@@ -53,6 +58,12 @@ export default function Story() {
 					<ListItem sx={{ p: 0.5 }}>
 						<MockScenarioSquare />
 						시나리오 4
+					</ListItem>
+					<ListItem
+						sx={{ p: 2, border: "1px solid gray" }}
+						onClick={onClickRunningStart}
+					>
+						<h2>그냥 달려봐요</h2>
 					</ListItem>
 				</List>
 			</Stack>
