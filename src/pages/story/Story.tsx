@@ -33,6 +33,7 @@ const scenarios: Scenario[] = [
 	},
     {
         title: "시나리오 없이 뛰기",
+        description: "현 위치 트랙의 화면과 달립니다.",
         to: "/setpace",
 		imageUrl: "/img/noscenario.png"
     }
