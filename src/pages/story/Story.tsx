@@ -29,12 +29,16 @@ export default function Story() {
 				<AnimalCrawls animal="🐌" />
 			</Title>
 			<Stack textAlign="left">
-				<Title level={4}>Scenario</Title>
+				<Title level={4} style={{ fontWeight: "bold", color: "#1890FF", fontFamily: "Pretendard-Bold" }}>
+					Scenario
+				</Title>
 				<List>
 					<ListItem sx={{ p: 0.5 }}>
 						<MockScenarioSquare />
 						<div>
-							<h4 style={{ margin: 0 }}>첫 출근 지각</h4>
+							<h4 style={{ margin: 0, fontWeight: "bold", color: "#1890FF", fontFamily: "Pretendard-Bold" }}>
+								첫 출근 지각
+							</h4>
 							<p style={{ margin: 0 }}>악!!! 늦겠다 !!!</p>
 						</div>
 					</ListItem>
