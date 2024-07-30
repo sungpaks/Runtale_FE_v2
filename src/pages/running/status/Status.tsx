@@ -22,7 +22,7 @@ export default function Status({ distance, startTime, pace }: StatusPropsType) {
 	const TIME_INTERVAL = 1000;
 
 	useEffect(() => {
-		const interval = setInterval((e) => {
+		const interval = setInterval(() => {
 			setTime((prev) => prev + TIME_INTERVAL);
 		}, TIME_INTERVAL);
 
