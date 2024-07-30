@@ -32,7 +32,6 @@ export default function Running() {
 
 	return (
 		<Box>
-			<h3>Kakao Map.....</h3>
 			{latitude === 0 || longitude === 0 ? undefined : (
 				<Map
 					center={{ lat: latitude, lng: longitude }}
