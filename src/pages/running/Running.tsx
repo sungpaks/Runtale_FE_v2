@@ -6,6 +6,7 @@ import { postRunning, getRunning } from "../../api/api";
 import { getDistance, getPace } from "../../utils/running_util";
 import { useNavigate } from "react-router-dom";
 import RunningEnd from "./end/RunningEnd";
+import Status from "./status/Status";
 
 interface PathType {
 	lat: number;
@@ -144,7 +145,7 @@ export default function Running() {
 			{latitude === 0 || longitude === 0 ? undefined : (
 				<Map
 					center={{ lat: latitude, lng: longitude }}
-					style={{ width: "100%", height: "500px" }}
+					style={{ width: "100%", height: "70vh", zIndex: 0 }}
 					level={2}
 					onDragEnd={
 						testMode
@@ -155,6 +156,7 @@ export default function Running() {
 					<Tracker longitude={longitude} latitude={latitude} />
 				</Map>
 			)}
+			<Status distance={distance} startTime={startTime} pace={pace} />
 			<Button
 				variant={testMode ? "contained" : "outlined"}
 				onClick={() => {

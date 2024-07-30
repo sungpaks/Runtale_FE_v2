@@ -34,9 +34,21 @@ export function getPace(distance, elapsedTime) {
 export function getFormattedDistance(distance) {
 	const km = Math.trunc(distance);
 	const m = Math.trunc((distance - km) * 1000);
-	return [km, m];
+	return km + m / 1000;
 }
 
 export function getFormattedPace(pace) {
-	return pace;
+	const minutes = Math.trunc(pace);
+	const seconds = Math.trunc((pace - minutes) / 60);
+	return [minutes, seconds];
+}
+
+export function getFormattedTime(elapsedTime) {
+	const minutes = Math.trunc(elapsedTime / 1000 / 60);
+	const seconds = Math.trunc((elapsedTime - minutes * 60000) / 1000);
+	const milliseconds = Math.trunc(
+		elapsedTime - minutes * 60000 - seconds * 1000,
+	);
+
+	return [minutes, seconds, milliseconds];
 }
