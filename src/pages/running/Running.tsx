@@ -20,8 +20,36 @@ export default function Running() {
 	const [prevLatitude, setPrevLatitude] = useState<number>(0);
 	const [prevLongitude, setPrevLongitude] = useState<number>(0);
 	const [testMode, setTestMode] = useState<boolean>(false);
+	const [runningId, setRunningId] = useState<number>();
+	const [startTime, setStartTime] = useState(0);
+	const [distance, setDistance] = useState<number>(0);
+	const [pace, setPace] = useState<number>(0);
+	const [isEnd, setIsEnd] = useState<boolean>(false);
+	const geolocationId = useRef(0);
+	const geoOption = {
+		enableHighAccuracy: true,
+		timeout: 5000,
+		maximumAge: 0,
+	};
 
-	const trackerTest = (map) => {
+	const refreshPosition = () => {
+		geo.getCurrentPosition(
+			(g) => {
+				setLatitude((prev) => {
+					setPrevLatitude(prev);
+					return g.coords.latitude;
+				});
+				setLongitude((prev) => {
+					setPrevLongitude(prev);
+					return g.coords.longitude;
+				});
+			},
+			undefined,
+			geoOption,
+		);
+	};
+
+	const updatePositionManualy = (map) => {
 		const current = map.getCenter();
 		setLatitude((prev) => {
 			setPrevLatitude(prev);
