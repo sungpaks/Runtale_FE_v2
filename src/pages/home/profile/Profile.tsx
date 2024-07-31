@@ -69,7 +69,7 @@ export default function Profile({
 			<h3 style={{ fontFamily: "Pretendard-bold", fontSize: "20px" }}>{username}</h3>
 			<Stack textAlign={"left"} spacing={0}>
 				<ListItem>
-					레벨&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					랭킹&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<strong >LV.{getLevelNumber(tier.tierName)}</strong>{" "}
 					<LevelBar tier={tier} />
 				</ListItem>

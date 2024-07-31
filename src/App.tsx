@@ -23,6 +23,8 @@ import Running from "./pages/running/Running";
 import Success from "./pages/signup/SignupSuccess";
 import SetPace from "./pages/story/SetPace";
 import StartRunning from "./pages/running/StartRunning";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
