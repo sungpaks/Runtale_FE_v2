@@ -61,13 +61,7 @@ export default function Running() {
 		});
 	};
 
-	const onClickStart = (e) => {
-		postRunning({ distance: distance, pace: pace }).then((res) => {
-			setRunningId(res.data.data.id);
-		});
-		refreshPosition();
-		setStartTime(performance.now());
-	};
+	const onClickStart = (e) => {};
 	const onClickEnd = (e) => {
 		postRunning({
 			id: runningId,
@@ -80,6 +74,12 @@ export default function Running() {
 
 	/** 마운트 시 위치 이벤트 리스너 등록 */
 	useEffect(() => {
+		postRunning({ distance: distance, pace: pace }).then((res) => {
+			setRunningId(res.data.data.id);
+		});
+		refreshPosition();
+		setStartTime(performance.now());
+
 		const geoId = geo.watchPosition(
 			(g) => {
 				if (g.coords.accuracy > 100) return;
@@ -124,16 +124,6 @@ export default function Running() {
 		setPace(curPace);
 	}, [latitude, longitude]);
 
-	if (!runningId)
-		return (
-			<Button
-				sx={{ justifyContent: "center" }}
-				variant="contained"
-				onClick={onClickStart}
-			>
-				러닝 시작하기!
-			</Button>
-		);
 	if (isEnd) {
 		return <RunningEnd distance={distance} pace={pace} />;
 	}

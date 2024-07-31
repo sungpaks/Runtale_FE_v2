@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import AnimalCrawls from "../../components/AnimalCrawls";
 import styles from "./SetPace.module.css";
 import Title from "../../components/Title";
@@ -44,7 +44,7 @@ export default function SetDistance() {
 		setSeconds(e.target.value);
 	};
 
-	const handleSubmit = async () => {
+	/*const handleSubmit = async () => {
 		if (!isAuthenticated || userId < 0 || pace <= 0) return;
 		const pace = `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
 		try {
@@ -60,7 +60,7 @@ export default function SetDistance() {
 		} catch (error) {
 			console.error("Error setting pace:", error);
 		}
-	};
+	};*/
 
 	return (
 		<Box p={1}>
