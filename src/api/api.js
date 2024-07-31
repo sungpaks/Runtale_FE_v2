@@ -5,6 +5,10 @@ const requestApi = axios.create({
 	withCredentials: true,
 });
 
+export const postLogout = async () => {
+	return await requestApi.post(`/logout`);
+};
+
 export const getUserTier = async ({ userId }) => {
 	return await requestApi.get(`/tier/user/${userId}`);
 };
