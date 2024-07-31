@@ -66,11 +66,11 @@ export default function Profile({
 			>
 				<EmojiOfTier tier={tier.tierName} size={120} />
 			</Box>
-			<h3>{username}</h3>
+			<h3 style={{ fontFamily: "Pretendard-bold", fontSize: "20px" }}>{username}</h3>
 			<Stack textAlign={"left"} spacing={0}>
 				<ListItem>
-					레벨&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<strong>LV.{getLevelNumber(tier.tierName)}</strong>{" "}
+					랭킹&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<strong >LV.{getLevelNumber(tier.tierName)}</strong>{" "}
 					<LevelBar tier={tier} />
 				</ListItem>
 				<ListItem>
