@@ -6,7 +6,7 @@ import Profile from "./profile/Profile";
 import Tutorial from "./tutorial/Tutorial";
 import TopPercentage from "./toppercentage/TopPercentage";
 import { useQuery } from "react-query";
-import { getUserTier } from "../../api/api";
+import { getUserTier, postLogout } from "../../api/api";
 
 export interface Tier {
 	description: string;
@@ -24,12 +24,8 @@ export default function Home() {
 	});
 
 	const handleLogout = async () => {
-		const response = await requestApi
-			.post("/logout")
-			.then((res) => {})
-			.catch((err) => {
-				console.log(err);
-			});
+		const response = await postLogout();
+		if (response?.data?.status !== 200) console.log(response);
 		setUserId(-1); //에러 떠도 강제로 로그아웃
 		//에러가 지금 expire time 지나면 로그아웃이 먹통인가봄. 그럴만하긴해
 	};
