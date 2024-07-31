@@ -35,7 +35,7 @@ export const postRunning = async (requestBody) => {
 };
 
 export const getRunning = async ({ id }) => {
-	return await requestApi.post(`/running/${id}`);
+	return await requestApi.get(`/running/${id}`);
 };
 
 export default requestApi;
