@@ -5,6 +5,10 @@ const requestApi = axios.create({
 	withCredentials: true,
 });
 
+export const postLogout = async () => {
+	return await requestApi.post(`/logout`);
+};
+
 export const getUserTier = async ({ userId }) => {
 	return await requestApi.get(`/tier/user/${userId}`);
 };
@@ -31,7 +35,7 @@ export const postRunning = async (requestBody) => {
 };
 
 export const getRunning = async ({ id }) => {
-	return await requestApi.post(`/running/${id}`);
+	return await requestApi.get(`/running/${id}`);
 };
 
 export default requestApi;

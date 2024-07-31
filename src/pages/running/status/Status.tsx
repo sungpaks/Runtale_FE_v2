@@ -10,20 +10,23 @@ import "./Status.css";
 
 interface StatusPropsType {
 	distance: number;
-	startTime: number;
 	pace: number;
 }
 
-export default function Status({ distance, startTime, pace }: StatusPropsType) {
+export default function Status({ distance, pace }: StatusPropsType) {
 	const km = getFormattedDistance(distance);
-	const [time, setTime] = useState<number>(startTime);
+	const timeItem = localStorage.getItem("curTime");
+	const [time, setTime] = useState<number>(timeItem ? parseInt(timeItem) : 0);
 	const [minutes, seconds] = getFormattedTime(time);
 	const [paceMinutes, paceSeconds] = getFormattedPace(pace);
 	const TIME_INTERVAL = 1000;
 
 	useEffect(() => {
 		const interval = setInterval(() => {
-			setTime((prev) => prev + TIME_INTERVAL);
+			setTime((prev) => {
+				localStorage.setItem("curTime", prev.toString());
+				return prev + TIME_INTERVAL;
+			});
 		}, TIME_INTERVAL);
 
 		return () => {

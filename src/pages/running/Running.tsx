@@ -61,25 +61,60 @@ export default function Running() {
 		});
 	};
 
-	const onClickStart = (e) => {
-		postRunning({ distance: distance, pace: pace }).then((res) => {
+	async function startNewRunning() {
+		console.log("new running");
+		await postRunning({ distance: distance, pace: pace }).then((res) => {
 			setRunningId(res.data.data.id);
+			localStorage.setItem("runningId", res.data.data.id.toString());
 		});
 		refreshPosition();
-		setStartTime(performance.now());
-	};
+		setStartTime(Date.now());
+	}
+
+	async function getPrevRunningInfo(prevRunningInfo) {
+		console.log("prev running exists");
+		setRunningId(prevRunningInfo.data.data.id);
+		setDistance(prevRunningInfo.data.data.distance);
+		//setPace(prevRunningInfo.data.data.pace);
+	}
+
 	const onClickEnd = (e) => {
 		postRunning({
 			id: runningId,
 			endTime: new Date(Date.now()),
 			distance: distance,
 			pace: pace,
-		}).then((res) => console.log(res.data.data));
+		}).then((res) => {
+			localStorage.removeItem("runningId");
+			localStorage.removeItem("curTime");
+			console.log(res.data.data);
+		});
 		setIsEnd(true);
 	};
 
 	/** 마운트 시 위치 이벤트 리스너 등록 */
 	useEffect(() => {
+		const checkPrevRunning = async () => {
+			const prevRunningId = localStorage.getItem("runningId");
+			if (!prevRunningId) return [false, undefined];
+			const runningId = parseInt(prevRunningId);
+			const prevRunningInfo = await getRunning({ id: runningId });
+			return [
+				prevRunningInfo.data.data.status === "IN_PROGRESS",
+				prevRunningInfo,
+			];
+		};
+		checkPrevRunning().then((res) => {
+			const [hasPrevRunning, prevRunningInfo] = [...res];
+			if (hasPrevRunning) {
+				//기존에 러닝이 진행 중이었는데 새로고침함
+				getPrevRunningInfo(prevRunningInfo);
+			} else {
+				//새로 러닝 시작
+				startNewRunning();
+			}
+		});
+
 		const geoId = geo.watchPosition(
 			(g) => {
 				if (g.coords.accuracy > 100) return;
@@ -111,29 +146,21 @@ export default function Running() {
 			latitude,
 			longitude,
 		);
+		setDistance((prev) => prev + curDistance);
 
-		const curPace = getPace(curDistance, performance.now() - startTime);
+		const curPace = getPace(
+			distance,
+			parseInt(localStorage.getItem("curTime")) | 0.001,
+		);
+		setPace(curPace);
 
 		postRunning({
 			id: runningId,
 			distance: distance + curDistance,
 			pace: curPace,
 		});
-
-		setDistance((prev) => prev + curDistance);
-		setPace(curPace);
 	}, [latitude, longitude]);
 
-	if (!runningId)
-		return (
-			<Button
-				sx={{ justifyContent: "center" }}
-				variant="contained"
-				onClick={onClickStart}
-			>
-				러닝 시작하기!
-			</Button>
-		);
 	if (isEnd) {
 		return <RunningEnd distance={distance} pace={pace} />;
 	}
@@ -156,7 +183,7 @@ export default function Running() {
 					<Tracker longitude={longitude} latitude={latitude} />
 				</Map>
 			)}
-			<Status distance={distance} startTime={startTime} pace={pace} />
+			<Status distance={distance} pace={pace} />
 			<Button
 				variant={testMode ? "contained" : "outlined"}
 				onClick={() => {
