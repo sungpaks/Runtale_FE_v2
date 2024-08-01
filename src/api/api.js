@@ -27,7 +27,7 @@ export const getRunningRecordMonthly = async ({ userId }) => {
 
 /**
  *
- * @param {id?: 러닝ID(처음엔 X), endTime?: 끝난시각(마지막에만), distance: 누적 거리, pace: 누적 페이스} requestBody
+ * @param {id?: 러닝ID(처음엔 X), endTime?: 끝난시각(마지막에만), distance: 누적 거리, pace: 누적 페이스, longitude, latitude} requestBody
  * @returns
  */
 export const postRunning = async (requestBody) => {
