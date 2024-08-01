@@ -31,7 +31,7 @@ export default function Statistics() {
 				}}
 				level={2}
 			>
-				<AnimalCrawls animal="🐇" />
+				<AnimalCrawls />
 			</Title>
 
 			<Box sx={{ textAlign: "left" }}>
