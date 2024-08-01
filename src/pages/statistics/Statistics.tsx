@@ -22,14 +22,6 @@ export default function Statistics() {
 		totalDistance,
 		totalRunningCount,
 	} = data.data.data;
-	console.log(
-		averagePace,
-		runningList,
-		targetDistanceAchievedCount,
-		targetPaceAchievedCount,
-		totalDistance,
-		totalRunningCount,
-	);
 	return (
 		<Box p={1}>
 			<Title
