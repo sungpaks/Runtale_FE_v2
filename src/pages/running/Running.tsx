@@ -34,6 +34,7 @@ export default function Running() {
 	const locations = useRef([]);
 
 	const refreshPosition = () => {
+		/** 위치 정보 새로 가져옴 */
 		geo.getCurrentPosition(
 			(g) => {
 				setLatitude((prev) => {
@@ -51,6 +52,7 @@ export default function Running() {
 	};
 
 	const updatePositionManualy = (map) => {
+		/** 맵 드래그하여 수동으로 위치 업데이트 (테스트용) */
 		const current = map.getCenter();
 		setLatitude((prev) => {
 			setPrevLatitude(prev);
@@ -63,6 +65,7 @@ export default function Running() {
 	};
 
 	async function startNewRunning() {
+		/** 새롭게 러닝 상태를 시작함 */
 		console.log("new running");
 		await postRunning({
 			distance: distance,
@@ -76,6 +79,7 @@ export default function Running() {
 	}
 
 	async function getPrevRunningInfo(prevRunningInfo) {
+		/** 이전 러닝 정보를 가져와 복원 */
 		console.log("prev running exists");
 		setRunningId(prevRunningInfo.data.data.id);
 		setDistance(prevRunningInfo.data.data.distance);
@@ -87,6 +91,7 @@ export default function Running() {
 	}
 
 	const onClickEnd = (e) => {
+		/** 러닝 끝내기 */
 		postRunning({
 			id: runningId,
 			endTime: new Date(Date.now()),
@@ -103,6 +108,7 @@ export default function Running() {
 	/** 마운트 시 위치 이벤트 리스너 등록 */
 	useEffect(() => {
 		const checkPrevRunning = async () => {
+			/** 이전 러닝 정보가 있는지 먼저 확인 */
 			const prevRunningId = localStorage.getItem("runningId");
 			if (!prevRunningId) return [false, undefined];
 			const runningId = parseInt(prevRunningId);
@@ -115,14 +121,15 @@ export default function Running() {
 		checkPrevRunning().then((res) => {
 			const [hasPrevRunning, prevRunningInfo] = [...res];
 			if (hasPrevRunning) {
-				//기존에 러닝이 진행 중이었는데 새로고침함
+				//기존에 러닝이 진행 중이었음 : 복원
 				getPrevRunningInfo(prevRunningInfo);
 			} else {
-				//새로 러닝 시작
+				//아니면 새로 러닝 시작
 				startNewRunning();
 			}
 		});
 
+		/** geolocation position 이벤트 리스너 등록 */
 		const geoId = geo.watchPosition(
 			(g) => {
 				if (g.coords.accuracy > 100) return;
@@ -145,6 +152,7 @@ export default function Running() {
 		};
 	}, []);
 
+	/** 위치 정보 바뀌면, 거리 페이스 러닝 상태 등 갱신 */
 	useEffect(() => {
 		if (!latitude || !longitude) return;
 
@@ -172,6 +180,7 @@ export default function Running() {
 	}, [latitude, longitude]);
 
 	if (isEnd) {
+		//끝난 화면
 		return <RunningEnd distance={distance} pace={pace} />;
 	}
 	if (latitude === 0 || longitude === 0) {
