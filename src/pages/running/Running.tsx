@@ -31,6 +31,7 @@ export default function Running() {
 		timeout: 5000,
 		maximumAge: 0,
 	};
+	const locations = useRef([]);
 
 	const refreshPosition = () => {
 		geo.getCurrentPosition(
@@ -63,7 +64,10 @@ export default function Running() {
 
 	async function startNewRunning() {
 		console.log("new running");
-		await postRunning({ distance: distance, pace: pace }).then((res) => {
+		await postRunning({
+			distance: distance,
+			pace: pace /* TODO : 여기에 목표 페이스, 거리 추가 */,
+		}).then((res) => {
 			setRunningId(res.data.data.id);
 			localStorage.setItem("runningId", res.data.data.id.toString());
 		});
@@ -75,6 +79,10 @@ export default function Running() {
 		console.log("prev running exists");
 		setRunningId(prevRunningInfo.data.data.id);
 		setDistance(prevRunningInfo.data.data.distance);
+		locations.current = prevRunningInfo.data.data.locations.map(
+			(location) => ({ lat: location.latitude, lng: location.longitude }),
+		);
+
 		//setPace(prevRunningInfo.data.data.pace);
 	}
 
@@ -158,6 +166,8 @@ export default function Running() {
 			id: runningId,
 			distance: distance + curDistance,
 			pace: curPace,
+			latitude: latitude,
+			longitude: longitude,
 		});
 	}, [latitude, longitude]);
 
@@ -180,7 +190,11 @@ export default function Running() {
 							: undefined
 					}
 				>
-					<Tracker longitude={longitude} latitude={latitude} />
+					<Tracker
+						longitude={longitude}
+						latitude={latitude}
+						locations={locations.current}
+					/>
 				</Map>
 			)}
 			<Status distance={distance} pace={pace} />
