@@ -3,7 +3,7 @@ import { Box } from "@mui/material";
 export default function EmojiOfTier({
 	tier,
 	size = 196,
-	progress = 0,
+	progress,
 }: {
 	tier: string;
 	size?: number;
@@ -124,5 +124,7 @@ export default function EmojiOfTier({
 				</picture>
 			);
 	}
-	return <Box ml={`${leftPercentage}%`}>{emoji}</Box>;
+	if (progress !== undefined)
+		return <Box ml={`${leftPercentage}%`}>{emoji}</Box>;
+	else return <>{emoji}</>;
 }
