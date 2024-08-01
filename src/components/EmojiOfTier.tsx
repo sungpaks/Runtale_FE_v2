@@ -3,11 +3,14 @@ import { Box } from "@mui/material";
 export default function EmojiOfTier({
 	tier,
 	size = 196,
+	progress,
 }: {
 	tier: string;
 	size?: number;
+	progress?: number;
 }) {
 	let emoji = <></>;
+	const leftPercentage = (20 - progress) * 5 * 0.9;
 	switch (tier) {
 		case "달팽이":
 			emoji = (
@@ -121,5 +124,7 @@ export default function EmojiOfTier({
 				</picture>
 			);
 	}
-	return <>{emoji}</>;
+	if (progress !== undefined)
+		return <Box ml={`${leftPercentage}%`}>{emoji}</Box>;
+	else return <>{emoji}</>;
 }

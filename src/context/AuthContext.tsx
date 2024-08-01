@@ -15,9 +15,11 @@ interface AuthInfo {
 	setUserId: Dispatch<number>;
 }
 
-const AuthContext = createContext<AuthInfo>(null);
-
-const queryClient = new QueryClient();
+const AuthContext = createContext<AuthInfo>({
+	isAuthenticated: false,
+	userId: -1,
+	setUserId: undefined,
+});
 
 export function AuthProvider({ children }) {
 	const userIdItem = sessionStorage.getItem("userId");
