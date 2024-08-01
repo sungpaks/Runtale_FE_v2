@@ -13,7 +13,6 @@ export default function AnimalCrawls({}) {
 
 	if (!isSuccess) return;
 	const { progress, percentil, tierName } = data.data.data;
-	console.log(progress, percentil, tierName);
 	return (
 		<>
 			{<EmojiOfTier tier={tierName} size={40} progress={progress} />}
