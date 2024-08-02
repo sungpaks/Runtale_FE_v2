@@ -53,9 +53,7 @@ export default function Status({ distance, pace }: StatusPropsType) {
 					<Title level={3}>달린 거리</Title>
 				</Grid>
 				<Grid item xs={4}>
-					<span className="bitter">
-						{pace === Infinity ? "-" : paceMinutes}
-					</span>
+					<span className="bitter">{!pace ? "-" : paceMinutes}</span>
 					<Title level={3}>평균 페이스</Title>
 				</Grid>
 				<Grid item xs={4}>

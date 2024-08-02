@@ -25,6 +25,8 @@ export default function StartRunning() {
 
 	const handleStartRunning = () => {
 		setCountdown(3);
+		localStorage.removeItem("runningId");
+		localStorage.removeItem("curTime");
 	};
 
 	return (

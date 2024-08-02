@@ -69,18 +69,25 @@ export default function Running() {
 		console.log("new running");
 		await postRunning({
 			distance: distance,
-			pace: pace /* TODO : 여기에 목표 페이스, 거리 추가 */,
-		}).then((res) => {
-			setRunningId(res.data.data.id);
-			localStorage.setItem("runningId", res.data.data.id.toString());
-		});
+			pace: pace,
+			targetPace: 0, //실제 목표 페이스 추가
+			targetDistance: 0, //실제 목표 거리 추가
+			scenarioId: 1, //실제 시나리오 id 추가
+			latitude: latitude,
+			longitude: longitude,
+		})
+			.then((res) => {
+				setRunningId(res.data.data.id);
+				localStorage.setItem("runningId", res.data.data.id.toString());
+			})
+			.catch((err) => console.log(err));
 		refreshPosition();
 		setStartTime(Date.now());
 	}
 
 	async function getPrevRunningInfo(prevRunningInfo) {
 		/** 이전 러닝 정보를 가져와 복원 */
-		console.log("prev running exists");
+		console.log("prev running exists : " + prevRunningInfo.data.data.id);
 		setRunningId(prevRunningInfo.data.data.id);
 		setDistance(prevRunningInfo.data.data.distance);
 		locations.current = prevRunningInfo.data.data.locations.map(
@@ -90,18 +97,23 @@ export default function Running() {
 		//setPace(prevRunningInfo.data.data.pace);
 	}
 
-	const onClickEnd = (e) => {
+	const onClickEnd = async (e) => {
 		/** 러닝 끝내기 */
-		postRunning({
+		await postRunning({
 			id: runningId,
 			endTime: new Date(Date.now()),
 			distance: distance,
 			pace: pace,
+			targetPace: 0, //실제 값 넣어야 함
+			targetDistance: 0, //실제 값 넣어야 함
+			scenarioId: 1, //실제 값 넣어야 함
+			longitude: longitude,
+			latitude: latitude,
 		}).then((res) => {
-			localStorage.removeItem("runningId");
-			localStorage.removeItem("curTime");
 			console.log(res.data.data);
 		});
+		localStorage.removeItem("runningId");
+		localStorage.removeItem("curTime");
 		setIsEnd(true);
 	};
 
@@ -112,14 +124,14 @@ export default function Running() {
 			const prevRunningId = localStorage.getItem("runningId");
 			if (!prevRunningId) return [false, undefined];
 			const runningId = parseInt(prevRunningId);
-			const prevRunningInfo = await getRunning({ id: runningId });
+			const prevRunningInfo = await getRunning({ runningId });
 			return [
 				prevRunningInfo.data.data.status === "IN_PROGRESS",
 				prevRunningInfo,
 			];
 		};
 		checkPrevRunning().then((res) => {
-			const [hasPrevRunning, prevRunningInfo] = [...res];
+			const [hasPrevRunning, prevRunningInfo] = res;
 			if (hasPrevRunning) {
 				//기존에 러닝이 진행 중이었음 : 복원
 				getPrevRunningInfo(prevRunningInfo);
@@ -171,9 +183,12 @@ export default function Running() {
 		setPace(curPace);
 
 		postRunning({
+			scenarioId: 1, //실제 시나리오 넣어야 함
 			id: runningId,
 			distance: distance + curDistance,
 			pace: curPace,
+			targetPace: 0, //실제 목표 페이스, 거리 넣어야 함
+			targetDistance: 0,
 			latitude: latitude,
 			longitude: longitude,
 		});
