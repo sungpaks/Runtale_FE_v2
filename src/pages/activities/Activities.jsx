@@ -6,11 +6,12 @@ import AuthContext from "../../context/AuthContext";
 import EmojiOfTier from "../../components/EmojiOfTier";
 
 const tiers = [
-	{ name: "치타", description: "이 구역의 지배자! 날쌘 독수리", level: 5 },
-	{ name: "말", description: "토끼와 양속인 당근 러버! 말", level: 4 },
-	{ name: "토끼", description: "극강의 인싸! 재주많은 토끼", level: 3 },
-	{ name: "거북이", description: "느리지만 눈치 빠른! 거북이", level: 2 },
+	{ name: "돌멩이", description: "데굴데굴 천방지축! 돌멩이", level: 0 },
 	{ name: "달팽이", description: "비를 좋아하는 감성! 달팽이", level: 1 },
+	{ name: "거북이", description: "느리지만 눈치 빠른! 거북이", level: 2 },
+	{ name: "토끼", description: "극강의 인싸! 재주많은 토끼", level: 3 },
+	{ name: "말", description: "토끼와 양속인 당근 러버! 말", level: 4 },
+	{ name: "치타", description: "이 구역의 지배자! 날쌘 독수리", level: 5 },
 ];
 
 function Activities() {
@@ -38,13 +39,8 @@ function Activities() {
 	const { tierName } = data.data.data;
 
 	return (
-		<Box p={2}>
-			<Typography
-				variant="subtitle1"
-				textAlign="left"
-				fontFamily="Pretendard-bold"
-				fontSize="20px"
-			>
+		<Box p={2} height="110vh">
+			<Typography variant="subtitle1" textAlign="left" fontFamily="Pretendard-bold" fontSize="20px">
 				랭킹
 			</Typography>
 			{tiers.map((tier) => (

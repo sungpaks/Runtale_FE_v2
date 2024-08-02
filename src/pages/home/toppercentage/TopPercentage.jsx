@@ -1,9 +1,60 @@
-import React from 'react';
-import { Box, Typography } from "@mui/material";
-import Title from "../../../components/Title"; // Title 컴포넌트가 이 경로에 있는지 확인
+import React, { useEffect, useState, useContext } from 'react';
+import { Box } from "@mui/material";
+import AuthContext from "../../../context/AuthContext";
+import { getUserTier, getRunningRecord } from "../../../api/api"; // getUserTier, getRunningRecord 함수 경로를 확인
 
 export default function TopPercentage() {
     const SIZE = 160;
+    const { userId } = useContext(AuthContext);
+    const [percentile, setPercentile] = useState(null);
+    const [totalDistance, setTotalDistance] = useState(0);
+    const [earthFraction, setEarthFraction] = useState(null);
+
+    useEffect(() => {
+        const fetchUserData = async () => {
+            try {
+                const tierResponse = await getUserTier({ userId });
+                const tierData = tierResponse.data.data;
+                // API 응답에서 percentile 값을 가져와서 설정
+                setPercentile(tierData.percentile);
+
+                const distanceResponse = await getRunningRecord({ userId });
+                const runningRecords = distanceResponse.data.data;
+                // 총 거리를 계산
+                const totalDistance = runningRecords.reduce((acc, record) => acc + record.distance, 0);
+                setTotalDistance(totalDistance);
+
+                // 지구 둘레 대비 사용자가 달린 거리 계산
+                const earthCircumference = 40075; // 지구 둘레 (km)
+                const fraction = (totalDistance / earthCircumference) * 100;
+                setEarthFraction(fraction);
+            } catch (error) {
+                console.error("Error fetching user data:", error);
+            }
+        };
+
+        fetchUserData();
+    }, [userId]);
+
+    const getFractionText = (fraction) => {
+        if (fraction >= 100) {
+            return "지구 한 바퀴를 돌았습니다!";
+        } else if (fraction >= 50) {
+            return "지구의 절반을 지점을 달리고 있어요!";
+        } else if (fraction >= 25) {
+            return "지구의 4분의 1을 지점을 달리고 있어요!";
+        } else if (fraction >= 12.5) {
+            return "지구의 8분의 1을 지점을 달리고 있어요!";
+        } else if (fraction >= 6.25) {
+            return "지구의 16분의 1을 지점을 달리고 있어요!";
+        } else if (fraction >= 3.125) {
+            return "지구의 32분의 1을 지점을 달리고 있어요!";
+        } else if (fraction >= 1.5625) {
+            return "지구의 64분의 1 지점을 달리고 있어요!";
+        } else {
+            return "지구의 아주 작은 부분을 달리고 있습니다!";
+        }
+    };
 
     return (
         <Box mt={3} textAlign="left">
@@ -31,8 +82,8 @@ export default function TopPercentage() {
                     }}
                 >
                     <span style={{ fontSize: "23px", fontFamily: "Pretendard-bold" }}>
-                        상위 <br/>
-                        12%
+                        상위 <br />
+                        {percentile !== null ? `${100 - percentile}%` : '...'}
                     </span>
                 </Box>
                 <Box component="picture">
@@ -51,7 +102,7 @@ export default function TopPercentage() {
                     }}
                 >
                     <span style={{ fontSize: "15px", fontFamily: "Pretendard-bold" }}>
-                        지구의 8분의 1지점을 달리고 있어요!
+                        {earthFraction !== null ? getFractionText(earthFraction) : '...'}
                     </span>
                 </Box>
             </Box>
