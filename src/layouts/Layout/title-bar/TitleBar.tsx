@@ -21,12 +21,11 @@ export default function TitleBar({
 						navigate(-1);
 					}}
 				></div>
-			) : undefined}
-			<h2
-				onClick={handleTitleClick}
-				style={{ cursor: "pointer", fontWeight: "1100" }}
-			>
-				👟RunTale
+			) : (
+				<div>&nbsp;&nbsp;&nbsp;&nbsp;</div>
+			)}
+			<h2 onClick={handleTitleClick} style={{ cursor: "pointer" }}>
+				RunTale
 			</h2>
 		</div>
 	);

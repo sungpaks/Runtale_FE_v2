@@ -1,11 +1,23 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
 import styles from "./StartRunning.module.css";
+import { postRunning } from "../../api/api";
 
 export default function StartRunning() {
 	const [countdown, setCountdown] = useState(null);
 	const navigate = useNavigate();
+	const location = useLocation();
+	const targetPace = location.state.targetPace;
+	const geo = navigator.geolocation;
+	const position = useRef({ latitude: 0, longitude: 0 });
+
+	useEffect(() => {
+		geo.getCurrentPosition((g) => {
+			position.current.latitude = g.coords.latitude;
+			position.current.longitude = g.coords.longitude;
+		});
+	}, []);
 
 	useEffect(() => {
 		let timer;
@@ -24,6 +36,21 @@ export default function StartRunning() {
 	}, [countdown, navigate]);
 
 	const handleStartRunning = () => {
+		localStorage.removeItem("runningId");
+		localStorage.removeItem("curTime");
+		postRunning({
+			distance: 0,
+			pace: 0,
+			targetPace: targetPace,
+			targetDistance: 0, //실제 값 추가
+			scenarioId: 1, //실제 값 추가
+			latitude: position.current.latitude,
+			longitude: position.current.longitude,
+		}).then((res) => {
+			localStorage.setItem("runningId", res.data.data.id.toString());
+			console.log(targetPace);
+		});
+
 		setCountdown(3);
 	};
 

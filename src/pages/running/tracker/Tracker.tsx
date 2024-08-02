@@ -15,7 +15,11 @@ export default function Tracker({
 	longitude: number;
 	locations: { lat: number; lng: number }[];
 }) {
-	const [path, setPath] = useState<PathType[]>(locations);
+	const [path, setPath] = useState<PathType[]>([...locations]);
+
+	useEffect(() => {
+		setPath(locations);
+	}, [locations]);
 	useEffect(() => {
 		setPath((prev) => [...prev, { lat: latitude, lng: longitude }]);
 	}, [latitude, longitude]);

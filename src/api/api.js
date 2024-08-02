@@ -34,8 +34,13 @@ export const postRunning = async (requestBody) => {
 	return await requestApi.post(`/running`, requestBody);
 };
 
-export const getRunning = async ({ id }) => {
-	return await requestApi.get(`/running/${id}`);
+/**
+ *
+ * @param {number} {runningId}
+ * @returns
+ */
+export const getRunning = async ({ runningId }) => {
+	return await requestApi.get(`/running/${runningId}`);
 };
 
 export default requestApi;

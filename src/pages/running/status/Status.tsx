@@ -54,7 +54,7 @@ export default function Status({ distance, pace }: StatusPropsType) {
 				</Grid>
 				<Grid item xs={4}>
 					<span className="bitter">
-						{pace === Infinity ? "-" : paceMinutes}
+						{!pace || pace === Infinity ? "-" : paceMinutes}
 					</span>
 					<Title level={3}>평균 페이스</Title>
 				</Grid>
