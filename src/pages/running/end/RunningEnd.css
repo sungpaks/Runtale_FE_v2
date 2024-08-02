@@ -1,0 +1,13 @@
+.bitter-large {
+	font-family: "Bitter", serif;
+	font-optical-sizing: auto;
+	font-weight: 900;
+	font-size: xxx-large;
+	margin: 0 3px;
+}
+
+.success {
+	color: #1890ff;
+	font-size: xx-large;
+	margin-left: 5px;
+}

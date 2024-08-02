@@ -24,7 +24,8 @@ export default function Running() {
 	const [startTime, setStartTime] = useState(0);
 	const [distance, setDistance] = useState<number>(0);
 	const [pace, setPace] = useState<number>(0);
-	const [isEnd, setIsEnd] = useState<boolean>(false);
+	const navigate = useNavigate();
+	const elapsedTime = useRef(0);
 	const geolocationId = useRef(0);
 	const geoOption = {
 		enableHighAccuracy: true,
@@ -112,9 +113,16 @@ export default function Running() {
 		}).then((res) => {
 			console.log(res.data.data);
 		});
+		elapsedTime.current = parseInt(localStorage.getItem("curTime"));
 		localStorage.removeItem("runningId");
 		localStorage.removeItem("curTime");
-		setIsEnd(true);
+		navigate("/running/end", {
+			state: {
+				distance: distance,
+				pace: pace,
+				time: elapsedTime.current,
+			},
+		});
 	};
 
 	/** 마운트 시 위치 이벤트 리스너 등록 */
@@ -194,10 +202,6 @@ export default function Running() {
 		});
 	}, [latitude, longitude]);
 
-	if (isEnd) {
-		//끝난 화면
-		return <RunningEnd distance={distance} pace={pace} />;
-	}
 	if (latitude === 0 || longitude === 0) {
 		refreshPosition();
 	}
