@@ -9,11 +9,17 @@ interface PathType {
 export default function Tracker({
 	latitude,
 	longitude,
+	locations,
 }: {
 	latitude: number;
 	longitude: number;
+	locations: { lat: number; lng: number }[];
 }) {
-	const [path, setPath] = useState<PathType[]>([]);
+	const [path, setPath] = useState<PathType[]>([...locations]);
+
+	useEffect(() => {
+		setPath(locations);
+	}, [locations]);
 	useEffect(() => {
 		setPath((prev) => [...prev, { lat: latitude, lng: longitude }]);
 	}, [latitude, longitude]);

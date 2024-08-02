@@ -6,6 +6,7 @@ import { Box, Button } from "@mui/material";
 import requestApi from "../../api/api";
 import AuthContext from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { getRunning } from "../../api/api";
 
 export default function SetDistance() {
 	const SIZE = 200;
@@ -14,6 +15,20 @@ export default function SetDistance() {
 	const [seconds, setSeconds] = useState("");
 	const { userId, isAuthenticated } = useContext(AuthContext);
 	const navigate = useNavigate();
+	const prevRunningId = localStorage.getItem("runningId");
+
+	useEffect(() => {
+		if (!prevRunningId) return;
+		const runningId = parseInt(prevRunningId);
+		getRunning({ runningId }).then((res) => {
+			if (res.data.data.status === "IN_PROGRESS") {
+				navigate("/running");
+			}
+			/**
+			 * TODO : 이 타이밍에 "이전 러닝 진행상황 복구할까?말까?를 물어보면 좋을 듯 !"
+			 */
+		});
+	});
 
 	useEffect(() => {
 		const fetchNickname = async () => {
@@ -153,7 +168,16 @@ export default function SetDistance() {
 							backgroundColor: "#096DD9",
 						},
 					}}
-					onClick={() => navigate("/startrunning")}
+					onClick={() =>
+						navigate("/startrunning", {
+							state: {
+								targetPace:
+									(parseInt(minutes) * 60 +
+										parseInt(seconds)) *
+									1000,
+							},
+						})
+					}
 				>
 					시나리오 시작!
 				</Button>

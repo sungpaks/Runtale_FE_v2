@@ -1,9 +1,8 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { Box, Skeleton, Typography } from "@mui/material";
 import { useQuery } from "react-query";
 import { getUserTier } from "../../api/api";
 import AuthContext from "../../context/AuthContext";
-import Title from "../../components/Title";
 import EmojiOfTier from "../../components/EmojiOfTier";
 
 const tiers = [
@@ -52,7 +51,8 @@ function Activities() {
 						alignItems: "center",
 						height: "100px",
 						borderRadius: 2,
-						backgroundColor: tier.name === tierName ? "#1890FF" : "#f0f0f0",
+						backgroundColor:
+							tier.name === tierName ? "#1890FF" : "#f0f0f0",
 						color: tier.name === tierName ? "white" : "black",
 						padding: 2,
 						marginBottom: 1,
@@ -75,7 +75,9 @@ function Activities() {
 							textAlign="left"
 							fontFamily="Pretendard-Bold"
 							fontSize="40px"
-							color={tier.name === tierName ? "#F3B640" : "#7E7A7A"} // 티어에 따라 색상 변경
+							color={
+								tier.name === tierName ? "#F3B640" : "#7E7A7A"
+							} // 티어에 따라 색상 변경
 						>
 							Lv. {tier.level}
 						</Typography>

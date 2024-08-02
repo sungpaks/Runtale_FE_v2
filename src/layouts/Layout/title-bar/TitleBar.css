@@ -3,6 +3,7 @@
 }
 
 .title-bar {
+	font-family: "Pretendard";
 	display: flex;
 	position: fixed;
 	top: 0;
@@ -29,7 +30,7 @@
 	padding: 8px 12px; /* 패딩 설정 */
 	border-radius: 4px; /* 모서리 둥글게 */
 	transition: color 0.3s; /* 색상 변경 애니메이션 효과 */
-	height:100%;
+	height: 100%;
 }
 
 .back-button::before {

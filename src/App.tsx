@@ -25,6 +25,7 @@ import SetPace from "./pages/story/SetPace";
 import StartRunning from "./pages/running/StartRunning";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import RunningEnd from "./pages/running/end/RunningEnd";
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
@@ -41,7 +42,7 @@ const router = createBrowserRouter(
 				<Route path="/running" element={<Running />} />
 				<Route path="/setpace" element={<SetPace />} />
 				<Route path="/startrunning" element={<StartRunning />} />
-
+				<Route path="/running/end" element={<RunningEnd />} />
 			</Route>
 			<Route element={<PublicRoute />}>
 				{/* 로그인 없이 접근하는 페이지 정의 */}
