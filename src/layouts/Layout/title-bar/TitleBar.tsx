@@ -1,4 +1,4 @@
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import "./TitleBar.css";
 
 export default function TitleBar({

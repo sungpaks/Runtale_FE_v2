@@ -109,6 +109,7 @@ export default function RunningEnd({}) {
 				flexDirection: "column",
 				backgroundColor: "#1890FF",
 				height: "95vh",
+				width: "100%",
 				overflow: "hidden",
 				color: "white",
 				justifyContent: "center",

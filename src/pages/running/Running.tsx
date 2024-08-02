@@ -21,7 +21,6 @@ export default function Running() {
 	const [prevLongitude, setPrevLongitude] = useState<number>(0);
 	const [testMode, setTestMode] = useState<boolean>(false);
 	const [runningId, setRunningId] = useState<number>();
-	const [startTime, setStartTime] = useState(0);
 	const [distance, setDistance] = useState<number>(0);
 	const [pace, setPace] = useState<number>(0);
 	const navigate = useNavigate();
@@ -32,7 +31,7 @@ export default function Running() {
 		timeout: 5000,
 		maximumAge: 0,
 	};
-	const locations = useRef([]);
+	const [locations, setLocations] = useState<PathType[]>([]);
 
 	const refreshPosition = () => {
 		/** 위치 정보 새로 가져옴 */
@@ -65,37 +64,37 @@ export default function Running() {
 		});
 	};
 
-	async function startNewRunning() {
-		/** 새롭게 러닝 상태를 시작함 */
-		console.log("new running");
-		await postRunning({
-			distance: distance,
-			pace: pace,
-			targetPace: 0, //실제 목표 페이스 추가
-			targetDistance: 0, //실제 목표 거리 추가
-			scenarioId: 1, //실제 시나리오 id 추가
-			latitude: latitude,
-			longitude: longitude,
-		})
-			.then((res) => {
-				setRunningId(res.data.data.id);
-				localStorage.setItem("runningId", res.data.data.id.toString());
-			})
-			.catch((err) => console.log(err));
-		refreshPosition();
-		setStartTime(Date.now());
-	}
+	// async function startNewRunning() {
+	// 	/** 새롭게 러닝 상태를 시작함 */
+	// 	console.log("new running");
+	// 	await postRunning({
+	// 		distance: distance,
+	// 		pace: pace,
+	// 		targetPace: 0, //실제 목표 페이스 추가
+	// 		targetDistance: 0, //실제 목표 거리 추가
+	// 		scenarioId: 1, //실제 시나리오 id 추가
+	// 		latitude: latitude,
+	// 		longitude: longitude,
+	// 	})
+	// 		.then((res) => {
+	// 			setRunningId(res.data.data.id);
+	// 			localStorage.setItem("runningId", res.data.data.id.toString());
+	// 		})
+	// 		.catch((err) => console.log(err));
+	// 	refreshPosition();
+	// }
 
 	async function getPrevRunningInfo(prevRunningInfo) {
 		/** 이전 러닝 정보를 가져와 복원 */
-		console.log("prev running exists : " + prevRunningInfo.data.data.id);
 		setRunningId(prevRunningInfo.data.data.id);
 		setDistance(prevRunningInfo.data.data.distance);
-		locations.current = prevRunningInfo.data.data.locations.map(
-			(location) => ({ lat: location.latitude, lng: location.longitude }),
+		setLocations(
+			prevRunningInfo.data.data.locations.map((location) => ({
+				lat: location.latitude,
+				lng: location.longitude,
+			})),
 		);
-
-		//setPace(prevRunningInfo.data.data.pace);
+		setPace(prevRunningInfo.data.data.pace);
 	}
 
 	const onClickEnd = async (e) => {
@@ -111,7 +110,7 @@ export default function Running() {
 			longitude: longitude,
 			latitude: latitude,
 		}).then((res) => {
-			console.log(res.data.data);
+			//console.log(res.data.data);
 		});
 		elapsedTime.current = parseInt(localStorage.getItem("curTime"));
 		localStorage.removeItem("runningId");
@@ -144,8 +143,8 @@ export default function Running() {
 				//기존에 러닝이 진행 중이었음 : 복원
 				getPrevRunningInfo(prevRunningInfo);
 			} else {
-				//아니면 새로 러닝 시작
-				startNewRunning();
+				//기존 러닝 없으면 home으로 redirect
+				navigate("/home");
 			}
 		});
 
@@ -221,7 +220,7 @@ export default function Running() {
 					<Tracker
 						longitude={longitude}
 						latitude={latitude}
-						locations={locations.current}
+						locations={locations}
 					/>
 				</Map>
 			)}
