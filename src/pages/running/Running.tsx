@@ -209,7 +209,13 @@ export default function Running() {
 			{latitude === 0 || longitude === 0 ? undefined : (
 				<Map
 					center={{ lat: latitude, lng: longitude }}
-					style={{ width: "100%", height: "70vh", zIndex: 0 }}
+					style={{
+						width: "100%",
+						height: "70vh",
+						zIndex: 0,
+						position: "fixed",
+						top: 0,
+					}}
 					level={2}
 					onDragEnd={
 						testMode
@@ -224,42 +230,42 @@ export default function Running() {
 					/>
 				</Map>
 			)}
-			<Status distance={distance} pace={pace} />
-			<Button
-				variant={testMode ? "contained" : "outlined"}
-				onClick={() => {
-					setTestMode((prev) => !prev);
-					if (testMode) {
-						geo.clearWatch(geolocationId.current);
-						geolocationId.current = 0;
-					} else {
-						geolocationId.current = geo.watchPosition((g) => {
-							setLatitude((prev) => {
-								setPrevLatitude(prev);
-								return g.coords.latitude;
-							});
-							setLongitude((prev) => {
-								setPrevLongitude(prev);
-								return g.coords.longitude;
-							});
-						});
-					}
+			<Box
+				sx={{
+					position: "fixed",
+					top: "70vh",
+					width: "100%",
 				}}
 			>
-				TEST {testMode ? "ON" : "OFF"}
-			</Button>
-			<Button
-				variant="outlined"
-				onClick={() => {
-					refreshPosition();
-				}}
-			>
-				위치 새로고침
-			</Button>
+				<Status distance={distance} pace={pace} />
+				<Button
+					variant={testMode ? "contained" : "outlined"}
+					onClick={() => {
+						setTestMode((prev) => !prev);
+						if (testMode) {
+							geo.clearWatch(geolocationId.current);
+							geolocationId.current = 0;
+						} else {
+							geolocationId.current = geo.watchPosition((g) => {
+								setLatitude((prev) => {
+									setPrevLatitude(prev);
+									return g.coords.latitude;
+								});
+								setLongitude((prev) => {
+									setPrevLongitude(prev);
+									return g.coords.longitude;
+								});
+							});
+						}
+					}}
+				>
+					TEST {testMode ? "ON" : "OFF"}
+				</Button>
 
-			<Button variant={"outlined"} onClick={onClickEnd}>
-				러닝 그만하기
-			</Button>
+				<Button variant={"outlined"} onClick={onClickEnd}>
+					러닝 그만하기
+				</Button>
+			</Box>
 		</Box>
 	);
 }
