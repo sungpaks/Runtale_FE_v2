@@ -44,10 +44,6 @@ export default function Home() {
 			<Profile tier={tier} username={tier.nickname} userId={userId} />
 			<TopPercentage />
 			<Tutorial />
-			<Box height="400px"></Box>
-			<Button variant="outlined" onClick={handleLogout}>
-				로그아웃
-			</Button>
 		</Box>
 	);
 }
