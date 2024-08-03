@@ -36,6 +36,7 @@ export default function Running() {
 		maximumAge: 0,
 	};
 	const [locations, setLocations] = useState<PathType[]>([]);
+	const [showScenario, setShowScenario] = useState(false);
 
 	const refreshPosition = () => {
 		/** 위치 정보 새로 가져옴 */
@@ -201,17 +202,44 @@ export default function Running() {
 		setPace(curPace);
 	}, [latitude, longitude]);
 
+	if (showScenario)
+		return (
+			<Box>
+				<h1>시나리오 화면을 넣어요</h1>
+				<Box
+					sx={{
+						position: "fixed",
+						bottom: "1.5rem",
+						width: "100%",
+						display: "flex",
+						justifyContent: "space-evenly",
+					}}
+				>
+					<Button variant={"outlined"} onClick={onClickEnd}>
+						러닝 그만하기
+					</Button>
+					<Button
+						variant="contained"
+						onClick={() => setShowScenario((prev) => !prev)}
+					>
+						시나리오 화면
+					</Button>
+				</Box>
+			</Box>
+		);
 	if (latitude === 0 || longitude === 0) {
 		refreshPosition();
 	}
 	return (
 		<Box>
-			{latitude === 0 || longitude === 0 ? undefined : (
+			{latitude === 0 || longitude === 0 ? (
+				<>잠시만요... 지도를 준비중입니다</>
+			) : (
 				<Map
 					center={{ lat: latitude, lng: longitude }}
 					style={{
 						width: "100%",
-						height: "80vh",
+						height: "70vh",
 						zIndex: 0,
 						position: "fixed",
 						top: 0,
@@ -233,42 +261,55 @@ export default function Running() {
 			<Box
 				sx={{
 					position: "fixed",
-					top: "70vh",
+					bottom: "1.5rem",
 					width: "100%",
 				}}
 			>
 				<Status distance={distance} pace={pace} />
-				{import.meta.env.DEV ? (
-					<Button
-						variant={testMode ? "contained" : "outlined"}
-						onClick={() => {
-							setTestMode((prev) => !prev);
-							if (testMode) {
-								geo.clearWatch(geolocationId.current);
-								geolocationId.current = 0;
-							} else {
-								geolocationId.current = geo.watchPosition(
-									(g) => {
-										setLatitude((prev) => {
-											setPrevLatitude(prev);
-											return g.coords.latitude;
-										});
-										setLongitude((prev) => {
-											setPrevLongitude(prev);
-											return g.coords.longitude;
-										});
-									},
-								);
-							}
-						}}
-					>
-						TEST {testMode ? "ON" : "OFF"}
-					</Button>
-				) : undefined}
+				<Box
+					sx={{
+						display: "flex",
+						justifyContent: "space-evenly",
+					}}
+				>
+					{import.meta.env.DEV ? (
+						<Button
+							variant={testMode ? "contained" : "outlined"}
+							onClick={() => {
+								setTestMode((prev) => !prev);
+								if (testMode) {
+									geo.clearWatch(geolocationId.current);
+									geolocationId.current = 0;
+								} else {
+									geolocationId.current = geo.watchPosition(
+										(g) => {
+											setLatitude((prev) => {
+												setPrevLatitude(prev);
+												return g.coords.latitude;
+											});
+											setLongitude((prev) => {
+												setPrevLongitude(prev);
+												return g.coords.longitude;
+											});
+										},
+									);
+								}
+							}}
+						>
+							TEST {testMode ? "ON" : "OFF"}
+						</Button>
+					) : undefined}
 
-				<Button variant={"outlined"} onClick={onClickEnd}>
-					러닝 그만하기
-				</Button>
+					<Button variant={"outlined"} onClick={onClickEnd}>
+						러닝 그만하기
+					</Button>
+					<Button
+						variant="contained"
+						onClick={() => setShowScenario((prev) => !prev)}
+					>
+						시나리오 화면
+					</Button>
+				</Box>
 			</Box>
 		</Box>
 	);
