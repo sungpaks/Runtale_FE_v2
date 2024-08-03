@@ -44,8 +44,6 @@ body {
 	display: flex;
 	place-items: center;
 	min-width: 320px;
-	min-height: 95vh;
-	padding-bottom: 3.5rem;
 }
 
 h1 {
@@ -85,3 +83,9 @@ button:focus-visible {
 		background-color: #f9f9f9;
 	}
 } */
+
+.content {
+	position: relative;
+	top: 3.5rem;
+	margin-bottom: 7rem;
+}
