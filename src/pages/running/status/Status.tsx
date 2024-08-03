@@ -38,6 +38,7 @@ export default function Status({ distance, pace }: StatusPropsType) {
 		<Box
 			m={1}
 			mt={4}
+			mb={2.5}
 			sx={{
 				// display: "flex",
 				// justifyContent: "space-evenly",
@@ -45,7 +46,7 @@ export default function Status({ distance, pace }: StatusPropsType) {
 				height: "100px",
 				borderRadius: 3,
 				backgroundColor: "#DCE9F5",
-				boxShadow: "3px 3px 3px rgb(0,0,0,0.4)",
+				boxShadow: "3px 3px 3px rgb(0,0,0,0.1)",
 			}}
 		>
 			<Grid container spacing={2}>
