@@ -12,6 +12,7 @@ export default function Layout({ children }: { children: ReactNode }) {
 		"/tutorial",
 		"/success",
 		"/startrunning",
+		"/running",
 		"/running/end",
 		"/running",
 	];
