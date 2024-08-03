@@ -10,7 +10,7 @@ const tiers = [
 	{ name: "달팽이", description: "비를 좋아하는 감성! 달팽이", level: 1 },
 	{ name: "거북이", description: "느리지만 눈치 빠른! 거북이", level: 2 },
 	{ name: "토끼", description: "극강의 인싸! 재주많은 토끼", level: 3 },
-	{ name: "말", description: "토끼와 양속인 당근 러버! 말", level: 4 },
+	{ name: "말", description: "토끼와 앙숙인 당근 러버! 말", level: 4 },
 	{ name: "치타", description: "이 구역의 지배자! 날쌘 독수리", level: 5 },
 ];
 
