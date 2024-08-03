@@ -63,13 +63,11 @@ export default function Statistics() {
 			<Title
 				style={{
 					textAlign: "left",
-					marginBottom: "50px",
 				}}
 				level={2}
 			>
 				<AnimalCrawls />
 			</Title>
-
 			<Box sx={{ textAlign: "left" }}>
 				<h2
 					style={{

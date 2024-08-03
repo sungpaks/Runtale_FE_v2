@@ -72,7 +72,6 @@ const ScenarioItem: React.FC<Scenario> = ({
 				<h4
 					style={{
 						margin: 0,
-						fontWeight: "bold",
 						color: "#1890FF",
 						fontFamily: "Pretendard-Bold",
 					}}
@@ -107,16 +106,14 @@ const Story: React.FC = () => {
 				level={2}
 				style={{
 					textAlign: "left",
-					marginBottom: "50px",
 				}}
 			>
 				<AnimalCrawls />
 			</Title>
 			<Stack textAlign="left">
 				<Title
-					level={4}
+					level={3}
 					style={{
-						fontWeight: "bold",
 						color: "#1890FF",
 						fontFamily: "Pretendard-Bold",
 					}}
