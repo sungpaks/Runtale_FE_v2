@@ -1,0 +1,40 @@
+.Container {
+	display: flex;
+	flex-direction: column;
+	min-height: 85vh;
+    justify-content: center;
+}
+
+.Content-Wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bottom-Wrap {
+    margin-top: 70px;
+}
+
+.SignupWrap {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+    margin-top: 30px;
+}
+
+.SignupText {
+	color: #92a3b2;
+	font-size: 14px;
+	font-weight: bold;
+	border: none;
+}
+
+.Signupbtn {
+	color: #1890ff;
+	font-size: 14px;
+	font-weight: bold;
+	border: none;
+	background-color: white;
+	text-decoration: underline;
+}

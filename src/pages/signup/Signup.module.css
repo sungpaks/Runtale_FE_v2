@@ -1,0 +1,69 @@
+.Container {
+	display: flex;
+	flex-direction: column;
+	min-height: 95vh;
+	justify-content: space-between;
+}
+
+.Container h3 {
+	font-size: 20px; /* 원하는 폰트 크기 */
+	font-weight: 700; /* 원하는 폰트 두께 */
+	padding: 2rem;
+	font-family: "Pretendard-Bold";
+}
+
+input::placeholder {
+	font-size: 12px;
+}
+
+.TextBoxWrap {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 30px;
+	align-items: center;
+}
+
+.SignupWrap {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 20px;
+}
+
+.SignupText {
+	color: #92a3b2;
+	font-size: 14px;
+	font-weight: bold;
+	border: none;
+}
+
+.Signupbtn {
+	color: #1890ff;
+	font-size: 14px;
+	font-weight: bold;
+	border: none;
+	background-color: white;
+	text-decoration: underline;
+	font-family: "Pretendard-Bold";
+}
+
+.Success-Container {
+	display: flex;
+	min-height: 95vh;
+	justify-content: center;
+	align-items: center;
+}
+
+.Content-Wrap {
+	display: flex;
+	flex-direction: column;
+	justify-self: center;
+	align-items: center;
+}
+
+.Content-Wrap h2 {
+	font-family: "Pretendard-Bold";
+	margin-bottom: 50px;
+}
+

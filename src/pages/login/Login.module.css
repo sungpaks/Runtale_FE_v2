@@ -1,0 +1,45 @@
+.Container {
+	display: flex;
+	flex-direction: column;
+	min-height: 95vh;
+	justify-content: space-between;
+}
+
+.Container h3 {
+	font-size: 20px; 
+	font-weight: 700; 
+	font-family: "Pretendard-Bold"; 
+	padding: 2rem;
+}
+
+.TextBoxWrap {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 30px;
+	align-items: center;
+}
+
+.SignupWrap {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 20px;
+}
+
+.SignupText {
+	color: #92a3b2;
+	font-size: 14px;
+	font-weight: bold;
+	border: none;
+}
+
+.Signupbtn {
+	color: #1890ff;
+	font-size: 14px;
+	font-weight: bold;
+	border: none;
+	background-color: white;
+	text-decoration: underline;
+	font-family: "Pretendard-Bold";
+}
