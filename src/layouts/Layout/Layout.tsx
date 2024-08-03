@@ -12,6 +12,7 @@ export default function Layout({ children }: { children: ReactNode }) {
 		"/tutorial",
 		"/success",
 		"/startrunning",
+		"/running",
 		"/running/end",
 	];
 	const shouldHideNavBar = hideNavBarPaths.includes(location.pathname);
