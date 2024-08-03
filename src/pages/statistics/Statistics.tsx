@@ -90,7 +90,6 @@ export default function Statistics() {
 						<Bar dataKey="distance" fill="#98D588" barSize={10} />
 					</BarChart>
 					</ResponsiveContainer>
-
 				</Box>
 				<Grid
 					container
