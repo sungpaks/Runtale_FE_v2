@@ -58,13 +58,15 @@ const queryClient = new QueryClient();
 
 function App() {
 	return (
-		<QueryClientProvider client={queryClient}>
-			<CookiesProvider>
-				<AuthProvider>
-					<RouterProvider router={router}></RouterProvider>
-				</AuthProvider>
-			</CookiesProvider>
-		</QueryClientProvider>
+		<div className="content">
+			<QueryClientProvider client={queryClient}>
+				<CookiesProvider>
+					<AuthProvider>
+						<RouterProvider router={router}></RouterProvider>
+					</AuthProvider>
+				</CookiesProvider>
+			</QueryClientProvider>
+		</div>
 	);
 }
 
