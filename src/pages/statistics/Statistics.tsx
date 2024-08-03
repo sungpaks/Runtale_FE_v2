@@ -85,7 +85,7 @@ export default function Statistics() {
 					<BarChart data={formattedData}>
 						<CartesianGrid strokeDasharray="3 3" />
 						<XAxis dataKey="date" label={{ value: '일', position: 'insideBottomRight', offset: -1 }} />
-						<YAxis label={{ value: 'km', position: 'insideTop', offset: -4 }} />
+						<YAxis label= {{value: 'km', position: 'insideTop', offset: -4}} />
 						<Tooltip />
 						<Bar dataKey="distance" fill="#98D588" barSize={10} />
 					</BarChart>
