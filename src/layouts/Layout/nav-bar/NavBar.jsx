@@ -39,6 +39,7 @@ export default function NavBar() {
           showLabels
           value={value}
           onChange={handleNavigation}
+          sx = {{ height: "3.5rem" }}
         >
           {navigationMap.map((navItem, index) => (
             <BottomNavigationAction
