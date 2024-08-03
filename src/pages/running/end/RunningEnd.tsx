@@ -95,48 +95,45 @@ function CurrentRunningRecord({
 						<span className="bitter-large">
 							{targetPaceSeconds}
 						</span>
-						s
-					</div>
-				</Box>
-				<Box>
-					<Title level={3}>목표 페이스 달성</Title>
-					<div
-						className="success"
-						style={{ color: achived ? "#1890ff" : "crimson" }}
-					>
-						{achived ? (
-							<>
-								<picture>
-									<source
-										srcSet="https://fonts.gstatic.com/s/e/notoemoji/latest/1f973/512.webp"
-										type="image/webp"
-									/>
-									<img
-										src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f973/512.gif"
-										alt="🥳"
-										width="32"
-										height="32"
-									/>
-								</picture>
-								&nbsp;성공
-							</>
-						) : (
-							<>
-								<picture>
-									<source
-										srcSet="https://fonts.gstatic.com/s/e/notoemoji/latest/1f623/512.webp"
-										type="image/webp"
-									/>
-									<img
-										src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f623/512.gif"
-										alt="😣"
-										width="32"
-										height="32"
-									/>
-								</picture>
-								&nbsp;실패
-							</>
-						)}
+						s &nbsp;&nbsp;
+						<span
+							className="achived"
+							style={{ color: achived ? "#1890ff" : "crimson" }}
+						>
+							{achived ? (
+								<>
+									<picture>
+										<source
+											srcSet="https://fonts.gstatic.com/s/e/notoemoji/latest/1f973/512.webp"
+											type="image/webp"
+										/>
+										<img
+											src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f973/512.gif"
+											alt="🥳"
+											width="36"
+											height="36"
+										/>
+									</picture>
+									&nbsp;달성
+								</>
+							) : (
+								<>
+									<picture>
+										<source
+											srcSet="https://fonts.gstatic.com/s/e/notoemoji/latest/1f623/512.webp"
+											type="image/webp"
+										/>
+										<img
+											src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f623/512.gif"
+											alt="😣"
+											width="36"
+											height="36"
+										/>
+										&nbsp;실패
+									</picture>
+								</>
+							)}
+						</span>
 					</div>
 				</Box>
 			</Box>
@@ -182,11 +179,11 @@ export default function RunningEnd({}) {
 			<div style={{ display: "flex", justifyContent: "space-evenly" }}>
 				<Button
 					variant="contained"
-					sx={{ 
+					sx={{
 						backgroundColor: "lightgray",
 						color: "black",
-						borderRadius: 2, 
-						fontFamily: "Pretendard-bold" 
+						borderRadius: 2,
+						fontFamily: "Pretendard-bold",
 					}}
 					onClick={() => {
 						navigate("/home");
@@ -198,9 +195,9 @@ export default function RunningEnd({}) {
 				<Button
 					variant="outlined"
 					sx={{
-						backgroundColor: "white", 
+						backgroundColor: "white",
 						borderRadius: 2,
-						fontFamily: "Pretendard-bold" 
+						fontFamily: "Pretendard-bold",
 					}}
 					onClick={() => {
 						setShowRecord(true);
