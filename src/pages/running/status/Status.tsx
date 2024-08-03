@@ -45,6 +45,7 @@ export default function Status({ distance, pace }: StatusPropsType) {
 				height: "100px",
 				borderRadius: 3,
 				backgroundColor: "#DCE9F5",
+				boxShadow: "3px 3px 3px rgb(0,0,0,0.4)",
 			}}
 		>
 			<Grid container spacing={2}>

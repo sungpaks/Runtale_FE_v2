@@ -25,6 +25,7 @@ function CurrentRunningRecord({
 	time,
 	targetPace,
 }: RunningResult) {
+	const navigate = useNavigate();
 	const km = getFormattedDistance(distance);
 	const { userId } = useContext(AuthContext);
 	const { isLoading, isError, data } = useQuery({
@@ -42,19 +43,29 @@ function CurrentRunningRecord({
 	return (
 		<Box
 			sx={{
+				position: "fixed",
+				top: 0,
 				m: 3,
-				color: "gray",
 				fontSize: "larger",
 				fontFamily: "Pretendard-bold",
 				textAlign: "left",
 			}}
 		>
-			<div>
-				<strong>{name}님의</strong>
-			</div>
-			<div>
-				<strong>오늘 러닝 기록을 확인해볼까요? </strong>
-			</div>
+			<Box
+				sx={{
+					color: "gray",
+					fontFamily: "Pretendard-bold",
+					textAlign: "left",
+				}}
+			>
+				<div>
+					<strong>{name}님의</strong>
+				</div>
+				<div>
+					<strong>오늘 러닝 기록을 확인해볼까요? </strong>
+				</div>
+			</Box>
+
 			<Box
 				sx={{
 					display: "flex",
@@ -102,6 +113,7 @@ function CurrentRunningRecord({
 						>
 							{achived ? (
 								<>
+									달성&nbsp;
 									<picture>
 										<source
 											srcSet="https://fonts.gstatic.com/s/e/notoemoji/latest/1f973/512.webp"
@@ -114,10 +126,10 @@ function CurrentRunningRecord({
 											height="36"
 										/>
 									</picture>
-									&nbsp;달성
 								</>
 							) : (
 								<>
+									실패&nbsp;
 									<picture>
 										<source
 											srcSet="https://fonts.gstatic.com/s/e/notoemoji/latest/1f623/512.webp"
@@ -129,13 +141,20 @@ function CurrentRunningRecord({
 											width="36"
 											height="36"
 										/>
-										&nbsp;실패
 									</picture>
 								</>
 							)}
 						</span>
 					</div>
 				</Box>
+
+				<Button
+					variant="contained"
+					sx={{ mt: 2 }}
+					onClick={() => navigate("/home")}
+				>
+					종료
+				</Button>
 			</Box>
 		</Box>
 	);
@@ -176,7 +195,14 @@ export default function RunningEnd({}) {
 				무사히 러닝을 완주했습니다!
 			</Title>
 			<img src={"/img/running_end.png"} width="100%" />
-			<div style={{ display: "flex", justifyContent: "space-evenly" }}>
+			<div
+				style={{
+					display: "flex",
+					justifyContent: "space-evenly",
+					position: "sticky",
+					bottom: "2rem",
+				}}
+			>
 				<Button
 					variant="contained"
 					sx={{
