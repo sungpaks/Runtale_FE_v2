@@ -4,7 +4,7 @@ import { Tier } from "../pages/home/Home";
 
 export default function LevelBar({ tier }: { tier: Tier }) {
 	const level = getLevelNumber(tier.tierName);
-	const percentageToNextLevel = tier.percentile / 100;
+	const percentageToNextLevel = tier.progress / 20;
 	const activeBarWidth = percentageToNextLevel * 200;
 
 	return (
