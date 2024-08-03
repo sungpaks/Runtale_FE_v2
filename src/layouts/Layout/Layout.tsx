@@ -13,6 +13,7 @@ export default function Layout({ children }: { children: ReactNode }) {
 		"/success",
 		"/startrunning",
 		"/running/end",
+		"/running",
 	];
 	const shouldHideNavBar = hideNavBarPaths.includes(location.pathname);
 
@@ -21,7 +22,8 @@ export default function Layout({ children }: { children: ReactNode }) {
 	const hasPreviousButton = !showTitleBarPaths.includes(location.pathname);
 	const shouldHideTitleBar =
 		location.pathname === "/startrunning" ||
-		location.pathname === "/running";
+		location.pathname === "/running" ||
+		location.pathname === "/running/end";
 
 	return (
 		<>
