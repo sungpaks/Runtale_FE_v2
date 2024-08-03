@@ -103,6 +103,7 @@ export default function Running() {
 
 	const onClickEnd = async (e) => {
 		/** 러닝 끝내기 */
+		let targetPace;
 		await postRunning({
 			id: runningId,
 			endTime: new Date(Date.now()),
@@ -111,6 +112,7 @@ export default function Running() {
 			longitude: longitude,
 			latitude: latitude,
 		}).then((res) => {
+			targetPace = res.data.data.targetPace;
 			//console.log(res.data.data);
 		});
 		elapsedTime.current = parseInt(localStorage.getItem("curTime"));
@@ -121,6 +123,7 @@ export default function Running() {
 				distance: distance,
 				pace: pace,
 				time: elapsedTime.current,
+				targetPace: targetPace,
 			},
 		});
 	};

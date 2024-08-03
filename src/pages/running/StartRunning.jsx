@@ -48,7 +48,6 @@ export default function StartRunning() {
 			longitude: position.current.longitude,
 		}).then((res) => {
 			localStorage.setItem("runningId", res.data.data.id.toString());
-			console.log(targetPace);
 		});
 
 		setCountdown(3);

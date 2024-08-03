@@ -177,8 +177,8 @@ export default function SetDistance() {
 						navigate("/startrunning", {
 							state: {
 								targetPace:
-									(parseInt(minutes) * 60 +
-										parseInt(seconds)) *
+									((parseInt(minutes) | 0) * 60 +
+										(parseInt(seconds) | 0)) *
 									1000,
 							},
 						})
