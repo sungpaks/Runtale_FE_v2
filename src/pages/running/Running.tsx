@@ -3,7 +3,11 @@ import React, { useEffect, useRef, useState } from "react";
 import { Map, MapMarker, Polyline } from "react-kakao-maps-sdk";
 import Tracker from "./tracker/Tracker";
 import { postRunning, getRunning } from "../../api/api";
-import { getDistance, getPace } from "../../utils/running_util";
+import {
+	getDistance,
+	getPace,
+	getFormattedPace,
+} from "../../utils/running_util";
 import { useNavigate } from "react-router-dom";
 import RunningEnd from "./end/RunningEnd";
 import Status from "./status/Status";
@@ -99,17 +103,16 @@ export default function Running() {
 
 	const onClickEnd = async (e) => {
 		/** 러닝 끝내기 */
+		let targetPace;
 		await postRunning({
 			id: runningId,
 			endTime: new Date(Date.now()),
 			distance: distance,
 			pace: pace,
-			targetPace: 0, //실제 값 넣어야 함
-			targetDistance: 0, //실제 값 넣어야 함
-			scenarioId: 1, //실제 값 넣어야 함
 			longitude: longitude,
 			latitude: latitude,
 		}).then((res) => {
+			targetPace = res.data.data.targetPace;
 			//console.log(res.data.data);
 		});
 		elapsedTime.current = parseInt(localStorage.getItem("curTime"));
@@ -120,6 +123,7 @@ export default function Running() {
 				distance: distance,
 				pace: pace,
 				time: elapsedTime.current,
+				targetPace: targetPace,
 			},
 		});
 	};
@@ -181,24 +185,20 @@ export default function Running() {
 			latitude,
 			longitude,
 		);
-		setDistance((prev) => prev + curDistance);
-
 		const curPace = getPace(
 			distance,
 			parseInt(localStorage.getItem("curTime")) | 0.001,
 		);
-		setPace(curPace);
-
 		postRunning({
-			scenarioId: 1, //실제 시나리오 넣어야 함
+			scenarioId: 1,
 			id: runningId,
 			distance: distance + curDistance,
 			pace: curPace,
-			targetPace: 0, //실제 목표 페이스, 거리 넣어야 함
-			targetDistance: 0,
 			latitude: latitude,
 			longitude: longitude,
 		});
+		setDistance((prev) => prev + curDistance);
+		setPace(curPace);
 	}, [latitude, longitude]);
 
 	if (latitude === 0 || longitude === 0) {

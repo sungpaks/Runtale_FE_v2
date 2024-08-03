@@ -27,8 +27,7 @@ export function getDistance(prevLat, prevLng, curLat, curLng) {
 
 export function getPace(distance, elapsedTime) {
 	// elapsedTime in seconds
-	const timeInMinutes = elapsedTime / 60 / 1000;
-	return timeInMinutes / distance; // pace in minutes per kilometer
+	return elapsedTime / distance; // pace in minutes per kilometer
 }
 
 export function getFormattedDistance(distance) {
@@ -38,8 +37,8 @@ export function getFormattedDistance(distance) {
 }
 
 export function getFormattedPace(pace) {
-	const minutes = Math.trunc(pace);
-	const seconds = Math.trunc((pace - minutes) / 60);
+	const minutes = Math.trunc(pace / 1000 / 60);
+	const seconds = Math.trunc((pace / 1000) % 60);
 	return [minutes, seconds];
 }
 

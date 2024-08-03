@@ -20,14 +20,19 @@ export default function SetDistance() {
 	useEffect(() => {
 		if (!prevRunningId) return;
 		const runningId = parseInt(prevRunningId);
-		getRunning({ runningId }).then((res) => {
-			if (res.data.data.status === "IN_PROGRESS") {
-				navigate("/running");
-			}
-			/**
-			 * TODO : 이 타이밍에 "이전 러닝 진행상황 복구할까?말까?를 물어보면 좋을 듯 !"
-			 */
-		});
+		getRunning({ runningId })
+			.then((res) => {
+				if (res.data.data.status === "IN_PROGRESS") {
+					navigate("/running");
+				}
+				/**
+				 * TODO : 이 타이밍에 "이전 러닝 진행상황 복구할까?말까?를 물어보면 좋을 듯 !"
+				 */
+			})
+			.catch(() => {
+				localStorage.removeItem("runningId");
+				localStorage.removeItem("curTime");
+			});
 	});
 
 	useEffect(() => {
@@ -86,7 +91,7 @@ export default function SetDistance() {
 					marginBottom: "30px",
 				}}
 			>
-				<AnimalCrawls animal="🐌" />
+				<AnimalCrawls />
 			</Title>
 			<div className={`${styles["Content-Container"]}`}>
 				<h2>
@@ -172,8 +177,8 @@ export default function SetDistance() {
 						navigate("/startrunning", {
 							state: {
 								targetPace:
-									(parseInt(minutes) * 60 +
-										parseInt(seconds)) *
+									((parseInt(minutes) | 0) * 60 +
+										(parseInt(seconds) | 0)) *
 									1000,
 							},
 						})

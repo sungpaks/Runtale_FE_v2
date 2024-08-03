@@ -14,6 +14,7 @@ export interface Tier {
 	percentile: number;
 	tierName: string;
 	nickname: string;
+	progress: number;
 }
 
 export default function Home() {
