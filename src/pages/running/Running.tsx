@@ -215,14 +215,24 @@ export default function Running() {
 						justifyContent: "space-evenly",
 					}}
 				>
-					<Button variant={"outlined"} onClick={onClickEnd}>
+					<Button 
+						variant={"outlined"} 
+						onClick={onClickEnd}
+						sx = {{
+							fontFamily: "Pretendard-regular",
+						}}
+					>
 						러닝 그만하기
 					</Button>
 					<Button
 						variant="contained"
 						onClick={() => setShowScenario((prev) => !prev)}
+						sx = {{
+							backgroundColor: "#1890FF",
+							fontFamily: "Pretendard-regular",
+						}}
 					>
-						시나리오 화면
+						지도 보기
 					</Button>
 				</Box>
 			</Box>
@@ -300,12 +310,22 @@ export default function Running() {
 						</Button>
 					) : undefined}
 
-					<Button variant={"outlined"} onClick={onClickEnd}>
+					<Button 
+						variant={"outlined"} 
+						onClick={onClickEnd}
+						sx = {{
+							fontFamily: "Pretendard-regular",
+						}}
+					>
 						러닝 그만하기
 					</Button>
 					<Button
 						variant="contained"
 						onClick={() => setShowScenario((prev) => !prev)}
+						sx = {{
+							backgroundColor: "#1890FF",
+							fontFamily: "Pretendard-regular",
+						}}
 					>
 						시나리오 화면
 					</Button>
