@@ -119,7 +119,7 @@ export default function RunningEnd({}) {
 				축하해요! <br />
 				무사히 러닝을 완주했습니다!
 			</Title>
-			<img src={"running_end.png"} width="100%" />
+			<img src={"/img/running_end.png"} width="100%" />
 			<div style={{ display: "flex", justifyContent: "space-evenly" }}>
 				<Button
 					variant="outlined"
