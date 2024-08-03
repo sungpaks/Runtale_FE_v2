@@ -165,11 +165,13 @@ export default function RunningEnd({}) {
 				display: "flex",
 				flexDirection: "column",
 				backgroundColor: "#1890FF",
-				height: "95vh",
+				height: "100vh",
 				width: "100%",
 				overflow: "hidden",
 				color: "white",
 				justifyContent: "center",
+				fontFamily: "Pretendard-bold",
+				gap: "35px",
 			}}
 		>
 			<Title level={2}>
@@ -179,8 +181,13 @@ export default function RunningEnd({}) {
 			<img src={"/img/running_end.png"} width="100%" />
 			<div style={{ display: "flex", justifyContent: "space-evenly" }}>
 				<Button
-					variant="outlined"
-					sx={{ backgroundColor: "white", borderRadius: 3 }}
+					variant="contained"
+					sx={{ 
+						backgroundColor: "lightgray",
+						color: "black",
+						borderRadius: 2, 
+						fontFamily: "Pretendard-bold" 
+					}}
 					onClick={() => {
 						navigate("/home");
 					}}
@@ -189,11 +196,11 @@ export default function RunningEnd({}) {
 				</Button>
 
 				<Button
-					variant="contained"
+					variant="outlined"
 					sx={{
-						backgroundColor: "lightgray",
-						color: "black",
-						borderRadius: 3,
+						backgroundColor: "white", 
+						borderRadius: 2,
+						fontFamily: "Pretendard-bold" 
 					}}
 					onClick={() => {
 						setShowRecord(true);
