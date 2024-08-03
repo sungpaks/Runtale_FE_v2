@@ -26,12 +26,17 @@ import StartRunning from "./pages/running/StartRunning";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import RunningEnd from "./pages/running/end/RunningEnd";
+import NotFound from "./pages/404/NotFound";
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
 		<>
-			<Route path="/" element={<DefaultPage />} />
-			<Route element={<PrivateRoute />}>
+			<Route
+				path="/"
+				element={<DefaultPage />}
+				errorElement={<NotFound />}
+			/>
+			<Route element={<PrivateRoute />} errorElement={<NotFound />}>
 				{/* 로그인이 필요한 페이지 정의 */}
 
 				<Route path="/home" element={<Home />} />
