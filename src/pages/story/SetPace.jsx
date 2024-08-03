@@ -1,5 +1,4 @@
 import { useState, useEffect, useContext } from "react";
-import AnimalCrawls from "../../components/AnimalCrawls";
 import styles from "./SetPace.module.css";
 import Title from "../../components/Title";
 import { Box, Button } from "@mui/material";
@@ -84,7 +83,7 @@ export default function SetDistance() {
 
 	return (
 		<Box p={1}>
-			<Title
+			{/* <Title
 				level={2}
 				style={{
 					textAlign: "left",
@@ -92,9 +91,9 @@ export default function SetDistance() {
 				}}
 			>
 				<AnimalCrawls />
-			</Title>
+			</Title> */}
 			<div className={`${styles["Content-Container"]}`}>
-				<h2>
+				<Title level={2}>
 					<span
 						style={{
 							color: "#1890FF",
@@ -104,7 +103,7 @@ export default function SetDistance() {
 						{nickname}
 					</span>{" "}
 					님의 오늘 목표 페이스
-				</h2>
+				</Title>
 				<div className={styles.distanceInputContainer}>
 					<div className={styles.minuteWrap}>
 						<input

@@ -2,12 +2,12 @@
 	font-family: "Bitter", serif;
 	font-optical-sizing: auto;
 	font-weight: 900;
-	font-size: xxx-large;
+	font-size: 3rem;
 	margin: 0 3px;
 }
 
-.success {
+.achived {
 	/* color: #1890ff; */
 	font-size: xx-large;
-	margin-left: 5px;
+	vertical-align: text-bottom;
 }
