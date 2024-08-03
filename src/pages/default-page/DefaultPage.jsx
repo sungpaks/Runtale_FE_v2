@@ -22,10 +22,10 @@ export default function DefaultPage() {
 				>
 					<Typography variant="h6">로고</Typography>
 				</Box>
-				<Typography variant="h4" sx={{ fontWeight: 'bold', mb: 1 }}>
+				<Typography variant="h4" sx={{ fontFamily: "Pretendard-bold", mb: 1 }}>
 					Runtale
 				</Typography>
-				<Typography variant="body1">
+				<Typography variant="body1" sx={{ fontFamily: "Pretendard-regular"}}>
 					즐거운 러닝의 시작, 런테일!
 				</Typography>
 			</div>
