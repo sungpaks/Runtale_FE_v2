@@ -102,6 +102,7 @@ function CurrentRunningRecord({
 						>
 							{achived ? (
 								<>
+									달성&nbsp;
 									<picture>
 										<source
 											srcSet="https://fonts.gstatic.com/s/e/notoemoji/latest/1f973/512.webp"
@@ -114,10 +115,10 @@ function CurrentRunningRecord({
 											height="36"
 										/>
 									</picture>
-									&nbsp;달성
 								</>
 							) : (
 								<>
+									실패&nbsp;
 									<picture>
 										<source
 											srcSet="https://fonts.gstatic.com/s/e/notoemoji/latest/1f623/512.webp"
@@ -129,7 +130,6 @@ function CurrentRunningRecord({
 											width="36"
 											height="36"
 										/>
-										&nbsp;실패
 									</picture>
 								</>
 							)}

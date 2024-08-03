@@ -41,7 +41,13 @@ export default function TitleBar({
 			</h2>
 			<Button
 				onClick={handleLogout}
-				sx={{ marginLeft: "auto", paddingRight: "2rem" }}
+				sx={{ 
+					marginLeft: "auto", 
+					paddingRight: "2rem", 
+					fontFamily: "Pretendard-regular", 
+					textDecoration: "underline", 
+					color: "#D0D0D0",
+				}}
 			>
 				로그아웃
 			</Button>
