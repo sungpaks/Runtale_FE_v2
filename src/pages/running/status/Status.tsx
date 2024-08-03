@@ -56,7 +56,11 @@ export default function Status({ distance, pace }: StatusPropsType) {
 					<span className="bitter">
 						{!pace || pace === Infinity ? "-" : paceMinutes}
 					</span>
-					<Title level={3}>평균 페이스</Title>
+					m
+					<span className="bitter">
+						{!pace || pace === Infinity ? "-" : paceSeconds}
+					</span>
+					s<Title level={3}>평균 페이스</Title>
 				</Grid>
 				<Grid item xs={4}>
 					<span className="bitter">{minutes}</span>분

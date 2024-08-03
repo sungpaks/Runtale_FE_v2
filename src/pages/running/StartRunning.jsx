@@ -42,13 +42,12 @@ export default function StartRunning() {
 			distance: 0,
 			pace: 0,
 			targetPace: targetPace,
-			targetDistance: 0, //실제 값 추가
+			targetDistance: 3, //실제 값 추가
 			scenarioId: 1, //실제 값 추가
 			latitude: position.current.latitude,
 			longitude: position.current.longitude,
 		}).then((res) => {
 			localStorage.setItem("runningId", res.data.data.id.toString());
-			console.log(targetPace);
 		});
 
 		setCountdown(3);

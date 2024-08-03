@@ -16,9 +16,15 @@ interface RunningResult {
 	distance: number;
 	pace: number;
 	time: number;
+	targetPace: number;
 }
 
-function CurrentRunningRecord({ distance, pace, time }: RunningResult) {
+function CurrentRunningRecord({
+	distance,
+	pace,
+	time,
+	targetPace,
+}: RunningResult) {
 	const km = getFormattedDistance(distance);
 	const { userId } = useContext(AuthContext);
 	const { isLoading, isError, data } = useQuery({
@@ -27,6 +33,9 @@ function CurrentRunningRecord({ distance, pace, time }: RunningResult) {
 	});
 	const [minutes, seconds] = getFormattedTime(time);
 	const [paceMinutes, paceSeconds] = getFormattedPace(pace);
+	const [targetPaceMinutes, targetPaceSeconds] = getFormattedPace(targetPace);
+	const achived: boolean = pace <= targetPace;
+
 	if (isLoading) return <h1>로딩중..</h1>;
 	if (isError) return <h1>에러아님</h1>;
 	const name = data.data.data.nickname;
@@ -44,7 +53,7 @@ function CurrentRunningRecord({ distance, pace, time }: RunningResult) {
 				<strong>{name}님의</strong>
 			</div>
 			<div>
-				<strong>오늘 러닝 기록을 확인해볼까요? </strong>`
+				<strong>오늘 러닝 기록을 확인해볼까요? </strong>
 			</div>
 			<Box
 				sx={{
@@ -79,13 +88,56 @@ function CurrentRunningRecord({ distance, pace, time }: RunningResult) {
 				<Box>
 					<Title level={3}>목표 페이스</Title>
 					<div>
-						<span className="bitter-large">{0}</span>m
-						<span className="bitter-large">{0}</span>s
+						<span className="bitter-large">
+							{targetPaceMinutes}
+						</span>
+						m
+						<span className="bitter-large">
+							{targetPaceSeconds}
+						</span>
+						s
 					</div>
 				</Box>
 				<Box>
 					<Title level={3}>목표 페이스 달성</Title>
-					<div className="success">성공</div>
+					<div
+						className="success"
+						style={{ color: achived ? "#1890ff" : "crimson" }}
+					>
+						{achived ? (
+							<>
+								<picture>
+									<source
+										srcSet="https://fonts.gstatic.com/s/e/notoemoji/latest/1f973/512.webp"
+										type="image/webp"
+									/>
+									<img
+										src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f973/512.gif"
+										alt="🥳"
+										width="32"
+										height="32"
+									/>
+								</picture>
+								&nbsp;성공
+							</>
+						) : (
+							<>
+								<picture>
+									<source
+										srcSet="https://fonts.gstatic.com/s/e/notoemoji/latest/1f623/512.webp"
+										type="image/webp"
+									/>
+									<img
+										src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f623/512.gif"
+										alt="😣"
+										width="32"
+										height="32"
+									/>
+								</picture>
+								&nbsp;실패
+							</>
+						)}
+					</div>
 				</Box>
 			</Box>
 		</Box>
@@ -95,11 +147,16 @@ function CurrentRunningRecord({ distance, pace, time }: RunningResult) {
 export default function RunningEnd({}) {
 	const navigate = useNavigate();
 	const location = useLocation();
-	const { distance, pace, time } = location.state;
+	const { distance, pace, time, targetPace } = location.state;
 	const [showRecord, setShowRecord] = useState<boolean>(false);
 
 	return showRecord ? (
-		<CurrentRunningRecord distance={distance} pace={pace} time={time} />
+		<CurrentRunningRecord
+			distance={distance}
+			pace={pace}
+			time={time}
+			targetPace={targetPace}
+		/>
 	) : (
 		<Box
 			sx={{
@@ -119,7 +176,7 @@ export default function RunningEnd({}) {
 				축하해요! <br />
 				무사히 러닝을 완주했습니다!
 			</Title>
-			<img src={"running_end.png"} width="100%" />
+			<img src={"/img/running_end.png"} width="100%" />
 			<div style={{ display: "flex", justifyContent: "space-evenly" }}>
 				<Button
 					variant="outlined"
