@@ -14,6 +14,7 @@ import {
 	Tooltip,
 	ResponsiveContainer,
 } from "recharts";
+import CustomFadeLoader from "../../components/CustomFadeLoader";
 
 export default function Statistics() {
 	const { userId } = useContext(AuthContext);
@@ -22,7 +23,7 @@ export default function Statistics() {
 		queryFn: async () => await getRunningRecordMonthly({ userId }),
 	});
 
-	if (!isSuccess) return null;
+	if (!isSuccess) return <CustomFadeLoader />;
 
 	const {
 		averagePace,
@@ -42,13 +43,16 @@ export default function Statistics() {
 		{ date: "2024-07-27", distance: 5 },
 	];
 
-	const formattedData = runningList.length > 0 ? runningList.map((run) => ({
-		date: new Date(run.createdDate).getDate(),
-		distance: run.distance,
-	})) : exampleData.map((run) => ({
-		date: new Date(run.date).getDate(),
-		distance: run.distance,
-	}));
+	const formattedData =
+		runningList.length > 0
+			? runningList.map((run) => ({
+					date: new Date(run.createdDate).getDate(),
+					distance: run.distance,
+				}))
+			: exampleData.map((run) => ({
+					date: new Date(run.date).getDate(),
+					distance: run.distance,
+				}));
 
 	const currentDate = new Date();
 	const currentMonth = currentDate.toLocaleString("ko-KR", { month: "long" });
@@ -67,7 +71,14 @@ export default function Statistics() {
 			</Title>
 
 			<Box sx={{ textAlign: "left" }}>
-				<h2 style={{ marginLeft: "15px", fontFamily: "Pretendard-bold" }}>이달의 기록</h2>
+				<h2
+					style={{
+						marginLeft: "15px",
+						fontFamily: "Pretendard-bold",
+					}}
+				>
+					이달의 기록
+				</h2>
 				<Box
 					sx={{
 						display: "flex",
@@ -82,13 +93,30 @@ export default function Statistics() {
 						{`${currentYear}년 ${currentMonth}`}
 					</Box>
 					<ResponsiveContainer>
-					<BarChart data={formattedData}>
-						<CartesianGrid strokeDasharray="3 3" />
-						<XAxis dataKey="date" label={{ value: '일', position: 'insideBottomRight', offset: -1 }} />
-						<YAxis label= {{value: 'km', position: 'insideTop', offset: -4}} />
-						<Tooltip />
-						<Bar dataKey="distance" fill="#98D588" barSize={10} />
-					</BarChart>
+						<BarChart data={formattedData}>
+							<CartesianGrid strokeDasharray="3 3" />
+							<XAxis
+								dataKey="date"
+								label={{
+									value: "일",
+									position: "insideBottomRight",
+									offset: -1,
+								}}
+							/>
+							<YAxis
+								label={{
+									value: "km",
+									position: "insideTop",
+									offset: -4,
+								}}
+							/>
+							<Tooltip />
+							<Bar
+								dataKey="distance"
+								fill="#98D588"
+								barSize={10}
+							/>
+						</BarChart>
 					</ResponsiveContainer>
 				</Box>
 				<Grid

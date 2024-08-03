@@ -1,15 +1,27 @@
 import { Navigate, useNavigate } from "react-router-dom";
 import "./TitleBar.css";
+import { Button } from "@mui/material";
+import { useContext } from "react";
+import AuthContext from "../../../context/AuthContext";
+import { postLogout } from "../../../api/api";
 
 export default function TitleBar({
 	hasPreviousButton,
 }: {
 	hasPreviousButton: boolean;
 }) {
+	const { userId, setUserId } = useContext(AuthContext);
 	const navigate = useNavigate();
 
 	const handleTitleClick = () => {
 		navigate("/home");
+	};
+
+	const handleLogout = async () => {
+		const response = await postLogout();
+		if (response?.data?.status !== 200) console.log(response);
+		setUserId(-1); //에러 떠도 강제로 로그아웃
+		//에러가 지금 expire time 지나면 로그아웃이 먹통인가봄. 그럴만하긴해
 	};
 
 	return (
@@ -27,6 +39,12 @@ export default function TitleBar({
 			<h2 onClick={handleTitleClick} style={{ cursor: "pointer" }}>
 				RunTale
 			</h2>
+			<Button
+				onClick={handleLogout}
+				sx={{ marginLeft: "auto", paddingRight: "2rem" }}
+			>
+				로그아웃
+			</Button>
 		</div>
 	);
 }

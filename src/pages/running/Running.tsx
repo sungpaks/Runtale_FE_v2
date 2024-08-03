@@ -211,7 +211,7 @@ export default function Running() {
 					center={{ lat: latitude, lng: longitude }}
 					style={{
 						width: "100%",
-						height: "60vh",
+						height: "80vh",
 						zIndex: 0,
 						position: "fixed",
 						top: 0,
@@ -233,7 +233,7 @@ export default function Running() {
 			<Box
 				sx={{
 					position: "fixed",
-					top: "60vh",
+					top: "70vh",
 					width: "100%",
 				}}
 			>
