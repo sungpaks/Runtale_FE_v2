@@ -33,11 +33,7 @@ export default function Home() {
 	if (!isSuccess)
 		return (
 			<Box p={2}>
-				<Button
-					variant="outlined"
-					onClick={handleLogout}
-					sx={{ marginBottom: "80px" }}
-				>
+				<Button variant="outlined" onClick={handleLogout}>
 					로그아웃
 				</Button>
 			</Box>
@@ -49,11 +45,7 @@ export default function Home() {
 			<TopPercentage />
 			<Tutorial />
 			<Box height="400px"></Box>
-			<Button
-				variant="outlined"
-				onClick={handleLogout}
-				sx={{ marginBottom: "80px" }}
-			>
+			<Button variant="outlined" onClick={handleLogout}>
 				로그아웃
 			</Button>
 		</Box>
