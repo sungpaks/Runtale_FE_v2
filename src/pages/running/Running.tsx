@@ -211,7 +211,7 @@ export default function Running() {
 					center={{ lat: latitude, lng: longitude }}
 					style={{
 						width: "100%",
-						height: "70vh",
+						height: "60vh",
 						zIndex: 0,
 						position: "fixed",
 						top: 0,
@@ -233,34 +233,38 @@ export default function Running() {
 			<Box
 				sx={{
 					position: "fixed",
-					top: "70vh",
+					top: "60vh",
 					width: "100%",
 				}}
 			>
 				<Status distance={distance} pace={pace} />
-				<Button
-					variant={testMode ? "contained" : "outlined"}
-					onClick={() => {
-						setTestMode((prev) => !prev);
-						if (testMode) {
-							geo.clearWatch(geolocationId.current);
-							geolocationId.current = 0;
-						} else {
-							geolocationId.current = geo.watchPosition((g) => {
-								setLatitude((prev) => {
-									setPrevLatitude(prev);
-									return g.coords.latitude;
-								});
-								setLongitude((prev) => {
-									setPrevLongitude(prev);
-									return g.coords.longitude;
-								});
-							});
-						}
-					}}
-				>
-					TEST {testMode ? "ON" : "OFF"}
-				</Button>
+				{import.meta.env.DEV ? (
+					<Button
+						variant={testMode ? "contained" : "outlined"}
+						onClick={() => {
+							setTestMode((prev) => !prev);
+							if (testMode) {
+								geo.clearWatch(geolocationId.current);
+								geolocationId.current = 0;
+							} else {
+								geolocationId.current = geo.watchPosition(
+									(g) => {
+										setLatitude((prev) => {
+											setPrevLatitude(prev);
+											return g.coords.latitude;
+										});
+										setLongitude((prev) => {
+											setPrevLongitude(prev);
+											return g.coords.longitude;
+										});
+									},
+								);
+							}
+						}}
+					>
+						TEST {testMode ? "ON" : "OFF"}
+					</Button>
+				) : undefined}
 
 				<Button variant={"outlined"} onClick={onClickEnd}>
 					러닝 그만하기

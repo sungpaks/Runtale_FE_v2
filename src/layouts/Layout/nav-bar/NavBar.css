@@ -1,7 +1,6 @@
 .nav-bar {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    max-width: 480px;
-  }
-  
+	position: fixed;
+	bottom: -0.5px;
+	width: 100%;
+	max-width: 480px;
+}
