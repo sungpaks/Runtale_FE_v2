@@ -77,7 +77,7 @@ export default function TutorialExplain() {
                             <SlideContent
                                 stepNumber={2}
                                 imageUrl="/img/setpace.png"
-                                description="원하는 목표 km를 설정합니다."
+                                description="원하는 목표 페이스를 설정합니다."
                                 text=""
                             />
                         </div>
