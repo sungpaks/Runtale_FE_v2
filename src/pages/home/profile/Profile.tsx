@@ -31,23 +31,26 @@ export default function Profile({
 		queryKey: "runningRecord",
 		queryFn: async () => await getRunningRecord({ userId }),
 	});
+
 	const [runningRecord, setRunningRecord] = useState<RunningRecord[]>([]);
 	const [totalRunningCount, setTotalRunningCount] = useState<number>(0);
 	const [totalDistance, setTotalDistance] = useState<number>(0);
 	useEffect(() => {
 		if (isSuccess && data && data.data) {
 			const records = data.data.data;
-			setRunningRecord(records);
-			setTotalRunningCount(records.length);
+			// 유효한 기록만 필터링
+			const validRecords = records.filter(record => record.endTime !== null);
+			setRunningRecord(validRecords);
+			setTotalRunningCount(validRecords.length);
 			setTotalDistance(
-				records.reduce(
+				validRecords.reduce(
 					(total, record) => total + record.distance,
 					0,
 				),
 			);
 		}
 	}, [isSuccess, data]);
-	if (!isSuccess) return;
+	if (!isSuccess) return null;
 	return (
 		<Box
 			component="section"
