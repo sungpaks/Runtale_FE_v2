@@ -35,16 +35,18 @@ export default function Profile({
 	const [totalRunningCount, setTotalRunningCount] = useState<number>(0);
 	const [totalDistance, setTotalDistance] = useState<number>(0);
 	useEffect(() => {
-		if (!data || !data.data) return;
-		setRunningRecord(data?.data?.data);
-		setTotalRunningCount(runningRecord?.length || 0);
-		setTotalDistance(
-			runningRecord.reduce(
-				(total, record) => total + record?.distance,
-				0,
-			),
-		);
-	}, [isSuccess]);
+		if (isSuccess && data && data.data) {
+			const records = data.data.data;
+			setRunningRecord(records);
+			setTotalRunningCount(records.length);
+			setTotalDistance(
+				records.reduce(
+					(total, record) => total + record.distance,
+					0,
+				),
+			);
+		}
+	}, [isSuccess, data]);
 	if (!isSuccess) return;
 	return (
 		<Box

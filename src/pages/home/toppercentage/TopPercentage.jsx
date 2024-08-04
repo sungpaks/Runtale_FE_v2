@@ -83,7 +83,7 @@ export default function TopPercentage() {
                 >
                     <span style={{ fontSize: "23px", fontFamily: "Pretendard-bold" }}>
                         상위 <br />
-                        {percentile !== null ? `${100 - percentile}%` : '...'}
+                        {percentile !== null ? `${100 - Math.floor(percentile)}%` : '...'}
                     </span>
                 </Box>
                 <Box component="picture">
