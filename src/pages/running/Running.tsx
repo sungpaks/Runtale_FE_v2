@@ -11,6 +11,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import RunningEnd from "./end/RunningEnd";
 import Status from "./status/Status";
+import Scene from "./scene/Scene";
 
 interface PathType {
 	lat: number;
@@ -205,7 +206,7 @@ export default function Running() {
 	if (showScenario)
 		return (
 			<Box>
-				<h1>시나리오 화면을 넣어요</h1>
+				<Scene />
 				<Box
 					sx={{
 						position: "fixed",
@@ -215,10 +216,10 @@ export default function Running() {
 						justifyContent: "space-evenly",
 					}}
 				>
-					<Button 
-						variant={"outlined"} 
+					<Button
+						variant={"outlined"}
 						onClick={onClickEnd}
-						sx = {{
+						sx={{
 							fontFamily: "Pretendard-regular",
 						}}
 					>
@@ -227,7 +228,7 @@ export default function Running() {
 					<Button
 						variant="contained"
 						onClick={() => setShowScenario((prev) => !prev)}
-						sx = {{
+						sx={{
 							backgroundColor: "#1890FF",
 							fontFamily: "Pretendard-regular",
 						}}
@@ -310,10 +311,10 @@ export default function Running() {
 						</Button>
 					) : undefined}
 
-					<Button 
-						variant={"outlined"} 
+					<Button
+						variant={"outlined"}
 						onClick={onClickEnd}
-						sx = {{
+						sx={{
 							fontFamily: "Pretendard-regular",
 						}}
 					>
@@ -322,7 +323,7 @@ export default function Running() {
 					<Button
 						variant="contained"
 						onClick={() => setShowScenario((prev) => !prev)}
-						sx = {{
+						sx={{
 							backgroundColor: "#1890FF",
 							fontFamily: "Pretendard-regular",
 						}}
