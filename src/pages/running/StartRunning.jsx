@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
 import styles from "./StartRunning.module.css";
 import { postRunning } from "../../api/api";
+import AudioPlayer from "../../components/AudioPlayer";
 
 export default function StartRunning() {
 	const [countdown, setCountdown] = useState(null);
@@ -100,6 +101,7 @@ export default function StartRunning() {
 					>
 						중단
 					</Button>
+					<AudioPlayer filename="scenario1start.mp3" play />
 				</>
 			)}
 		</div>
