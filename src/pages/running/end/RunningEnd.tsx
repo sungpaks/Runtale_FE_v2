@@ -35,7 +35,7 @@ function CurrentRunningRecord({
 	const [minutes, seconds] = getFormattedTime(time);
 	const [paceMinutes, paceSeconds] = getFormattedPace(pace);
 	const [targetPaceMinutes, targetPaceSeconds] = getFormattedPace(targetPace);
-	const achived: boolean = pace <= targetPace;
+	const achived: boolean = pace ? pace <= targetPace : false;
 
 	if (isLoading) return <h1>로딩중..</h1>;
 	if (isError) return <h1>에러아님</h1>;
