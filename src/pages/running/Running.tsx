@@ -14,6 +14,7 @@ import Status from "./status/Status";
 import Scene from "./scene/Scene";
 import AudioPlayer, { SOUND } from "../../components/AudioPlayer";
 import VolumeControl from "../../components/VolumeControl";
+import RandomEffectSound from "./random-effect-sound/RandomEffectSound";
 
 interface PathType {
 	lat: number;
@@ -312,9 +313,14 @@ export default function Running() {
 				{/* <AudioPlayer filename={SOUND.러닝발소리} play loop /> */}
 				<AudioPlayer filename={SOUND.교통소음1} play loop />
 				{checkpointAudioFile ? (
-					<AudioPlayer filename={checkpointAudioFile} play />
+					<AudioPlayer
+						filename={checkpointAudioFile}
+						play
+						setCheckpointAudioFile={setCheckpointAudioFile}
+					/>
 				) : undefined}
 				<VolumeControl />
+				<RandomEffectSound />
 			</Box>
 		</Box>
 	);
