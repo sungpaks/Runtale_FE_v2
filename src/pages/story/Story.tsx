@@ -3,6 +3,7 @@ import { Box, List, ListItem, Stack } from "@mui/material";
 import { Link } from "react-router-dom";
 import Title from "../../components/Title";
 import AnimalCrawls from "../../components/AnimalCrawls";
+import LockIcon from '@mui/icons-material/Lock';
 import { Navigate, useNavigate } from "react-router-dom";
 
 interface Scenario {
@@ -47,7 +48,7 @@ const scenarios: Scenario[] = [
 	},
 ];
 
-const MockScenarioSquare: React.FC<{ imageUrl: string }> = ({ imageUrl }) => {
+const MockScenarioSquare: React.FC<{ imageUrl: string; isBlurred: boolean }> = ({ imageUrl, isBlurred }) => {
 	return (
 		<Box
 			sx={{
@@ -59,8 +60,29 @@ const MockScenarioSquare: React.FC<{ imageUrl: string }> = ({ imageUrl }) => {
 				backgroundImage: `url(${imageUrl})`,
 				backgroundSize: "cover",
 				backgroundPosition: "center",
+				position: "relative", // Make the box a positioned element
+				overflow: "hidden", // Hide any overflow
 			}}
-		></Box>
+		>
+			{isBlurred && (
+				<Box
+					sx={{
+						position: "absolute",
+						top: 0,
+						left: 0,
+						width: "100%",
+						height: "100%",
+						backgroundColor: "rgba(0, 0, 0, 0.8)", // Black overlay
+						display: "flex",
+						justifyContent: "center",
+						alignItems: "center",
+						color: "white",
+					}}
+				>
+					<LockIcon fontSize="large" />
+				</Box>
+			)}
+		</Box>
 	);
 };
 
@@ -77,17 +99,17 @@ const ScenarioItem: React.FC<Scenario> = ({
 			sx={{
 				p: 0.5,
 				mb: 2,
+				position: "relative", // Make the list item a positioned element
 			}}
 			component={Link}
 			to={to}
 			state={{ scenarioId: id }}
 		>
-			<MockScenarioSquare imageUrl={imageUrl} />
+			<MockScenarioSquare imageUrl={imageUrl} isBlurred={isBlurred} />
 			<Box
 				sx={{
-					filter: isBlurred ? "blur(5px)" : "none", // 조건에 따른 블러 처리
-					pointerEvents: isBlurred ? "none" : "auto", // 블러 처리된 경우 클릭 비활성화
-					position: "relative", // 블러 처리와 오버레이 텍스트를 위한 설정
+					pointerEvents: isBlurred ? "none" : "auto", // Disable pointer events if blurred
+					position: "relative", // For overlay text positioning
 				}}
 			>
 				<h4
@@ -116,25 +138,6 @@ const ScenarioItem: React.FC<Scenario> = ({
 					</p>
 				)}
 			</Box>
-			{isBlurred && (
-				<Box
-					sx={{
-						position: "absolute",
-						top: "50%",
-						left: "50%",
-						transform: "translate(-50%, -50%)",
-						color: "white",
-						fontSize: "18px",
-						backgroundColor: "rgba(0, 0, 0, 0.5)",
-						padding: "10px",
-						borderRadius: "5px",
-						filter: "none",
-						zIndex: 2,
-					}}
-				>
-					유료 콘텐츠
-				</Box>
-			)}
 		</ListItem>
 	);
 };

@@ -8,7 +8,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { getRunning } from "../../api/api";
 
 export default function SetDistance() {
-	const SIZE = 200;
+	const SIZE = 300;
 	const [nickname, setNickname] = useState("");
 	const [minutes, setMinutes] = useState("");
 	const [seconds, setSeconds] = useState("");
@@ -154,12 +154,8 @@ export default function SetDistance() {
 					</div>
 				</div>
 				<Box component="picture">
-					<source
-						srcSet="https://fonts.gstatic.com/s/e/notoemoji/latest/1f3c1/512.webp"
-						type="image/webp"
-					/>
 					<img
-						src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f3c1/512.gif"
+						src="/img/runemoji.png"
 						alt="🏁"
 						width={SIZE}
 						height={SIZE}
