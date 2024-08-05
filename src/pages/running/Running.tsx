@@ -40,6 +40,7 @@ export default function Running() {
 	};
 	const [locations, setLocations] = useState<PathType[]>([]);
 	const [showScenario, setShowScenario] = useState(false);
+	const [checkpointAudioFile, setCheckpointAudioFile] = useState<string>("");
 
 	const refreshPosition = () => {
 		/** 위치 정보 새로 가져옴 */
@@ -200,6 +201,11 @@ export default function Running() {
 			pace: curPace,
 			latitude: latitude,
 			longitude: longitude,
+		}).then((res) => {
+			if (res.data.data.audioUrl) {
+				setCheckpointAudioFile(res.data.data.audioUrl);
+				console.log("체크포인트!!");
+			}
 		});
 		setDistance((prev) => prev + curDistance);
 		setPace(curPace);
