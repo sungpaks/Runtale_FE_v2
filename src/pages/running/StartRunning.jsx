@@ -12,7 +12,7 @@ export default function StartRunning() {
 	const { targetPace, scenarioId } = location.state;
 	const geo = navigator.geolocation;
 	const position = useRef({ latitude: 0, longitude: 0 });
-	const [isEnd, setIsEnd] = useState(false);
+	const [isEnd, setIsEnd] = useState(scenarioId === 0 ? true : false);
 
 	useEffect(() => {
 		geo.getCurrentPosition((g) => {
@@ -110,13 +110,13 @@ export default function StartRunning() {
 					>
 						중단
 					</Button>
-					(
-					<AudioPlayer
-						filename="시나리오1음성.mp3"
-						play
-						setIsEnd={setIsEnd}
-					/>
-					)
+					{scenarioId !== 0 ? (
+						<AudioPlayer
+							filename="시나리오1음성.mp3"
+							play
+							setIsEnd={setIsEnd}
+						/>
+					) : undefined}
 				</>
 			)}
 		</div>
