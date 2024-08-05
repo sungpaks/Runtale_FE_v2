@@ -36,16 +36,21 @@ export default function TitleBar({
 			) : (
 				<div>&nbsp;&nbsp;&nbsp;&nbsp;</div>
 			)}
-			<h2 onClick={handleTitleClick} style={{ cursor: "pointer" }}>
-				RunTale
-			</h2>
+			<img
+				src="/img/로고.png"
+				height={"100%"}
+				width="auto"
+				onClick={handleTitleClick}
+				style={{ cursor: "pointer" }}
+			/>
+
 			<Button
 				onClick={handleLogout}
-				sx={{ 
-					marginLeft: "auto", 
-					paddingRight: "2rem", 
-					fontFamily: "Pretendard-regular", 
-					textDecoration: "underline", 
+				sx={{
+					marginLeft: "auto",
+					paddingRight: "2rem",
+					fontFamily: "Pretendard-regular",
+					textDecoration: "underline",
 					color: "#D0D0D0",
 				}}
 			>

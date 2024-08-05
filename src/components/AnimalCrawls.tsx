@@ -13,16 +13,17 @@ export default function AnimalCrawls({}) {
 
 	if (!isSuccess) return;
 	const { progress, percentil, tierName } = data.data.data;
-	return (
-		<>
-			{<EmojiOfTier tier={tierName} size={40} progress={progress} />}
-			<div
-				style={{
-					position: "relative",
-					top: "-12px",
-					borderBottom: "2px solid lightgray",
-				}}
-			></div>
-		</>
-	);
+	return <></>;
+	// return (
+	// 	<>
+	// 		{<EmojiOfTier tier={tierName} size={40} progress={progress} />}
+	// 		<div
+	// 			style={{
+	// 				position: "relative",
+	// 				top: "-12px",
+	// 				borderBottom: "2px solid lightgray",
+	// 			}}
+	// 		></div>
+	// 	</>
+	// );
 }
