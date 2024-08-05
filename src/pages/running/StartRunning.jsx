@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
 import styles from "./StartRunning.module.css";
 import { postRunning } from "../../api/api";
-import AudioPlayer from "../../components/AudioPlayer";
+import AudioPlayer, { SOUND } from "../../components/AudioPlayer";
 
 export default function StartRunning() {
 	const [countdown, setCountdown] = useState(null);
@@ -12,6 +12,7 @@ export default function StartRunning() {
 	const { targetPace, scenarioId } = location.state;
 	const geo = navigator.geolocation;
 	const position = useRef({ latitude: 0, longitude: 0 });
+	const [isEnd, setIsEnd] = useState(false);
 
 	useEffect(() => {
 		geo.getCurrentPosition((g) => {
@@ -59,28 +60,31 @@ export default function StartRunning() {
 			{countdown !== null ? (
 				<div className={styles.CountdownContainer}>
 					<p className={styles.Countdown}>{countdown}</p>
+					<AudioPlayer filename={SOUND.카운트} play />
 				</div>
 			) : (
 				<>
-					<Button
-						variant="contained"
-						disableElevation
-						sx={{
-							borderRadius: "100px",
-							width: "200px",
-							height: "70px",
-							backgroundColor: "#FB8C26",
-							color: "#FFFFFF",
-							fontFamily: "Pretendard-bold",
-							"&:hover": {
-								backgroundColor: "#DD7D24",
-							},
-							fontSize: "25px",
-						}}
-						onClick={handleStartRunning}
-					>
-						러닝 시작
-					</Button>
+					{isEnd ? (
+						<Button
+							variant="contained"
+							disableElevation
+							sx={{
+								borderRadius: "100px",
+								width: "200px",
+								height: "70px",
+								backgroundColor: "#FB8C26",
+								color: "#FFFFFF",
+								fontFamily: "Pretendard-bold",
+								"&:hover": {
+									backgroundColor: "#DD7D24",
+								},
+								fontSize: "25px",
+							}}
+							onClick={handleStartRunning}
+						>
+							러닝 시작
+						</Button>
+					) : undefined}
 					<Button
 						variant="contained"
 						disableElevation
@@ -101,7 +105,11 @@ export default function StartRunning() {
 					>
 						중단
 					</Button>
-					<AudioPlayer filename="scenario1start.mp3" play />
+					<AudioPlayer
+						filename="시나리오1음성.mp3"
+						play
+						setIsEnd={setIsEnd}
+					/>
 				</>
 			)}
 		</div>

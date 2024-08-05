@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { Dispatch, useEffect, useRef } from "react";
 import { useRecoilValue } from "recoil";
 import volumeState from "../context/VolumeState";
 
@@ -24,10 +24,12 @@ export default function AudioPlayer({
 	filename,
 	play,
 	loop = false,
+	setIsEnd,
 }: {
 	filename: string;
 	play: boolean;
 	loop?: boolean;
+	setIsEnd?: Dispatch<boolean>;
 }) {
 	const audioRef = useRef<HTMLAudioElement>(null);
 	const url = `/sound/${filename}`;
@@ -52,7 +54,14 @@ export default function AudioPlayer({
 
 	return (
 		<>
-			<audio src={url} ref={audioRef} loop={loop} />
+			<audio
+				src={url}
+				ref={audioRef}
+				loop={loop}
+				onEnded={() => {
+					setIsEnd(true);
+				}}
+			/>
 		</>
 	);
 }
