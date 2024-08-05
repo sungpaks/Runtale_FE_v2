@@ -8,10 +8,8 @@ interface SceneProps {
 	pace: number;
 }
 
-export default function Scene({ distance: initialDistance, pace }: SceneProps) {
-	const [play, setPlay] = useState(false);
-	const [distance, setDistance] = useState(initialDistance);
-	const scenarioImage = `/img/Scenario1_${Math.floor(distance) + 1}.png`;
+export default function Scene({ distance, pace }: SceneProps) {
+	const scenarioImage = `/img/Scenario1_${distance < 4 ? Math.floor(distance) + 1 : 4}.png`;
 	const MAX_WIDTH = "480px";
 	const matches = useMediaQuery("(min-width:480px)");
 

@@ -25,11 +25,13 @@ export default function AudioPlayer({
 	play,
 	loop = false,
 	setIsEnd,
+	setCheckpointAudioFile,
 }: {
 	filename: string;
 	play: boolean;
 	loop?: boolean;
 	setIsEnd?: Dispatch<boolean>;
+	setCheckpointAudioFile?: Dispatch<string>;
 }) {
 	const audioRef = useRef<HTMLAudioElement>(null);
 	const url = `/sound/${filename}`;
@@ -59,6 +61,7 @@ export default function AudioPlayer({
 				ref={audioRef}
 				loop={loop}
 				onEnded={() => {
+					if (setCheckpointAudioFile) setCheckpointAudioFile("");
 					if (setIsEnd) setIsEnd(true);
 				}}
 			/>
