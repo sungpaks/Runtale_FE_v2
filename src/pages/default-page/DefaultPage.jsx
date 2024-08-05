@@ -1,7 +1,6 @@
-import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Box, Button, Typography} from '@mui/material';
-import styles from './DefaultPage.module.css'; 
+import { Link, useNavigate } from "react-router-dom";
+import { Box, Button, Typography } from "@mui/material";
+import styles from "./DefaultPage.module.css";
 
 export default function DefaultPage() {
 	const navigate = useNavigate();
@@ -13,19 +12,24 @@ export default function DefaultPage() {
 					sx={{
 						width: 120,
 						height: 120,
-						backgroundColor: 'lightgrey',
-						display: 'flex',
-						alignItems: 'center',
-						justifyContent: 'center',
-						mb: 3
+						display: "flex",
+						alignItems: "center",
+						justifyContent: "center",
+						mb: 3,
 					}}
 				>
-					<Typography variant="h6">로고</Typography>
+					<img src="/img/로고.png" />
 				</Box>
-				<Typography variant="h4" sx={{ fontFamily: "Pretendard-bold", mb: 1 }}>
+				<Typography
+					variant="h4"
+					sx={{ fontFamily: "Pretendard-bold", mb: 1 }}
+				>
 					Runtale
 				</Typography>
-				<Typography variant="body1" sx={{ fontFamily: "Pretendard-regular"}}>
+				<Typography
+					variant="body1"
+					sx={{ fontFamily: "Pretendard-regular" }}
+				>
 					즐거운 러닝의 시작, 런테일!
 				</Typography>
 			</div>
@@ -35,14 +39,14 @@ export default function DefaultPage() {
 					disableElevation
 					sx={{
 						mt: 2,
-						width: '300px',
-						height: '50px',
-						backgroundColor: '#1890FF',
-						color: '#FFFFFF',
-						fontWeight: 'bold',
-						'&:hover': {
-							backgroundColor: '#096DD9'
-						}
+						width: "300px",
+						height: "50px",
+						backgroundColor: "#1890FF",
+						color: "#FFFFFF",
+						fontWeight: "bold",
+						"&:hover": {
+							backgroundColor: "#096DD9",
+						},
 					}}
 					component={Link}
 					to="/login"

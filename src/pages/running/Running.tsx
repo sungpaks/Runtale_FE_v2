@@ -205,7 +205,6 @@ export default function Running() {
 		}).then((res) => {
 			if (res.data.data.audioUrl) {
 				setCheckpointAudioFile(res.data.data.audioUrl);
-				console.log("체크포인트!!");
 			}
 		});
 		setDistance((prev) => prev + curDistance);
@@ -218,7 +217,7 @@ export default function Running() {
 	return (
 		<Box>
 			{showScenario ? (
-				<Scene distance={distance} pace={pace} /> 
+				<Scene distance={distance} pace={pace} />
 			) : latitude === 0 || longitude === 0 ? (
 				<>잠시만요... 지도를 준비중입니다</>
 			) : (
@@ -307,11 +306,14 @@ export default function Running() {
 							fontFamily: "Pretendard-regular",
 						}}
 					>
-						{showScenario ? "시나리오 화면" : "지도 보기"}
+						{!showScenario ? "시나리오 화면" : "지도 보기"}
 					</Button>
 				</Box>
 				{/* <AudioPlayer filename={SOUND.러닝발소리} play loop /> */}
 				<AudioPlayer filename={SOUND.교통소음1} play loop />
+				{checkpointAudioFile ? (
+					<AudioPlayer filename={checkpointAudioFile} play />
+				) : undefined}
 				<VolumeControl />
 			</Box>
 		</Box>
