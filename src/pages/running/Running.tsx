@@ -1,4 +1,4 @@
-import { Box, Button } from "@mui/material";
+import { Box, Button, useMediaQuery } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
 import { Map, MapMarker, Polyline } from "react-kakao-maps-sdk";
 import Tracker from "./tracker/Tracker";
@@ -41,6 +41,7 @@ export default function Running() {
 	const [locations, setLocations] = useState<PathType[]>([]);
 	const [showScenario, setShowScenario] = useState(false);
 	const [checkpointAudioFile, setCheckpointAudioFile] = useState<string>("");
+	const MAX_WIDTH = "480px";
 
 	const refreshPosition = () => {
 		/** 위치 정보 새로 가져옴 */
@@ -204,7 +205,6 @@ export default function Running() {
 		}).then((res) => {
 			if (res.data.data.audioUrl) {
 				setCheckpointAudioFile(res.data.data.audioUrl);
-				console.log("체크포인트!!");
 			}
 		});
 		setDistance((prev) => prev + curDistance);
@@ -217,7 +217,7 @@ export default function Running() {
 	return (
 		<Box>
 			{showScenario ? (
-				<Scene distance={distance} pace={pace} /> 
+				<Scene distance={distance} pace={pace} />
 			) : latitude === 0 || longitude === 0 ? (
 				<>잠시만요... 지도를 준비중입니다</>
 			) : (
@@ -229,6 +229,7 @@ export default function Running() {
 						zIndex: 0,
 						position: "fixed",
 						top: 0,
+						maxWidth: MAX_WIDTH,
 					}}
 					level={2}
 					onDragEnd={
@@ -249,6 +250,7 @@ export default function Running() {
 					position: "fixed",
 					bottom: "1.5rem",
 					width: "100%",
+					maxWidth: MAX_WIDTH,
 				}}
 			>
 				<Status distance={distance} pace={pace} />
@@ -304,11 +306,14 @@ export default function Running() {
 							fontFamily: "Pretendard-regular",
 						}}
 					>
-						{showScenario ? "시나리오 화면" : "지도 보기"}
+						{!showScenario ? "시나리오 화면" : "지도 보기"}
 					</Button>
 				</Box>
 				{/* <AudioPlayer filename={SOUND.러닝발소리} play loop /> */}
 				<AudioPlayer filename={SOUND.교통소음1} play loop />
+				{checkpointAudioFile ? (
+					<AudioPlayer filename={checkpointAudioFile} play />
+				) : undefined}
 				<VolumeControl />
 			</Box>
 		</Box>
