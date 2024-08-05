@@ -36,13 +36,19 @@ export default function TitleBar({
 			) : (
 				<div>&nbsp;&nbsp;&nbsp;&nbsp;</div>
 			)}
-			<img
-				src="/img/로고.png"
-				height={"100%"}
-				width="auto"
-				onClick={handleTitleClick}
-				style={{ cursor: "pointer" }}
-			/>
+			<div
+				style={{
+					cursor: "pointer",
+					height: "100%",
+					width: "auto",
+				}}
+			>
+				<img
+					height="100%"
+					src="/img/로고.png"
+					onClick={handleTitleClick}
+				/>
+			</div>
 
 			<Button
 				onClick={handleLogout}
