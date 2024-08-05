@@ -1,10 +1,14 @@
-import React, { useRef } from 'react';
+import { React, useRef, useEffect } from 'react';
 import styles from "./Tutorial.module.css";
 import { Box, Button } from "@mui/material";
 import Slider from "react-slick";
 import Title from "../../../components/Title";
 
 const Step = ({ stepNumber, description, imageUrl, children }) => {
+    useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
+
     return (
         <div>
             <Title level={3} style={{ marginTop: '30px', color: '#626773' }}>
