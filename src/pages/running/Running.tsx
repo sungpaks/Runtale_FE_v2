@@ -217,7 +217,7 @@ export default function Running() {
 	return (
 		<Box>
 			{showScenario ? (
-				<Scene />
+				<Scene distance={distance} pace={pace} /> 
 			) : latitude === 0 || longitude === 0 ? (
 				<>잠시만요... 지도를 준비중입니다</>
 			) : (
@@ -253,6 +253,7 @@ export default function Running() {
 			>
 				<Status distance={distance} pace={pace} />
 				<Box
+					mb={2.5}
 					sx={{
 						display: "flex",
 						justifyContent: "space-evenly",
