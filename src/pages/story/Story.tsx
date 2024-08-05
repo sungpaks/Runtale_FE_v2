@@ -71,15 +71,25 @@ const ScenarioItem: React.FC<Scenario> = ({
 	imageUrl,
 	id,
 }) => {
+	const isBlurred = [2, 3].includes(id);
 	return (
 		<ListItem
-			sx={{ p: 0.5, mb: 2 }}
+			sx={{
+				p: 0.5,
+				mb: 2,
+			}}
 			component={Link}
 			to={to}
 			state={{ scenarioId: id }}
 		>
 			<MockScenarioSquare imageUrl={imageUrl} />
-			<div>
+			<Box
+				sx={{
+					filter: isBlurred ? "blur(5px)" : "none", // 조건에 따른 블러 처리
+					pointerEvents: isBlurred ? "none" : "auto", // 블러 처리된 경우 클릭 비활성화
+					position: "relative", // 블러 처리와 오버레이 텍스트를 위한 설정
+				}}
+			>
 				<h4
 					style={{
 						margin: 0,
@@ -105,7 +115,26 @@ const ScenarioItem: React.FC<Scenario> = ({
 						))}
 					</p>
 				)}
-			</div>
+			</Box>
+			{isBlurred && (
+				<Box
+					sx={{
+						position: "absolute",
+						top: "50%",
+						left: "50%",
+						transform: "translate(-50%, -50%)",
+						color: "white",
+						fontSize: "18px",
+						backgroundColor: "rgba(0, 0, 0, 0.5)",
+						padding: "10px",
+						borderRadius: "5px",
+						filter: "none",
+						zIndex: 2,
+					}}
+				>
+					유료 콘텐츠
+				</Box>
+			)}
 		</ListItem>
 	);
 };
