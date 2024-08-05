@@ -80,7 +80,7 @@ export default function Profile({
 				</ListItem>
 				<ListItem>
 					총 달린 거리 &nbsp;&nbsp;{" "}
-					<strong>{totalDistance} km </strong>
+					<strong>{totalDistance.toFixed(3)} km </strong>
 				</ListItem>
 				<ListItem>
 					총 러닝 횟수 &nbsp;&nbsp;{" "}

@@ -126,7 +126,7 @@ export default function Statistics() {
 									color: "#1890FF",
 								}}
 							>
-								{totalDistance}km
+								{totalDistance.toFixed(3)}km
 							</p>
 						</div>
 					</Grid>
@@ -156,7 +156,7 @@ export default function Statistics() {
 									color: "#1890FF",
 								}}
 							>
-								{averagePace}
+								{averagePace.toFixed(3)}
 							</p>
 						</div>
 					</Grid>
