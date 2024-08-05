@@ -59,7 +59,7 @@ export default function AudioPlayer({
 				ref={audioRef}
 				loop={loop}
 				onEnded={() => {
-					setIsEnd(true);
+					if (setIsEnd) setIsEnd(true);
 				}}
 			/>
 		</>
