@@ -13,6 +13,7 @@ import RunningEnd from "./end/RunningEnd";
 import Status from "./status/Status";
 import Scene from "./scene/Scene";
 import AudioPlayer, { SOUND } from "../../components/AudioPlayer";
+import VolumeControl from "../../components/VolumeControl";
 
 interface PathType {
 	lat: number;
@@ -333,6 +334,7 @@ export default function Running() {
 					</Button>
 				</Box>
 				<AudioPlayer filename={SOUND.러닝발소리} play loop />
+				<VolumeControl />
 			</Box>
 		</Box>
 	);

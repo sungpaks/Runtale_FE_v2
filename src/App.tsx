@@ -27,6 +27,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import RunningEnd from "./pages/running/end/RunningEnd";
 import NotFound from "./pages/404/NotFound";
+import { RecoilRoot } from "recoil";
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
@@ -64,13 +65,15 @@ const queryClient = new QueryClient();
 function App() {
 	return (
 		<div className="content">
-			<QueryClientProvider client={queryClient}>
-				<CookiesProvider>
-					<AuthProvider>
-						<RouterProvider router={router}></RouterProvider>
-					</AuthProvider>
-				</CookiesProvider>
-			</QueryClientProvider>
+			<RecoilRoot>
+				<QueryClientProvider client={queryClient}>
+					<CookiesProvider>
+						<AuthProvider>
+							<RouterProvider router={router}></RouterProvider>
+						</AuthProvider>
+					</CookiesProvider>
+				</QueryClientProvider>
+			</RecoilRoot>
 		</div>
 	);
 }

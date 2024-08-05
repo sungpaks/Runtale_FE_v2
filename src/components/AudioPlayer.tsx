@@ -1,5 +1,6 @@
-import { resolve } from "path";
 import { useEffect, useRef, useState } from "react";
+import { useRecoilState } from "recoil";
+import volumeState from "../context/VolumeState";
 
 export const SOUND = {
 	경적: "경적.mp3",
@@ -19,12 +20,15 @@ export const SOUND = {
 export default function AudioPlayer({
 	filename,
 	play,
+	loop = false,
 }: {
 	filename: string;
 	play: boolean;
+	loop?: boolean;
 }) {
 	const audioRef = useRef<HTMLAudioElement>(null);
-	const url = resolve("/sounds/", filename);
+	const url = `/sound/${filename}`;
+	const [volume, setVolume] = useRecoilState(volumeState);
 
 	useEffect(() => {
 		if (play && audioRef.current) {
@@ -34,5 +38,15 @@ export default function AudioPlayer({
 		}
 	}, [play, filename]);
 
-	return <audio src={url} ref={audioRef} />;
+	useEffect(() => {
+		if (audioRef.current) {
+			audioRef.current.volume = volume;
+		}
+	}, [volume]);
+
+	return (
+		<>
+			<audio src={url} ref={audioRef} loop={loop} />
+		</>
+	);
 }
