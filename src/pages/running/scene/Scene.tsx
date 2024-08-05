@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import AudioPlayer, { SOUND } from "../../../components/AudioPlayer";
-import { Button, Box } from "@mui/material";
+import { Button, Box, useMediaQuery } from "@mui/material";
 import Status from "../status/Status";
 
 interface SceneProps {
@@ -11,15 +11,9 @@ interface SceneProps {
 export default function Scene({ distance: initialDistance, pace }: SceneProps) {
 	const [play, setPlay] = useState(false);
 	const [distance, setDistance] = useState(initialDistance);
-	const [scenarioImage, setScenarioImage] = useState<string>("/img/Scenario1_1.png");
-
-	// distance가 1km 증가할 때마다 이미지 변경
-	useEffect(() => {
-		const imageIndex = Math.floor(distance) + 1;
-		if (distance % 1 === 0) {
-			setScenarioImage(`/img/Scenario1_${imageIndex}.png`);
-		}
-	}, [distance]);
+	const scenarioImage = `/img/Scenario1_${Math.floor(distance) + 1}.png`;
+	const MAX_WIDTH = "480px";
+	const matches = useMediaQuery("(min-width:480px)");
 
 	return (
 		<>
@@ -29,13 +23,20 @@ export default function Scene({ distance: initialDistance, pace }: SceneProps) {
 					height: "70vh",
 					position: "fixed",
 					top: 0,
+					left: 0,
 				}}
 			>
-				<img src={scenarioImage} alt="Scenario" style={{ width: "100%", height: "100%" }} />
+				<img
+					src={scenarioImage}
+					alt="Scenario"
+					style={{
+						width: "100%",
+						height: "100%",
+						maxWidth: MAX_WIDTH,
+						borderRadius: matches ? "25px 25px 0 0" : 0,
+					}}
+				/>
 			</Box>
-			<Status distance={distance} pace={pace} />
-			<AudioPlayer filename={SOUND.새소리} play={play} />
-			<Button onClick={() => setPlay((prev) => !prev)}>재생</Button>
 		</>
 	);
 }
