@@ -1,4 +1,4 @@
-import { Box, Button } from "@mui/material";
+import { Box, Button, useMediaQuery } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
 import { Map, MapMarker, Polyline } from "react-kakao-maps-sdk";
 import Tracker from "./tracker/Tracker";
@@ -41,6 +41,7 @@ export default function Running() {
 	const [locations, setLocations] = useState<PathType[]>([]);
 	const [showScenario, setShowScenario] = useState(false);
 	const [checkpointAudioFile, setCheckpointAudioFile] = useState<string>("");
+	const MAX_WIDTH = "480px";
 
 	const refreshPosition = () => {
 		/** 위치 정보 새로 가져옴 */
@@ -229,6 +230,7 @@ export default function Running() {
 						zIndex: 0,
 						position: "fixed",
 						top: 0,
+						maxWidth: MAX_WIDTH,
 					}}
 					level={2}
 					onDragEnd={
@@ -249,6 +251,7 @@ export default function Running() {
 					position: "fixed",
 					bottom: "1.5rem",
 					width: "100%",
+					maxWidth: MAX_WIDTH,
 				}}
 			>
 				<Status distance={distance} pace={pace} />
