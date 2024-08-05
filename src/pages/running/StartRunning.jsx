@@ -65,25 +65,30 @@ export default function StartRunning() {
 			) : (
 				<>
 					{isEnd ? (
-						<Button
-							variant="contained"
-							disableElevation
-							sx={{
-								borderRadius: "100px",
-								width: "200px",
-								height: "70px",
-								backgroundColor: "#FB8C26",
-								color: "#FFFFFF",
-								fontFamily: "Pretendard-bold",
-								"&:hover": {
-									backgroundColor: "#DD7D24",
-								},
-								fontSize: "25px",
-							}}
-							onClick={handleStartRunning}
-						>
-							러닝 시작
-						</Button>
+						<>
+							{" "}
+							<Button
+								variant="contained"
+								disableElevation
+								sx={{
+									borderRadius: "100px",
+									width: "200px",
+									height: "70px",
+									backgroundColor: "#FB8C26",
+									color: "#FFFFFF",
+									fontFamily: "Pretendard-bold",
+									"&:hover": {
+										backgroundColor: "#DD7D24",
+									},
+									marginTop: "40vh",
+									fontSize: "25px",
+								}}
+								onClick={handleStartRunning}
+							>
+								러닝 시작
+							</Button>
+							<AudioPlayer filename="시작안내멘트.mp3" play />
+						</>
 					) : undefined}
 					<Button
 						variant="contained"
@@ -105,11 +110,13 @@ export default function StartRunning() {
 					>
 						중단
 					</Button>
+					(
 					<AudioPlayer
 						filename="시나리오1음성.mp3"
 						play
 						setIsEnd={setIsEnd}
 					/>
+					)
 				</>
 			)}
 		</div>
