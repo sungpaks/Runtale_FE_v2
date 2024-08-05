@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import RunningEnd from "./end/RunningEnd";
 import Status from "./status/Status";
 import Scene from "./scene/Scene";
+import AudioPlayer, { SOUND } from "../../components/AudioPlayer";
 
 interface PathType {
 	lat: number;
@@ -331,6 +332,7 @@ export default function Running() {
 						시나리오 화면
 					</Button>
 				</Box>
+				<AudioPlayer filename={SOUND.러닝발소리} play loop />
 			</Box>
 		</Box>
 	);
