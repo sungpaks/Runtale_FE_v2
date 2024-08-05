@@ -10,6 +10,7 @@ interface Scenario {
 	description?: string;
 	to: string;
 	imageUrl: string;
+	id: number;
 }
 
 const scenarios: Scenario[] = [
@@ -19,6 +20,7 @@ const scenarios: Scenario[] = [
 			"드디어 취뽀에 성공한 나!\n하지만, 첫 날부터 지각하게 생겼는데......",
 		to: "/setpace",
 		imageUrl: "/img/scenario1.png",
+		id: 1,
 	},
 	{
 		title: "수업 지각",
@@ -26,6 +28,7 @@ const scenarios: Scenario[] = [
 			"피곤한 하루를 보냈던 나머지 늦잠을 자고\n1교시 수업에 지각하게 생겼는데......",
 		to: "/setpace",
 		imageUrl: "/img/scenario2.png",
+		id: 2,
 	},
 	{
 		title: "요리 준비",
@@ -33,12 +36,14 @@ const scenarios: Scenario[] = [
 			"친구를 집에 초대하고 요리 준비를 하는 나,\n하지만 시간이 얼마 남지 않았는데...",
 		to: "/setpace",
 		imageUrl: "/img/scenario3.png",
+		id: 3,
 	},
 	{
 		title: "시나리오 없이 뛰기",
 		description: "현 위치 트랙의 화면과 달립니다.",
 		to: "/setpace",
 		imageUrl: "/img/noscenario.png",
+		id: 0,
 	},
 ];
 
@@ -64,15 +69,30 @@ const ScenarioItem: React.FC<Scenario> = ({
 	description,
 	to,
 	imageUrl,
+	id,
 }) => {
+	const isBlurred = [2, 3].includes(id);
 	return (
-		<ListItem sx={{ p: 0.5, mb: 2 }} component={Link} to={to}>
+		<ListItem
+			sx={{
+				p: 0.5,
+				mb: 2,
+			}}
+			component={Link}
+			to={to}
+			state={{ scenarioId: id }}
+		>
 			<MockScenarioSquare imageUrl={imageUrl} />
-			<div>
+			<Box
+				sx={{
+					filter: isBlurred ? "blur(5px)" : "none", // 조건에 따른 블러 처리
+					pointerEvents: isBlurred ? "none" : "auto", // 블러 처리된 경우 클릭 비활성화
+					position: "relative", // 블러 처리와 오버레이 텍스트를 위한 설정
+				}}
+			>
 				<h4
 					style={{
 						margin: 0,
-						fontWeight: "bold",
 						color: "#1890FF",
 						fontFamily: "Pretendard-Bold",
 					}}
@@ -95,7 +115,26 @@ const ScenarioItem: React.FC<Scenario> = ({
 						))}
 					</p>
 				)}
-			</div>
+			</Box>
+			{isBlurred && (
+				<Box
+					sx={{
+						position: "absolute",
+						top: "50%",
+						left: "50%",
+						transform: "translate(-50%, -50%)",
+						color: "white",
+						fontSize: "18px",
+						backgroundColor: "rgba(0, 0, 0, 0.5)",
+						padding: "10px",
+						borderRadius: "5px",
+						filter: "none",
+						zIndex: 2,
+					}}
+				>
+					유료 콘텐츠
+				</Box>
+			)}
 		</ListItem>
 	);
 };
@@ -107,16 +146,14 @@ const Story: React.FC = () => {
 				level={2}
 				style={{
 					textAlign: "left",
-					marginBottom: "50px",
 				}}
 			>
 				<AnimalCrawls />
 			</Title>
 			<Stack textAlign="left">
 				<Title
-					level={4}
+					level={3}
 					style={{
-						fontWeight: "bold",
 						color: "#1890FF",
 						fontFamily: "Pretendard-Bold",
 					}}

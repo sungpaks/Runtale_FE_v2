@@ -31,21 +31,28 @@ export default function Profile({
 		queryKey: "runningRecord",
 		queryFn: async () => await getRunningRecord({ userId }),
 	});
+
 	const [runningRecord, setRunningRecord] = useState<RunningRecord[]>([]);
 	const [totalRunningCount, setTotalRunningCount] = useState<number>(0);
 	const [totalDistance, setTotalDistance] = useState<number>(0);
 	useEffect(() => {
-		if (!data || !data.data) return;
-		setRunningRecord(data?.data?.data);
-		setTotalRunningCount(runningRecord?.length || 0);
-		setTotalDistance(
-			runningRecord.reduce(
-				(total, record) => total + record?.distance,
-				0,
-			),
-		);
-	}, [isSuccess]);
-	if (!isSuccess) return;
+		if (isSuccess && data && data.data) {
+			const records = data.data.data;
+			// 유효한 기록만 필터링
+			const validRecords = records.filter(
+				(record) => record.endTime !== null,
+			);
+			setRunningRecord(validRecords);
+			setTotalRunningCount(validRecords.length);
+			setTotalDistance(
+				validRecords.reduce(
+					(total, record) => total + record.distance,
+					0,
+				),
+			);
+		}
+	}, [isSuccess, data]);
+	if (!isSuccess) return null;
 	return (
 		<Box
 			component="section"
@@ -66,16 +73,18 @@ export default function Profile({
 			>
 				<EmojiOfTier tier={tier.tierName} size={120} />
 			</Box>
-			<h3 style={{ fontFamily: "Pretendard-bold", fontSize: "20px" }}>{username}</h3>
+			<h3 style={{ fontFamily: "Pretendard-bold", fontSize: "20px" }}>
+				{username}
+			</h3>
 			<Stack textAlign={"left"} spacing={0}>
 				<ListItem>
 					랭킹&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<strong >LV.{getLevelNumber(tier.tierName)}</strong>{" "}
+					<strong>LV.{getLevelNumber(tier.tierName)}</strong>{" "}
 					<LevelBar tier={tier} />
 				</ListItem>
 				<ListItem>
 					총 달린 거리 &nbsp;&nbsp;{" "}
-					<strong>{totalDistance} km </strong>
+					<strong>{Math.trunc(totalDistance)} km </strong>
 				</ListItem>
 				<ListItem>
 					총 러닝 횟수 &nbsp;&nbsp;{" "}

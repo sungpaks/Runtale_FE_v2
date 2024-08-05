@@ -4,7 +4,7 @@ import Title from "../../components/Title";
 import { Box, Button } from "@mui/material";
 import requestApi from "../../api/api";
 import AuthContext from "../../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { getRunning } from "../../api/api";
 
 export default function SetDistance() {
@@ -14,6 +14,8 @@ export default function SetDistance() {
 	const [seconds, setSeconds] = useState("");
 	const { userId, isAuthenticated } = useContext(AuthContext);
 	const navigate = useNavigate();
+	const location = useLocation();
+	const { scenarioId } = location.state;
 	const prevRunningId = localStorage.getItem("runningId");
 
 	useEffect(() => {
@@ -81,6 +83,16 @@ export default function SetDistance() {
 		}
 	};*/
 
+	if (scenarioId >= 2) {
+		return (
+			<>
+				<h1>돈내세용</h1>
+				<Button variant="outlined" onClick={() => navigate(-1)}>
+					뒤로가기
+				</Button>
+			</>
+		);
+	}
 	return (
 		<Box p={1}>
 			{/* <Title
@@ -179,6 +191,7 @@ export default function SetDistance() {
 									((parseInt(minutes) | 0) * 60 +
 										(parseInt(seconds) | 0)) *
 									1000,
+								scenarioId: scenarioId,
 							},
 						})
 					}

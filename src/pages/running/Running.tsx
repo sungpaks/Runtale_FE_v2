@@ -11,6 +11,9 @@ import {
 import { useNavigate } from "react-router-dom";
 import RunningEnd from "./end/RunningEnd";
 import Status from "./status/Status";
+import Scene from "./scene/Scene";
+import AudioPlayer, { SOUND } from "../../components/AudioPlayer";
+import VolumeControl from "../../components/VolumeControl";
 
 interface PathType {
 	lat: number;
@@ -37,6 +40,7 @@ export default function Running() {
 	};
 	const [locations, setLocations] = useState<PathType[]>([]);
 	const [showScenario, setShowScenario] = useState(false);
+	const [checkpointAudioFile, setCheckpointAudioFile] = useState<string>("");
 
 	const refreshPosition = () => {
 		/** 위치 정보 새로 가져옴 */
@@ -197,42 +201,24 @@ export default function Running() {
 			pace: curPace,
 			latitude: latitude,
 			longitude: longitude,
+		}).then((res) => {
+			if (res.data.data.audioUrl) {
+				setCheckpointAudioFile(res.data.data.audioUrl);
+				console.log("체크포인트!!");
+			}
 		});
 		setDistance((prev) => prev + curDistance);
 		setPace(curPace);
 	}, [latitude, longitude]);
 
-	if (showScenario)
-		return (
-			<Box>
-				<h1>시나리오 화면을 넣어요</h1>
-				<Box
-					sx={{
-						position: "fixed",
-						bottom: "1.5rem",
-						width: "100%",
-						display: "flex",
-						justifyContent: "space-evenly",
-					}}
-				>
-					<Button variant={"outlined"} onClick={onClickEnd}>
-						러닝 그만하기
-					</Button>
-					<Button
-						variant="contained"
-						onClick={() => setShowScenario((prev) => !prev)}
-					>
-						시나리오 화면
-					</Button>
-				</Box>
-			</Box>
-		);
 	if (latitude === 0 || longitude === 0) {
 		refreshPosition();
 	}
 	return (
 		<Box>
-			{latitude === 0 || longitude === 0 ? (
+			{showScenario ? (
+				<Scene />
+			) : latitude === 0 || longitude === 0 ? (
 				<>잠시만요... 지도를 준비중입니다</>
 			) : (
 				<Map
@@ -300,16 +286,29 @@ export default function Running() {
 						</Button>
 					) : undefined}
 
-					<Button variant={"outlined"} onClick={onClickEnd}>
+					<Button
+						variant={"outlined"}
+						onClick={onClickEnd}
+						sx={{
+							fontFamily: "Pretendard-regular",
+						}}
+					>
 						러닝 그만하기
 					</Button>
 					<Button
 						variant="contained"
 						onClick={() => setShowScenario((prev) => !prev)}
+						sx={{
+							backgroundColor: "#1890FF",
+							fontFamily: "Pretendard-regular",
+						}}
 					>
-						시나리오 화면
+						{showScenario ? "시나리오 화면" : "지도 보기"}
 					</Button>
 				</Box>
+				{/* <AudioPlayer filename={SOUND.러닝발소리} play loop /> */}
+				<AudioPlayer filename={SOUND.교통소음1} play loop />
+				<VolumeControl />
 			</Box>
 		</Box>
 	);

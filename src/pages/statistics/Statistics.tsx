@@ -15,6 +15,10 @@ import {
 	ResponsiveContainer,
 } from "recharts";
 import CustomFadeLoader from "../../components/CustomFadeLoader";
+import {
+	getFormattedDistance,
+	getFormattedPace,
+} from "../../utils/running_util";
 
 export default function Statistics() {
 	const { userId } = useContext(AuthContext);
@@ -34,42 +38,26 @@ export default function Statistics() {
 		totalRunningCount,
 	} = data.data.data;
 
-	// 예시 데이터 추가
-	const exampleData = [
-		{ date: "2024-07-07", distance: 2 },
-		{ date: "2024-07-11", distance: 4 },
-		{ date: "2024-07-14", distance: 7 },
-		{ date: "2024-07-25", distance: 6 },
-		{ date: "2024-07-27", distance: 5 },
-	];
-
-	const formattedData =
-		runningList.length > 0
-			? runningList.map((run) => ({
-					date: new Date(run.createdDate).getDate(),
-					distance: run.distance,
-				}))
-			: exampleData.map((run) => ({
-					date: new Date(run.date).getDate(),
-					distance: run.distance,
-				}));
+	const formattedData = runningList.map((run) => ({
+		date: new Date(run.createdDate).getDate(),
+		distance: run.distance,
+	}));
 
 	const currentDate = new Date();
 	const currentMonth = currentDate.toLocaleString("ko-KR", { month: "long" });
 	const currentYear = currentDate.getFullYear();
+	const [paceMinutes, paceSeconds] = getFormattedPace(averagePace);
 
 	return (
 		<Box p={1}>
 			<Title
 				style={{
 					textAlign: "left",
-					marginBottom: "50px",
 				}}
 				level={2}
 			>
 				<AnimalCrawls />
 			</Title>
-
 			<Box sx={{ textAlign: "left" }}>
 				<h2
 					style={{
@@ -92,32 +80,44 @@ export default function Statistics() {
 					<Box sx={{ marginLeft: "40px" }}>
 						{`${currentYear}년 ${currentMonth}`}
 					</Box>
-					<ResponsiveContainer>
-						<BarChart data={formattedData}>
-							<CartesianGrid strokeDasharray="3 3" />
-							<XAxis
-								dataKey="date"
-								label={{
-									value: "일",
-									position: "insideBottomRight",
-									offset: -1,
-								}}
-							/>
-							<YAxis
-								label={{
-									value: "km",
-									position: "insideTop",
-									offset: -4,
-								}}
-							/>
-							<Tooltip />
-							<Bar
-								dataKey="distance"
-								fill="#98D588"
-								barSize={10}
-							/>
-						</BarChart>
-					</ResponsiveContainer>
+					{formattedData.length > 0 ? (
+						<ResponsiveContainer>
+							<BarChart data={formattedData}>
+								<CartesianGrid strokeDasharray="3 3" />
+								<XAxis
+									dataKey="date"
+									label={{
+										value: "일",
+										position: "insideBottomRight",
+										offset: -1,
+									}}
+								/>
+								<YAxis
+									label={{
+										value: "km",
+										position: "insideTop",
+										offset: -4,
+									}}
+								/>
+								<Tooltip />
+								<Bar
+									dataKey="distance"
+									fill="#98D588"
+									barSize={10}
+								/>
+							</BarChart>
+						</ResponsiveContainer>
+					) : (
+						<p
+							style={{
+								marginLeft: "40px",
+								fontFamily: "Pretendard-bold",
+								fontSize: "20px",
+							}}
+						>
+							데이터가 아직 없습니다!
+						</p>
+					)}
 				</Box>
 				<Grid
 					container
@@ -139,7 +139,7 @@ export default function Statistics() {
 									color: "#1890FF",
 								}}
 							>
-								{totalDistance}km
+								{getFormattedDistance(totalDistance)}km
 							</p>
 						</div>
 					</Grid>
@@ -169,7 +169,7 @@ export default function Statistics() {
 									color: "#1890FF",
 								}}
 							>
-								{averagePace}
+								{paceMinutes}m&nbsp;{paceSeconds}s
 							</p>
 						</div>
 					</Grid>
