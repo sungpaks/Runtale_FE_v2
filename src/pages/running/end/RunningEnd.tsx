@@ -1,4 +1,4 @@
-import { Box, Button } from "@mui/material";
+import { Box, Button, useMediaQuery } from "@mui/material";
 import {
 	getFormattedDistance,
 	getFormattedTime,
@@ -165,6 +165,8 @@ export default function RunningEnd({}) {
 	const location = useLocation();
 	const { distance, pace, time, targetPace } = location.state;
 	const [showRecord, setShowRecord] = useState<boolean>(false);
+	const MAX_WIDTH = "480px";
+	const matches = useMediaQuery("(min-width:480px)");
 
 	return showRecord ? (
 		<CurrentRunningRecord
@@ -188,6 +190,8 @@ export default function RunningEnd({}) {
 				justifyContent: "center",
 				fontFamily: "Pretendard-bold",
 				gap: "35px",
+				maxWidth: MAX_WIDTH,
+				borderRadius: matches ? "25px" : 0,
 			}}
 		>
 			<Title level={2}>
