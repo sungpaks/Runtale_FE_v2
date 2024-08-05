@@ -307,7 +307,7 @@ export default function Running() {
 							fontFamily: "Pretendard-regular",
 						}}
 					>
-						{showScenario ? "시나리오 화면" : "지도 보기"}
+						{!showScenario ? "시나리오 화면" : "지도 보기"}
 					</Button>
 				</Box>
 				{/* <AudioPlayer filename={SOUND.러닝발소리} play loop /> */}
