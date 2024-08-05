@@ -205,35 +205,53 @@ export default function Running() {
 	if (showScenario)
 		return (
 			<Box>
-				<h1>시나리오 화면을 넣어요</h1>
+				<Box
+					sx={{
+						position: "fixed",
+						top: "0",
+						width: "100%",
+						height: "70vh",
+						display: "flex",
+						justifyContent: "center",
+						alignItems: "center",
+					}}
+				>
+					<img src="/img/Scenario1_1.png" alt="Scenario" style={{ width: "100%", height: "100%" }} />
+				</Box>
 				<Box
 					sx={{
 						position: "fixed",
 						bottom: "1.5rem",
 						width: "100%",
-						display: "flex",
-						justifyContent: "space-evenly",
 					}}
 				>
-					<Button 
-						variant={"outlined"} 
-						onClick={onClickEnd}
-						sx = {{
-							fontFamily: "Pretendard-regular",
+					<Status distance={distance} pace={pace} />
+					<Box
+						sx={{
+							display: "flex",
+							justifyContent: "space-evenly",
 						}}
 					>
-						러닝 그만하기
-					</Button>
-					<Button
-						variant="contained"
-						onClick={() => setShowScenario((prev) => !prev)}
-						sx = {{
-							backgroundColor: "#1890FF",
-							fontFamily: "Pretendard-regular",
-						}}
-					>
-						지도 보기
-					</Button>
+						<Button
+							variant={"outlined"}
+							onClick={onClickEnd}
+							sx={{
+								fontFamily: "Pretendard-regular",
+							}}
+						>
+							러닝 그만하기
+						</Button>
+						<Button
+							variant="contained"
+							onClick={() => setShowScenario((prev) => !prev)}
+							sx={{
+								backgroundColor: "#1890FF",
+								fontFamily: "Pretendard-regular",
+							}}
+						>
+							지도 보기
+						</Button>
+					</Box>
 				</Box>
 			</Box>
 		);
@@ -310,10 +328,10 @@ export default function Running() {
 						</Button>
 					) : undefined}
 
-					<Button 
-						variant={"outlined"} 
+					<Button
+						variant={"outlined"}
 						onClick={onClickEnd}
-						sx = {{
+						sx={{
 							fontFamily: "Pretendard-regular",
 						}}
 					>
@@ -322,7 +340,7 @@ export default function Running() {
 					<Button
 						variant="contained"
 						onClick={() => setShowScenario((prev) => !prev)}
-						sx = {{
+						sx={{
 							backgroundColor: "#1890FF",
 							fontFamily: "Pretendard-regular",
 						}}
