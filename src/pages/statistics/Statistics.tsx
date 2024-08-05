@@ -38,10 +38,16 @@ export default function Statistics() {
 		totalRunningCount,
 	} = data.data.data;
 
-	const formattedData = runningList.map((run) => ({
-		date: new Date(run.createdDate).getDate(),
-		distance: run.distance,
-	}));
+	const aggregatedData = runningList.reduce((acc, run) => {
+		const date = new Date(run.createdDate).getDate();
+		const existingEntry = acc.find(entry => entry.date === date);
+		if (existingEntry) {
+			existingEntry.distance += run.distance;
+		} else {
+			acc.push({ date, distance: run.distance });
+		}
+		return acc;
+	}, []);
 
 	const currentDate = new Date();
 	const currentMonth = currentDate.toLocaleString("ko-KR", { month: "long" });
@@ -80,9 +86,9 @@ export default function Statistics() {
 					<Box sx={{ marginLeft: "40px" }}>
 						{`${currentYear}년 ${currentMonth}`}
 					</Box>
-					{formattedData.length > 0 ? (
+					{aggregatedData.length > 0 ? (
 						<ResponsiveContainer>
-							<BarChart data={formattedData}>
+							<BarChart data={aggregatedData}>
 								<CartesianGrid strokeDasharray="3 3" />
 								<XAxis
 									dataKey="date"
