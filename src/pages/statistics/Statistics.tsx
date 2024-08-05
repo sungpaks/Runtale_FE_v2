@@ -15,6 +15,10 @@ import {
 	ResponsiveContainer,
 } from "recharts";
 import CustomFadeLoader from "../../components/CustomFadeLoader";
+import {
+	getFormattedDistance,
+	getFormattedPace,
+} from "../../utils/running_util";
 
 export default function Statistics() {
 	const { userId } = useContext(AuthContext);
@@ -42,6 +46,7 @@ export default function Statistics() {
 	const currentDate = new Date();
 	const currentMonth = currentDate.toLocaleString("ko-KR", { month: "long" });
 	const currentYear = currentDate.getFullYear();
+	const [paceMinutes, paceSeconds] = getFormattedPace(averagePace);
 
 	return (
 		<Box p={1}>
@@ -103,7 +108,15 @@ export default function Statistics() {
 							</BarChart>
 						</ResponsiveContainer>
 					) : (
-						<p style={{ marginLeft: "40px", fontFamily: "Pretendard-bold", fontSize: "20px" }}>데이터가 아직 없습니다!</p>
+						<p
+							style={{
+								marginLeft: "40px",
+								fontFamily: "Pretendard-bold",
+								fontSize: "20px",
+							}}
+						>
+							데이터가 아직 없습니다!
+						</p>
 					)}
 				</Box>
 				<Grid
@@ -126,7 +139,7 @@ export default function Statistics() {
 									color: "#1890FF",
 								}}
 							>
-								{totalDistance.toFixed(3)}km
+								{getFormattedDistance(totalDistance)}km
 							</p>
 						</div>
 					</Grid>
@@ -156,7 +169,7 @@ export default function Statistics() {
 									color: "#1890FF",
 								}}
 							>
-								{averagePace.toFixed(3)}
+								{paceMinutes}m&nbsp;{paceSeconds}s
 							</p>
 						</div>
 					</Grid>

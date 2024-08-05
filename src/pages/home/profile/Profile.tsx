@@ -39,7 +39,9 @@ export default function Profile({
 		if (isSuccess && data && data.data) {
 			const records = data.data.data;
 			// 유효한 기록만 필터링
-			const validRecords = records.filter(record => record.endTime !== null);
+			const validRecords = records.filter(
+				(record) => record.endTime !== null,
+			);
 			setRunningRecord(validRecords);
 			setTotalRunningCount(validRecords.length);
 			setTotalDistance(
@@ -71,16 +73,18 @@ export default function Profile({
 			>
 				<EmojiOfTier tier={tier.tierName} size={120} />
 			</Box>
-			<h3 style={{ fontFamily: "Pretendard-bold", fontSize: "20px" }}>{username}</h3>
+			<h3 style={{ fontFamily: "Pretendard-bold", fontSize: "20px" }}>
+				{username}
+			</h3>
 			<Stack textAlign={"left"} spacing={0}>
 				<ListItem>
 					랭킹&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<strong >LV.{getLevelNumber(tier.tierName)}</strong>{" "}
+					<strong>LV.{getLevelNumber(tier.tierName)}</strong>{" "}
 					<LevelBar tier={tier} />
 				</ListItem>
 				<ListItem>
 					총 달린 거리 &nbsp;&nbsp;{" "}
-					<strong>{totalDistance.toFixed(3)} km </strong>
+					<strong>{Math.trunc(totalDistance)} km </strong>
 				</ListItem>
 				<ListItem>
 					총 러닝 횟수 &nbsp;&nbsp;{" "}

@@ -11,6 +11,9 @@ import {
 import { useNavigate } from "react-router-dom";
 import RunningEnd from "./end/RunningEnd";
 import Status from "./status/Status";
+import Scene from "./scene/Scene";
+import AudioPlayer, { SOUND } from "../../components/AudioPlayer";
+import VolumeControl from "../../components/VolumeControl";
 
 interface PathType {
 	lat: number;
@@ -37,6 +40,7 @@ export default function Running() {
 	};
 	const [locations, setLocations] = useState<PathType[]>([]);
 	const [showScenario, setShowScenario] = useState(false);
+	const [checkpointAudioFile, setCheckpointAudioFile] = useState<string>("");
 
 	const refreshPosition = () => {
 		/** 위치 정보 새로 가져옴 */
@@ -197,70 +201,24 @@ export default function Running() {
 			pace: curPace,
 			latitude: latitude,
 			longitude: longitude,
+		}).then((res) => {
+			if (res.data.data.audioUrl) {
+				setCheckpointAudioFile(res.data.data.audioUrl);
+				console.log("체크포인트!!");
+			}
 		});
 		setDistance((prev) => prev + curDistance);
 		setPace(curPace);
 	}, [latitude, longitude]);
 
-	if (showScenario)
-		return (
-			<Box>
-				<Box
-					sx={{
-						position: "fixed",
-						top: "0",
-						width: "100%",
-						height: "70vh",
-						display: "flex",
-						justifyContent: "center",
-						alignItems: "center",
-					}}
-				>
-					<img src="/img/Scenario1_1.png" alt="Scenario" style={{ width: "100%", height: "100%" }} />
-				</Box>
-				<Box
-					sx={{
-						position: "fixed",
-						bottom: "1.5rem",
-						width: "100%",
-					}}
-				>
-					<Status distance={distance} pace={pace} />
-					<Box
-						sx={{
-							display: "flex",
-							justifyContent: "space-evenly",
-						}}
-					>
-						<Button
-							variant={"outlined"}
-							onClick={onClickEnd}
-							sx={{
-								fontFamily: "Pretendard-regular",
-							}}
-						>
-							러닝 그만하기
-						</Button>
-						<Button
-							variant="contained"
-							onClick={() => setShowScenario((prev) => !prev)}
-							sx={{
-								backgroundColor: "#1890FF",
-								fontFamily: "Pretendard-regular",
-							}}
-						>
-							지도 보기
-						</Button>
-					</Box>
-				</Box>
-			</Box>
-		);
 	if (latitude === 0 || longitude === 0) {
 		refreshPosition();
 	}
 	return (
 		<Box>
-			{latitude === 0 || longitude === 0 ? (
+			{showScenario ? (
+				<Scene distance={distance} pace={pace} /> 
+			) : latitude === 0 || longitude === 0 ? (
 				<>잠시만요... 지도를 준비중입니다</>
 			) : (
 				<Map
@@ -295,6 +253,7 @@ export default function Running() {
 			>
 				<Status distance={distance} pace={pace} />
 				<Box
+					mb={2.5}
 					sx={{
 						display: "flex",
 						justifyContent: "space-evenly",
@@ -345,9 +304,12 @@ export default function Running() {
 							fontFamily: "Pretendard-regular",
 						}}
 					>
-						시나리오 화면
+						{showScenario ? "시나리오 화면" : "지도 보기"}
 					</Button>
 				</Box>
+				{/* <AudioPlayer filename={SOUND.러닝발소리} play loop /> */}
+				<AudioPlayer filename={SOUND.교통소음1} play loop />
+				<VolumeControl />
 			</Box>
 		</Box>
 	);
