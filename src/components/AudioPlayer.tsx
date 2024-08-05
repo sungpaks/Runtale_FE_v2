@@ -41,6 +41,9 @@ export default function AudioPlayer({
 	useEffect(() => {
 		if (audioRef.current) {
 			audioRef.current.volume = volume;
+			if (play && audioRef.current.paused) {
+				audioRef.current.play();
+			}
 		}
 	}, [volume]);
 

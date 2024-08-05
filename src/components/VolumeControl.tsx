@@ -9,6 +9,7 @@ export default function VolumeControl() {
 			음량 &nbsp;
 			<input
 				type="range"
+				value={volume * 100}
 				onChange={(e) => setVolume(parseInt(e.target.value) / 100)}
 			/>
 		</Box>

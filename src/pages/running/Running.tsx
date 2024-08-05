@@ -205,47 +205,14 @@ export default function Running() {
 		setPace(curPace);
 	}, [latitude, longitude]);
 
-	if (showScenario)
-		return (
-			<Box>
-				<Scene />
-				<Box
-					sx={{
-						position: "fixed",
-						bottom: "1.5rem",
-						width: "100%",
-						display: "flex",
-						justifyContent: "space-evenly",
-					}}
-				>
-					<Button
-						variant={"outlined"}
-						onClick={onClickEnd}
-						sx={{
-							fontFamily: "Pretendard-regular",
-						}}
-					>
-						러닝 그만하기
-					</Button>
-					<Button
-						variant="contained"
-						onClick={() => setShowScenario((prev) => !prev)}
-						sx={{
-							backgroundColor: "#1890FF",
-							fontFamily: "Pretendard-regular",
-						}}
-					>
-						지도 보기
-					</Button>
-				</Box>
-			</Box>
-		);
 	if (latitude === 0 || longitude === 0) {
 		refreshPosition();
 	}
 	return (
 		<Box>
-			{latitude === 0 || longitude === 0 ? (
+			{showScenario ? (
+				<Scene />
+			) : latitude === 0 || longitude === 0 ? (
 				<>잠시만요... 지도를 준비중입니다</>
 			) : (
 				<Map
@@ -330,7 +297,7 @@ export default function Running() {
 							fontFamily: "Pretendard-regular",
 						}}
 					>
-						시나리오 화면
+						{showScenario ? "시나리오 화면" : "지도 보기"}
 					</Button>
 				</Box>
 				{/* <AudioPlayer filename={SOUND.러닝발소리} play loop /> */}
