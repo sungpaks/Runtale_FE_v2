@@ -8,14 +8,17 @@ interface SceneProps {
 	pace: number;
 }
 
-export default function Scene({ distance, pace }: SceneProps) {
+export default function Scene({ distance: initialDistance, pace }: SceneProps) {
 	const [play, setPlay] = useState(false);
+	const [distance, setDistance] = useState(initialDistance);
 	const [scenarioImage, setScenarioImage] = useState<string>("/img/Scenario1_1.png");
 
 	// distance가 1km 증가할 때마다 이미지 변경
 	useEffect(() => {
 		const imageIndex = Math.floor(distance) + 1;
-		setScenarioImage(`/img/Scenario1_${imageIndex}.png`);
+		if (distance % 1 === 0) {
+			setScenarioImage(`/img/Scenario1_${imageIndex}.png`);
+		}
 	}, [distance]);
 
 	return (
