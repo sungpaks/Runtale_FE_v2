@@ -15,6 +15,7 @@ import Scene from "./scene/Scene";
 import AudioPlayer, { SOUND } from "../../components/AudioPlayer";
 import VolumeControl from "../../components/VolumeControl";
 import RandomEffectSound from "./random-effect-sound/RandomEffectSound";
+import Title from "../../components/Title";
 
 interface PathType {
 	lat: number;
@@ -222,29 +223,46 @@ export default function Running() {
 			) : latitude === 0 || longitude === 0 ? (
 				<>잠시만요... 지도를 준비중입니다</>
 			) : (
-				<Map
-					center={{ lat: latitude, lng: longitude }}
-					style={{
-						width: "100%",
-						height: "70vh",
-						zIndex: 0,
-						position: "fixed",
-						top: 0,
-						maxWidth: MAX_WIDTH,
-					}}
-					level={2}
-					onDragEnd={
-						testMode
-							? (map) => updatePositionManualy(map)
-							: undefined
-					}
-				>
-					<Tracker
-						longitude={longitude}
-						latitude={latitude}
-						locations={locations}
-					/>
-				</Map>
+				<>
+					<Map
+						center={{ lat: latitude, lng: longitude }}
+						style={{
+							width: "100%",
+							height: "70vh",
+							zIndex: 0,
+							position: "fixed",
+							top: 0,
+							maxWidth: MAX_WIDTH,
+						}}
+						level={2}
+						onDragEnd={
+							testMode
+								? (map) => updatePositionManualy(map)
+								: undefined
+						}
+					>
+						<Tracker
+							longitude={longitude}
+							latitude={latitude}
+							locations={locations}
+						/>
+					</Map>
+					<Box
+						sx={{
+							position: "fixed",
+							top: 0,
+							left: "50%",
+							transform: "translateX(-50%)",
+							zIndex: 3,
+							width: "auto",
+							backgroundColor: "white",
+							display: "inline-block",
+							whiteSpace: "nowrap",
+						}}
+					>
+						*PC웹에서는 정확한 위치 반영이 어렵습니다.*
+					</Box>
+				</>
 			)}
 			<Box
 				sx={{
