@@ -8,7 +8,7 @@ export default function StartRunning() {
 	const [countdown, setCountdown] = useState(null);
 	const navigate = useNavigate();
 	const location = useLocation();
-	const targetPace = location.state.targetPace;
+	const { targetPace, scenarioId } = location.state;
 	const geo = navigator.geolocation;
 	const position = useRef({ latitude: 0, longitude: 0 });
 
@@ -43,7 +43,7 @@ export default function StartRunning() {
 			pace: 0,
 			targetPace: targetPace,
 			targetDistance: 3, //실제 값 추가
-			scenarioId: 1, //실제 값 추가
+			scenarioId: scenarioId, //실제 값 추가
 			latitude: position.current.latitude,
 			longitude: position.current.longitude,
 		}).then((res) => {
