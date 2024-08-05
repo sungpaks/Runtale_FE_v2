@@ -333,7 +333,8 @@ export default function Running() {
 						시나리오 화면
 					</Button>
 				</Box>
-				<AudioPlayer filename={SOUND.러닝발소리} play loop />
+				{/* <AudioPlayer filename={SOUND.러닝발소리} play loop /> */}
+				<AudioPlayer filename={SOUND.교통소음1} play loop />
 				<VolumeControl />
 			</Box>
 		</Box>
