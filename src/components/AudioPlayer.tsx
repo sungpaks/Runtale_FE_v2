@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from "react";
-import { useRecoilState } from "recoil";
+import { useEffect, useRef } from "react";
+import { useRecoilValue } from "recoil";
 import volumeState from "../context/VolumeState";
 
 export const SOUND = {
@@ -28,7 +28,7 @@ export default function AudioPlayer({
 }) {
 	const audioRef = useRef<HTMLAudioElement>(null);
 	const url = `/sound/${filename}`;
-	const [volume, setVolume] = useRecoilState(volumeState);
+	const volume = useRecoilValue(volumeState);
 
 	useEffect(() => {
 		if (play && audioRef.current) {

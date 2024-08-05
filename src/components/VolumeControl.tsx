@@ -1,4 +1,4 @@
-import { atom, useRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import volumeState from "../context/VolumeState";
 import { Box } from "@mui/material";
 
