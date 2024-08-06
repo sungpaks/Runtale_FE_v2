@@ -164,6 +164,7 @@ export default function SetDistance() {
 				<p style={{ margin: 0, fontSize: "13px", color: "#626773" }}>
 					오늘도 재밌게 달려볼까요? <br />
 					Runtale은 언제나 {nickname} 님의 건강한 러닝을 응원합니다!
+					<br />* 🔊시나리오 진행 시 이어폰 착용을 권장합니다 *
 				</p>
 				<Button
 					variant="contained"
