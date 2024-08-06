@@ -12,6 +12,14 @@
 - [🔧 기술](#-기술)
 - [🗂️ 프로젝트 구조](#%EF%B8%8F-프로젝트-구조)
 
+# 📄 프로젝트 개요
+
+| 항목       | 내용                                          |
+|------------|---------------------------------------------|
+| 프로젝트 소개 | 이야기와 함께하는 즐거운 러닝의 시작 [Runtale]  |
+| 개발 인원    | 5명 (PM/디자인 1명 + 프론트엔드 2명 + 백엔드 2명) |
+| 개발 기간    | 2024. 07. 05 ~ 2024. 08. 06               |
+
 # 🕹️ 기능
 
 - ***시나리오*** : **시나리오를 선택**하여 러닝을 시작하세요! 진행 상황에 따라 적절한 **사운드**가 제공되어 마치 그 상황에 처한 듯한 동기부여를 받을 수 있습니다.
@@ -137,3 +145,24 @@ RunTale_FE/
 └── README.md               # 프로젝트 정보
 ```
 
+# 🧑‍💻 프론트엔드 담당
+
+
+<table>
+    <tr align="center">
+        <td><B>조성훈</B></td>
+        <td><B>김도윤</B></td>
+    </tr>
+    <tr align="center">
+        <td>
+            <img src="https://github.com/sungpaks.png?size=100" width="100">
+            <br>
+            <a href="https://github.com/sungpaks"><I>sungpaks</I></a>
+        </td>
+        <td>
+            <img src="https://github.com/doyun5565.png?size=100" width="100">
+            <br>
+            <a href="https://github.com/doyun5565"><I>doyun5565</I></a>
+        </td>
+    </tr>
+</table>
