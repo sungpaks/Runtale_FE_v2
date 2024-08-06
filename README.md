@@ -103,7 +103,7 @@ Activities 탭에서는 현재 사용자의 티어와, 전체 티어를 확인�
 - **Vercel** - 배포
 
 [배포에 관한 글을 썼어요](https://sungpaks.github.io/deploy-your-project-with-vercel/)  
-[실시간 위치 기반 러닝 트래커 개발에 대해서도 썼어요](https://sungpaks.github.io/til/geolocation-based-running-tracker-improvement/)
+[실시간 위치 기반 러닝 트래커 개발에 대해서도 썼어요](https://sungpaks.github.io/til/geolocation-based-running-tracker-improvement/)  
 [audio 기능과 음량을 전역상태로 관리하기](https://sungpaks.github.io/til/html-audio-volume-control-with-recoil/)
 
 # 🗂️ 프로젝트 구조
