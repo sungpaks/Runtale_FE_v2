@@ -19,19 +19,22 @@
 
 [런테일 서비스를 만나보세요!](https://runtale.vercel.app/)
 
-<img src="https://i.imgur.com/bzKDs63.png" alt loading="lazy" height="400px" />
+<img src="https://i.imgur.com/plIqBMI.png" alt loading="lazy" height="400px" />
 
 런테일 서비스에 접속하고, **로그인**합니다.  
 아직 회원이 아니라면, **회원가입**을 진행합니다.  
 
 ## 2. 홈 화면
 
-<img src="https://i.imgur.com/ROp8TYC.png" alt loading="lazy" />
-홈 화면에서는 본인의 **티어, 랭킹, 대략적인 기록** 등을 확인할 수 있습니다.
+<div style="display: flex;">
+  <img src="https://i.imgur.com/pRznFXR.png" alt="티어, 랭킹, 기록" loading="lazy" height="500px" />
+  <img src="https://i.imgur.com/B4fjEPZ.png" alt="튜토리얼" loading="lazy" height="500px" />
+</div>
 
-<img src="https://i.imgur.com/76LRuTu.png" alt loading="lazy" />
+홈 화면에서는 본인의 **티어, 랭킹, 대략적인 기록** 등을 확인할 수 있으며,
 
-스크롤하면 튜토리얼에 진입할 수 있습니다!
+아래로 스크롤하면 튜토리얼에 진입할 수 있습니다!
+
 
 ## 3. 시나리오 선택, 러닝 진행
 
@@ -50,11 +53,41 @@
 먼저 각 시나리오별 음성이 재생됩니다.  
 이제 러닝을 시작할 차례입니다!
 
-...
+<div style="display: flex;">
+  <img src="https://i.imgur.com/rEo5kqK.png" alt loading="lazy" height="400px" />
+  <img src="https://i.imgur.com/pfnSzbq.png" alt loading="lazy" height="400px" />
+</div>
+
+러닝을 시작하면 시나리오 화면 또는 지도를 확인 가능하고, 지도에서는 사용자의 실시간 러닝 경로가 표시됩니다.
+
+도시 소음, 경적 소리 등과 함께 지속적으로 시나리오 음성이 재생 되 더 몰입감 있는 러닝이 가능합니다!
+
+<div style="display: flex;">
+  <img src="https://i.imgur.com/BAI8qUv.png" alt loading="lazy" height="400px" />
+  <img src="https://i.imgur.com/O1sShHa.png" alt loading="lazy" height="400px" />
+</div>
+
+러닝이 종료되면 종료화면에서 기록을 볼지, 그대로 종료할지 선택이 가능하고
+
+기록을 보게 되면 총 러닝 거리, 시간, 평균페이스 및 처음에 설정했던 목표 페이스에 도달 했는지 못했는지를 알 수 있습니다.
 
 ## 4. 이달의 기록
+<img src="https://i.imgur.com/YCdtBJd.png" alt loading="lazy" height="400px" />
+하단의 Record 탭을 선택하면 이달의 기록을 확인 할 수 있습니다.
+
+해당 탭에서는 **시나리오 완수 횟수, 목표 페이스 도달 횟수**까지 확인이 가능해 사용자의 한 달 성과를 한눈에 볼 수 있습니다.
 
 ## 5. 활동
+<div style="display: flex;">
+  <img src="https://i.imgur.com/gxYst1V.png" alt loading="lazy" height="400px" />
+  <img src="https://i.imgur.com/rWVMANV.png" alt loading="lazy" height="400px" />
+</div>
+Activities 탭에서는 현재 사용자의 티어와, 전체 티어를 확인할 수 있습니다.
+
+총 티어는 **6개**이며, **Lv 0부터 5**까지 각종 귀여운 이모지를 통해 나타내 사용자들이 보다 즐겁게 서비스를 이용하도록 하였습니다!
+
+🪨🐌🐢🐇🐎🦅 
+
 
 # 🔧 기술
 
