@@ -36,6 +36,12 @@ export default function AudioPlayer({
 	const audioRef = useRef<HTMLAudioElement>(null);
 	const url = `/sound/${filename}`;
 	const volume = useRecoilValue(volumeState);
+	const callbackFile =
+		filename === "scenario1check1.mp3"
+			? "버스문열림.mp3"
+			: filename === "scenario1check2.mp3"
+				? "버스도착.mp3"
+				: "";
 
 	useEffect(() => {
 		if (play && audioRef.current) {
@@ -61,7 +67,8 @@ export default function AudioPlayer({
 				ref={audioRef}
 				loop={loop}
 				onEnded={() => {
-					if (setCheckpointAudioFile) setCheckpointAudioFile("");
+					if (setCheckpointAudioFile)
+						setCheckpointAudioFile(callbackFile);
 					if (setIsEnd) setIsEnd(true);
 				}}
 			/>
