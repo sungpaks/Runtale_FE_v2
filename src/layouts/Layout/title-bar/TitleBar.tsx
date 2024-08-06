@@ -1,4 +1,4 @@
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import "./TitleBar.css";
 import { Button } from "@mui/material";
 import { useContext } from "react";
@@ -12,6 +12,9 @@ export default function TitleBar({
 }) {
 	const { userId, setUserId } = useContext(AuthContext);
 	const navigate = useNavigate();
+	const location = useLocation();
+	const hideLogoutPaths = ["/login", "/signup"];
+	const hideLogout: boolean = hideLogoutPaths.includes(location.pathname);
 
 	const handleTitleClick = () => {
 		navigate("/home");
@@ -50,18 +53,20 @@ export default function TitleBar({
 				/>
 			</div>
 
-			<Button
-				onClick={handleLogout}
-				sx={{
-					marginLeft: "auto",
-					paddingRight: "2rem",
-					fontFamily: "Pretendard-regular",
-					textDecoration: "underline",
-					color: "#D0D0D0",
-				}}
-			>
-				로그아웃
-			</Button>
+			{hideLogout ? undefined : (
+				<Button
+					onClick={handleLogout}
+					sx={{
+						marginLeft: "auto",
+						paddingRight: "2rem",
+						fontFamily: "Pretendard-regular",
+						textDecoration: "underline",
+						color: "#D0D0D0",
+					}}
+				>
+					로그아웃
+				</Button>
+			)}
 		</div>
 	);
 }
