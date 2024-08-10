@@ -3,7 +3,7 @@
 - **RunTale**은 **스토리텔링**과 함께하는 **러닝** 서비스입니다.  
 - **RunTale**은 **모바일**에서 쉽게 사용할 수 있는 **웹 어플리케이션** 서비스입니다.
 
-[![image](https://github.com/user-attachments/assets/0fdd67f1-939a-4da8-b25f-2e609fa7f0f4)](https://runtale.vercel.app/)
+<img src="https://i.imgur.com/GxstPtg.png" />
 
 # 목차
 
