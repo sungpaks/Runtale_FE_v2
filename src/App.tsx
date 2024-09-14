@@ -51,7 +51,7 @@ const router = createBrowserRouter(
 				<Route path="/running/end" element={<RunningEnd />} />
 			</Route>
 			<Route element={<PublicRoute />}>
-				{/* 로그인 없이 접근하는 페이지 정의 */}
+				{/* 로그인 없이 접근하는 페이지 정의  */}
 				<Route path="/login" element={<Login />} />
 				<Route path="/signup" element={<Signup />} />
 				<Route path="/success" element={<Success />} />
