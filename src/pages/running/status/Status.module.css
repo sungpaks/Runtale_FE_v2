@@ -11,7 +11,7 @@
 .status-container {
 	/* Rectangle 3047 */
 	position: fixed;
-	height: 100px;
+	height: 200px;
 	width: 90vw;
 	bottom: 0;
 	left: 5vw;
@@ -63,7 +63,7 @@ progress::-moz-progress-bar {
 .status-progress {
 	position: fixed;
 	width: 90vw;
-	bottom: 110px;
+	bottom: 210px;
 	left: 5vw;
 	background-color: rgba(0, 0, 0, 0.173);
 	color: #f5b65dc7
