@@ -20,7 +20,8 @@ export default function PaceInput({
 				<span
 					style={{
 						fontFamily: "Pretendard-bold",
-						fontSize: "25px",
+						fontSize: "1.3rem",
+						color: "#909090",
 					}}
 				>
 					분
@@ -38,7 +39,8 @@ export default function PaceInput({
 				<span
 					style={{
 						fontFamily: "Pretendard-bold",
-						fontSize: "25px",
+						fontSize: "1.3rem",
+						color: "#909090",
 					}}
 				>
 					초

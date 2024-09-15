@@ -7,7 +7,7 @@
     /* background-size: contain; */
     background-repeat: no-repeat;
     background-position: center;
-    background-size: calc(90vw) calc(90vw);
+    background-size: calc(95vw) calc(90vw);
     justify-content: center;
     align-items: center;
 }
@@ -16,7 +16,7 @@
     justify-content: center;
     width: 40px;
     height: 50px;
-    font-size: 1rem;
+    font-size: 2rem;
     text-align: center;
     border: 1px solid #ccc;
     border-radius: 10px;
@@ -26,6 +26,7 @@
         background-color 0.3s ease;
     background: none;
     color: white;
+    padding: 0;
 }
 
 .distanceInput:focus {
