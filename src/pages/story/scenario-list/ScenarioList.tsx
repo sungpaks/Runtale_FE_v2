@@ -38,7 +38,7 @@ const mockScenarioList = [
 export default function ScenarioList() {
 	const navigate = useNavigate();
 	const handleClickStart = (scenarioId: Number) => {
-		navigate("/setpace", { state: { scenarioId } });
+		navigate("/setpace", { state: { scenarioId: 0 } });
 	};
 	return (
 		<Box className={styles["scenario-list-container"]} p={3} pt={5}>

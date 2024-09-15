@@ -267,12 +267,11 @@ export default function Running() {
 			<Box
 				sx={{
 					position: "fixed",
-					bottom: "1.5rem",
+					bottom: "5rem",
 					width: "100%",
 					maxWidth: MAX_WIDTH,
 				}}
 			>
-				<Status distance={distance} pace={pace} />
 				<Box
 					mb={2.5}
 					sx={{
@@ -339,6 +338,7 @@ export default function Running() {
 				) : undefined}
 				<VolumeControl />
 				<RandomEffectSound />
+				<Status distance={distance} pace={pace} />
 			</Box>
 		</Box>
 	);

@@ -35,26 +35,19 @@ export default function Status({ distance, pace }: StatusPropsType) {
 	}, []);
 
 	return (
-		<Box
-			m={1}
-			mt={4}
-			mb={2.5}
-			sx={{
-				// display: "flex",
-				// justifyContent: "space-evenly",
-				// alignItems: "center",
-				height: "100px",
-				borderRadius: 3,
-				backgroundColor: "#DCE9F5",
-				boxShadow: "3px 3px 3px rgb(0,0,0,0.1)",
-			}}
-		>
-			<Grid container spacing={2}>
+		<Box className="status-container">
+			<Grid container spacing={2} sx={{ color: "#909090" }}>
 				<Grid item xs={4}>
+					<Title level={3}>거리</Title>
 					<span className="bitter">{km}</span>km
-					<Title level={3}>달린 거리</Title>
 				</Grid>
 				<Grid item xs={4}>
+					<Title level={3}>시간</Title>
+					<span className="bitter">{minutes}</span>분
+					<span className="bitter">{seconds}</span>초
+				</Grid>
+				<Grid item xs={4}>
+					<Title level={3}>평균 페이스</Title>
 					<span className="bitter">
 						{!pace || pace === Infinity ? "-" : paceMinutes}
 					</span>
@@ -62,12 +55,7 @@ export default function Status({ distance, pace }: StatusPropsType) {
 					<span className="bitter">
 						{!pace || pace === Infinity ? "-" : paceSeconds}
 					</span>
-					s<Title level={3}>평균 페이스</Title>
-				</Grid>
-				<Grid item xs={4}>
-					<span className="bitter">{minutes}</span>분
-					<span className="bitter">{seconds}</span>초
-					<Title level={3}>시간</Title>
+					s
 				</Grid>
 			</Grid>
 		</Box>
