@@ -19,7 +19,8 @@ export default function MonthlyGraph({
 		<div
 			style={{
 				position: "absolute",
-				top: 0,
+				top: "-5rem",
+				paddingTop: "5.5rem",
 				left: 0,
 				width: "100vw",
 				height: "55vh",
@@ -30,6 +31,7 @@ export default function MonthlyGraph({
 				sx={{
 					display: "flex",
 					justifyContent: "space-between",
+					alignItems: "center",
 				}}
 				p={2}
 			>
