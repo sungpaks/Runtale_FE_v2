@@ -3,7 +3,22 @@
 - **RunTale**은 **스토리텔링**과 함께하는 **러닝** 서비스입니다.  
 - **RunTale**은 **모바일**에서 쉽게 사용할 수 있는 **웹 어플리케이션** 서비스입니다.
 
-[![image](https://github.com/user-attachments/assets/0fdd67f1-939a-4da8-b25f-2e609fa7f0f4)](https://runtale.vercel.app/)
+<img src="https://i.imgur.com/GxstPtg.png" />
+
+# 목차
+
+- [🕹️ 기능](#️-기능)
+- [👣 시작하기](#-시작하기)
+- [🔧 기술](#-기술)
+- [🗂️ 프로젝트 구조](#%EF%B8%8F-프로젝트-구조)
+
+# 📄 프로젝트 개요
+
+| 항목       | 내용                                          |
+|------------|---------------------------------------------|
+| 프로젝트 소개 | 이야기와 함께하는 즐거운 러닝의 시작 [Runtale]  |
+| 개발 인원    | 5명 (PM/디자인 1명 + 프론트엔드 2명 + 백엔드 2명) |
+| 개발 기간    | 2024. 07. 05 ~ 2024. 08. 06               |
 
 # 🕹️ 기능
 
@@ -102,8 +117,9 @@ Activities 탭에서는 현재 사용자의 티어와, 전체 티어를 확인�
 - **Recharts** - 리액트 차트 라이브러리
 - **Vercel** - 배포
 
-[배포에 관한 글을 썼어요 - 성훈](https://sungpaks.github.io/deploy-your-project-with-vercel/)  
-[실시간 위치 기반 러닝 트래커 개발에 대해서도 썼어요 - 성훈](https://sungpaks.github.io/til/geolocation-based-running-tracker-improvement/)
+[배포에 관한 글을 썼어요](https://sungpaks.github.io/deploy-your-project-with-vercel/)  
+[실시간 위치 기반 러닝 트래커 개발에 대해서도 썼어요](https://sungpaks.github.io/til/geolocation-based-running-tracker-improvement/)  
+[audio 기능과 음량을 전역상태로 관리하기](https://sungpaks.github.io/til/html-audio-volume-control-with-recoil/)
 
 # 🗂️ 프로젝트 구조
 
@@ -129,3 +145,24 @@ RunTale_FE/
 └── README.md               # 프로젝트 정보
 ```
 
+# 🧑‍💻 프론트엔드 담당
+
+
+<table>
+    <tr align="center">
+        <td><B>조성훈</B></td>
+        <td><B>김도윤</B></td>
+    </tr>
+    <tr align="center">
+        <td>
+            <img src="https://github.com/sungpaks.png?size=100" width="100">
+            <br>
+            <a href="https://github.com/sungpaks"><I>sungpaks</I></a>
+        </td>
+        <td>
+            <img src="https://github.com/doyun5565.png?size=100" width="100">
+            <br>
+            <a href="https://github.com/doyun5565"><I>doyun5565</I></a>
+        </td>
+    </tr>
+</table>
