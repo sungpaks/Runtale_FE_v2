@@ -8,23 +8,9 @@ export default function DefaultPage() {
 	return (
 		<div className={`${styles["Container"]}`}>
 			<div className={`${styles["Content-Wrap"]}`}>
-				<Box
-					sx={{
-						backgroundImage: 'url("/path/to/Firefly King Arthur pulls the sword from the stone, surrounded by a crowd in awe, as the first rays .png")',
-						backgroundSize: 'cover',
-						opacity: 0.2,
-						width: 120,
-						height: 120,
-						display: "flex",
-						alignItems: "center",
-						justifyContent: "center",
-						mb: 3,
-					}}
-				>
-				</Box>
 				<Typography
 					variant="h3"
-					sx={{fontFamily: "theSeason-bold", color: "#ECE3D7"}}
+					sx={{fontFamily: "Theseasons-Bold", color: "#ECE3D7"}}
 				>
 					RUNTALE
 				</Typography>
@@ -50,6 +36,7 @@ export default function DefaultPage() {
 						"&:hover": {
 							backgroundColor: "#096DD9",
 						},
+						fontFamily: "Chosunilbo_myungjo"
 					}}
 					component={Link}
 					to="/login"
@@ -64,7 +51,7 @@ export default function DefaultPage() {
 						<button
 							onClick={() => navigate("/signup")}
 							className={`${styles["Signupbtn"]}`}
-							style={{ fontFamily: "Chosunilbo_myungjo", color: "#F5B65DCC" }}
+							style={{ fontFamily: "Chosunilbo_myungjo", color: "#F5B65DCC", background: "none" }}
 						>
 							회원가입
 						</button>
