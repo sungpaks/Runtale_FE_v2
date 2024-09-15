@@ -41,7 +41,7 @@ export default function Running() {
 		maximumAge: 0,
 	};
 	const [locations, setLocations] = useState<PathType[]>([]);
-	const [showScenario, setShowScenario] = useState(false);
+	const [showScenario, setShowScenario] = useState(true);
 	const [checkpointAudioFile, setCheckpointAudioFile] = useState<string>("");
 	const MAX_WIDTH = "480px";
 
