@@ -112,17 +112,19 @@ export default function Running() {
 	const onClickEnd = async (e) => {
 		/** 러닝 끝내기 */
 		let targetPace;
-		await postRunning({
-			id: runningId,
-			endTime: new Date(Date.now()),
-			distance: distance,
-			pace: pace,
-			longitude: longitude,
-			latitude: latitude,
-		}).then((res) => {
+		try {
+			const res = await postRunning({
+				id: runningId,
+				endTime: new Date(Date.now()),
+				distance: distance,
+				pace: pace,
+				longitude: longitude,
+				latitude: latitude,
+			});
 			targetPace = res.data.data.targetPace;
-			//console.log(res.data.data);
-		});
+		} catch (err) {
+			navigate("/error");
+		}
 		elapsedTime.current = parseInt(localStorage.getItem("curTime"));
 		localStorage.removeItem("runningId");
 		localStorage.removeItem("curTime");
