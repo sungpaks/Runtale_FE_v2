@@ -6,10 +6,9 @@ import requestApi from "../../api/api";
 import AuthContext from "../../context/AuthContext";
 import { useLocation, useNavigate } from "react-router-dom";
 import { getRunning } from "../../api/api";
-import paceBackground from "../../assets/pace-background.png";
+import PaceInput from "./pace-input/PaceInput";
 
 export default function SetDistance() {
-	const SIZE = "90%";
 	const [nickname, setNickname] = useState("");
 	const [minutes, setMinutes] = useState("");
 	const [seconds, setSeconds] = useState("");
@@ -66,24 +65,6 @@ export default function SetDistance() {
 		setSeconds(e.target.value);
 	};
 
-	/*const handleSubmit = async () => {
-		if (!isAuthenticated || userId < 0 || pace <= 0) return;
-		const pace = `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
-		try {
-			const response = await requestApi.post(
-				`/users/${userId}/set-pace`,
-				{ pace },
-			);
-			if (response.data.status === 200) {
-				console.log("Pace set successfully");
-			} else {
-				console.error("Error setting pace:", response.data.message);
-			}
-		} catch (error) {
-			console.error("Error setting pace:", error);
-		}
-	};*/
-
 	if (scenarioId >= 2) {
 		return (
 			<>
@@ -96,59 +77,13 @@ export default function SetDistance() {
 	}
 	return (
 		<Box p={1}>
-			{/* <Title
-				level={2}
-				style={{
-					textAlign: "left",
-					marginBottom: "30px",
-				}}
-			>
-				<AnimalCrawls />
-			</Title> */}
 			<div className={`${styles["Content-Container"]}`}>
-				<div className={styles.distanceInputContainer}>
-					<div className={styles.minuteWrap}>
-						<input
-							type="number"
-							className={styles.distanceInput}
-							min="0"
-							value={minutes}
-							onChange={handleMinutesChange}
-						/>
-						<span
-							style={{
-								fontFamily: "Pretendard-bold",
-								fontSize: "25px",
-							}}
-						>
-							분
-						</span>
-					</div>
-					<div className={styles.secondWrap}>
-						<input
-							type="number"
-							className={styles.distanceInput}
-							min="0"
-							max="59"
-							value={seconds}
-							onChange={handleSecondsChange}
-						/>
-						<span
-							style={{
-								fontFamily: "Pretendard-bold",
-								fontSize: "25px",
-							}}
-						>
-							초
-						</span>
-					</div>
-				</div>
 				<Box component="picture">
-					<img
-						src={paceBackground}
-						alt="set pace"
-						width={SIZE}
-						height={SIZE}
+					<PaceInput
+						minutes={minutes}
+						handleMinutesChange={handleMinutesChange}
+						seconds={seconds}
+						handleSecondsChange={handleSecondsChange}
 					/>
 				</Box>
 				<Title level={2} style={{ color: "#909090" }}>

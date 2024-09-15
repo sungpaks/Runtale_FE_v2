@@ -7,40 +7,13 @@
 	height: 100vh;
 	position: fixed;
 	padding-top: 50px;
+	left: 0;
 }
 
 .Content-Container h2 {
 	font-size: 20px;
 }
 
-.distanceInputContainer {
-	display: flex;
-	gap: 20px;
-}
-
-.distanceInput {
-	width: 60px;
-	height: 60px;
-	font-size: 40px;
-	text-align: center;
-	border: 1px solid #ccc;
-	border-radius: 10px;
-	margin-right: 10px;
-	transition:
-		border-color 0.3s ease,
-		background-color 0.3s ease;
-	background: none;
-	color: white;
-}
-
-.distanceInput:focus {
-	border-color: #1890ff;
-	outline: none;
-}
-
-.distanceInput {
-	font-family: "Pretendard-bold";
-}
 
 .start-button {
 	/* Group 222 */
