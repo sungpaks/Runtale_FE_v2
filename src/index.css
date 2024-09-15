@@ -36,6 +36,18 @@
     font-style: normal;
 }
 
+@font-face {
+	font-family : 'theSeason-bold';
+	src : url('./font/the-seasons-bold.ttf');
+}
+
+@font-face {
+    font-family: 'Chosunilbo_myungjo';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Chosunilbo_myungjo.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 a {
 	font-weight: 500;
 	color: #646cff;
