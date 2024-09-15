@@ -42,7 +42,12 @@ export default function Status({ distance, pace }: StatusPropsType) {
 				value={70}
 			/>
 			<Box className={styles["status-container"]}>
-				<Grid container spacing={2} sx={{ color: "#909090" }}>
+				<Grid
+					container
+					spacing={1}
+					sx={{ color: "#909090", fontSize: "0.9rem" }}
+					pt={2}
+				>
 					<Grid item xs={4}>
 						<Title level={3}>거리</Title>
 						<span className={styles["bitter"]}>{km}</span>km

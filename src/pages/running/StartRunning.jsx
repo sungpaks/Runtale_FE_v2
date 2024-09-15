@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./StartRunning.module.css";
 import { postRunning } from "../../api/api";
@@ -13,13 +13,31 @@ export default function StartRunning() {
 	const geo = navigator.geolocation;
 	const position = useRef({ latitude: 0, longitude: 0 });
 
+	const handleStartRunning = useCallback(() => {
+		localStorage.removeItem("runningId");
+		localStorage.removeItem("curTime");
+		postRunning({
+			distance: 0,
+			pace: 0,
+			targetPace: targetPace,
+			targetDistance: 3, //실제 값 추가
+			scenarioId: scenarioId, //실제 값 추가
+			latitude: position.current.latitude,
+			longitude: position.current.longitude,
+		}).then((res) => {
+			localStorage.setItem("runningId", res.data.data.id.toString());
+		});
+
+		setCountdown(3);
+	}, [scenarioId, targetPace]);
+
 	useEffect(() => {
 		geo.getCurrentPosition((g) => {
 			position.current.latitude = g.coords.latitude;
 			position.current.longitude = g.coords.longitude;
 		});
 		handleStartRunning();
-	}, []);
+	}, [geo, handleStartRunning]);
 
 	useEffect(() => {
 		let timer;
@@ -36,24 +54,6 @@ export default function StartRunning() {
 
 		return () => clearTimeout(timer);
 	}, [countdown, navigate]);
-
-	const handleStartRunning = () => {
-		localStorage.removeItem("runningId");
-		localStorage.removeItem("curTime");
-		postRunning({
-			distance: 0,
-			pace: 0,
-			targetPace: targetPace,
-			targetDistance: 3, //실제 값 추가
-			scenarioId: scenarioId, //실제 값 추가
-			latitude: position.current.latitude,
-			longitude: position.current.longitude,
-		}).then((res) => {
-			localStorage.setItem("runningId", res.data.data.id.toString());
-		});
-
-		setCountdown(3);
-	};
 
 	return (
 		<div
