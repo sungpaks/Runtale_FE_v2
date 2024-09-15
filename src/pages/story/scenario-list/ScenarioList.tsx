@@ -5,6 +5,7 @@ import styles from "./ScenarioList.module.css";
 import GradientCard from "../../../components/GradientCard";
 import profileImage0 from "../../../assets/scenario-profile-0.png";
 import profileImage1 from "../../../assets/scenario-profile-1.png";
+import { useNavigate } from "react-router-dom";
 
 const mockScenarioList = [
 	{
@@ -35,6 +36,10 @@ const mockScenarioList = [
 ];
 
 export default function ScenarioList() {
+	const navigate = useNavigate();
+	const handleClickStart = (scenarioId: Number) => {
+		navigate("/setpace", { state: { scenarioId } });
+	};
 	return (
 		<Box className={styles["scenario-list-container"]} p={3} pt={5}>
 			<Title level={2}>
@@ -54,7 +59,10 @@ export default function ScenarioList() {
 								<img src={item.profileImage} width="150px" />
 								<p style={{ color: "white" }}>{item.title}</p>
 								<br />
-								<button className={styles["start-button"]}>
+								<button
+									className={styles["start-button"]}
+									onClick={() => handleClickStart(index + 1)}
+								>
 									시작하기
 								</button>
 							</div>
