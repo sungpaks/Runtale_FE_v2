@@ -3,7 +3,7 @@ import { Box, ListItem, Stack } from "@mui/material";
 import { Link } from "react-router-dom";
 import LockIcon from "@mui/icons-material/Lock";
 import GradientCard from "../../components/GradientCard";
-import ScenarioList from "./scenario-list/ScenarioList";
+import TopScenarioList from "./top-scenario-list/TopScenarioList";
 import styles from "./Stroy.module.css";
 
 interface Scenario {
@@ -155,13 +155,13 @@ const Story: React.FC = () => {
 						오늘도 런닝을 시작해보아요!
 					</Box>
 					<Box display={"flex"} gap={"15px"}>
-						<GradientCard>
+						<GradientCard height={"50px"} width={"96px"}>
 							<Box fontSize={"1.2rem"}>
 								<p>오늘의 목표!</p>
 								<p style={{ color: "white" }}>{1}시간</p>
 							</Box>
 						</GradientCard>
-						<GradientCard>
+						<GradientCard height={"50px"} width={"96px"}>
 							<Box fontSize={"1.2rem"}>
 								<p>어제의 러닝</p>
 								<p style={{ color: "white" }}>{1}시간</p>
@@ -169,7 +169,7 @@ const Story: React.FC = () => {
 						</GradientCard>
 					</Box>
 				</Box>
-				<ScenarioList />
+				<TopScenarioList />
 				{/* <List>
 					{scenarios.map((scenario, index) => (
 						<ScenarioItem key={index} {...scenario} />

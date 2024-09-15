@@ -99,3 +99,7 @@ button:focus-visible {
 	top: 3.5rem;
 	margin-bottom: 10rem;
 }
+
+input:focus {
+	color: rgb(245, 182, 93)
+}

@@ -1,11 +1,11 @@
 import { Box, Button } from "@mui/material";
 import React from "react";
 import Title from "../../../components/Title";
-import styles from "./ScenarioList.module.css";
+import styles from "./TopScenarioList.module.css";
 import GradientCard from "../../../components/GradientCard";
 import profileImage0 from "../../../assets/scenario-profile-0.png";
 import profileImage1 from "../../../assets/scenario-profile-1.png";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const mockScenarioList = [
 	{
@@ -35,18 +35,34 @@ const mockScenarioList = [
 	},
 ];
 
-export default function ScenarioList() {
+export default function TopScenarioList() {
 	const navigate = useNavigate();
 	const handleClickStart = (scenarioId: Number) => {
 		navigate("/setpace", { state: { scenarioId: 0 } });
 	};
 	return (
 		<Box className={styles["scenario-list-container"]} p={3} pt={5}>
-			<Title level={2}>
-				인기 급상승 시나리오{" "}
-				<span style={{ color: "#C27E1E" }}>TOP4</span>
-			</Title>
-			<Box className={styles["scenario-list"]} height={"40vh"}>
+			<Box
+				sx={{
+					display: "flex",
+					justifyContent: "space-between",
+					alignItems: "center",
+				}}
+				pb={1}
+			>
+				<Title level={3}>
+					인기 급상승 시나리오{" "}
+					<span style={{ color: "#C27E1E" }}>TOP4</span>
+				</Title>
+				<Link to="all">
+					<Title level={5}>
+						<span style={{ color: "lightgray" }}>
+							시나리오 모두 보기
+						</span>
+					</Title>
+				</Link>
+			</Box>
+			<Box className={styles["scenario-list"]} height={"fit-content"}>
 				{mockScenarioList.map((item, index) => {
 					return (
 						<GradientCard
