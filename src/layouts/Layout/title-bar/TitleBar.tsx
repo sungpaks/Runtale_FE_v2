@@ -39,20 +39,7 @@ export default function TitleBar({
 			) : (
 				<div>&nbsp;&nbsp;&nbsp;&nbsp;</div>
 			)}
-			<div
-				style={{
-					cursor: "pointer",
-					height: "100%",
-					width: "auto",
-				}}
-			>
-				<img
-					height="100%"
-					src="/img/로고.png"
-					onClick={handleTitleClick}
-				/>
-			</div>
-
+			<span className="title-bar title">RUNTALE</span>
 			{hideLogout ? undefined : (
 				<Button
 					onClick={handleLogout}
