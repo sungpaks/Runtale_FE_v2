@@ -2,11 +2,8 @@ import React, { useEffect } from "react";
 import Box from "@mui/material/Box";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
-import HomeIcon from "@mui/icons-material/Home";
-import BookIcon from "@mui/icons-material/Book";
-import AssignmentIcon from "@mui/icons-material/Assignment";
-import StarsIcon from "@mui/icons-material/Stars";
 import { useNavigate, useLocation } from "react-router-dom";
+import Icon from '../../../components/Icon';  // Custom Icon component import
 import "./NavBar.css";
 
 export default function NavBar() {
@@ -15,10 +12,10 @@ export default function NavBar() {
 	const location = useLocation();
 
 	const navigationMap = [
-		{ path: "/home", label: "Home", icon: <HomeIcon /> },
-		{ path: "/story", label: "Story", icon: <BookIcon /> },
-		{ path: "/statistics", label: "Record", icon: <AssignmentIcon /> },
-		{ path: "/activities", label: "Activities", icon: <StarsIcon /> },
+		{ path: "/home", label: "HOME", icon: <Icon type="icon1" color={value === 0 ? "#ECE3D7" : "#909090"} /> }, // Custom Icon1
+		{ path: "/story", label: "STORY", icon: <Icon type="icon2" color={value === 1 ? "#ECE3D7" : "#909090"} /> }, // Custom Icon2
+		{ path: "/statistics", label: "RECORD", icon: <Icon type="icon3" color={value === 2 ? "#ECE3D7" : "#909090"} /> }, // Custom Icon3
+		{ path: "/activities", label: "ACTIVITES", icon: <Icon type="icon4" color={value === 3 ? "#ECE3D7" : "#909090"} /> }, // Custom Icon4
 	];
 
 	useEffect(() => {
@@ -36,18 +33,30 @@ export default function NavBar() {
 
 	return (
 		<div className="nav-bar">
-			<Box sx={{ width: "100%" }}>
+			<Box sx={{ width: "90%" }}>
 				<BottomNavigation
 					showLabels
 					value={value}
 					onChange={handleNavigation}
-					sx={{ height: "3.5rem" }}
+					sx={{ 
+						height: "3.5rem",
+						borderRadius: "50px", // border-radius
+            			overflow: "hidden", 
+						background: "black",
+						boxShadow: "0px 4px 15px 0px rgba(245, 182, 93, 0.2)", // 드롭 섀도우
+					 }}
 				>
 					{navigationMap.map((navItem, index) => (
 						<BottomNavigationAction
 							key={index}
 							label={navItem.label}
 							icon={navItem.icon}
+							sx={{
+								color: value === index ? "#ECE3D7" : "#909090", // 선택 상태에 따라 텍스트 색상 변경
+								"&.Mui-selected": {
+									color: "#ECE3D7", // 선택된 상태의 색상
+								},
+							}}
 						/>
 					))}
 				</BottomNavigation>
