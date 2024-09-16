@@ -15,6 +15,7 @@ export default function Layout({ children }: { children: ReactNode }) {
 		"/running",
 		"/running/end",
 		"/running",
+		"/setpace",
 	];
 	const shouldHideNavBar = hideNavBarPaths.includes(location.pathname);
 
