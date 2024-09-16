@@ -9,10 +9,10 @@ export default function DefaultPage() {
 		<div className={`${styles["Container"]}`}>
 			<div style={{ display: 'flex', justifyContent: 'flex-start', padding: '25px'}}>
 				<Typography
-					variant="h4"
 					sx={{
 						fontFamily: "Theseasons-regular",
 						color: "#ECE3D7",
+						fontSize: "xx-large",
 					}}
 				>
 					RUNTALE
