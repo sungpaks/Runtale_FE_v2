@@ -57,7 +57,7 @@ export default function TopScenarioList() {
 				<Link to="all">
 					<Title level={5}>
 						<span style={{ color: "lightgray" }}>
-							시나리오 모두 보기
+							시나리오 <br /> 모두 보기
 						</span>
 					</Title>
 				</Link>

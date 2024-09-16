@@ -21,10 +21,12 @@ export default function MonthlyGraph({
 				position: "absolute",
 				top: "-5rem",
 				paddingTop: "5.5rem",
-				left: 0,
+				left: "50%",
+				transform: "translate(-50%, 0)",
 				width: "100vw",
+				maxWidth: "480px",
 				height: "55vh",
-				boxShadow: "0px 1px 20px rgba(245, 182, 93, 0.5)", // 하단부에만 그림
+				boxShadow: "inset 0 0 20px rgba(245, 182, 93, 0.2)", // 하단부에만 그림
 			}}
 		>
 			<Box

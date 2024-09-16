@@ -30,9 +30,11 @@ export default function RunningEnd({}) {
 				height: "100vh",
 				position: "fixed",
 				top: 0,
-				left: 0,
+				left: "50%",
 				backgroundImage: `url(${background})`,
 				backgroundSize: "cover",
+				maxWidth: "480px",
+				transform: "translate(-50%, 0)",
 			}}
 		>
 			<Box

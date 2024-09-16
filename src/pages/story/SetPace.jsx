@@ -76,7 +76,7 @@ export default function SetDistance() {
 		);
 	}
 	return (
-		<Box p={1}>
+		<Box p={1} className={styles["set-pace-container"]}>
 			<div className={`${styles["Content-Container"]}`}>
 				<Box component="picture">
 					<PaceInput
@@ -89,8 +89,8 @@ export default function SetDistance() {
 				<Title level={2} style={{ color: "#909090" }}>
 					<span
 						style={{
-							color: "#ECE3D7",
-							fontFamily: "Pretendard-bold",
+							color: "#F5B65D",
+							fontWeight: "bold",
 						}}
 					>
 						{nickname}

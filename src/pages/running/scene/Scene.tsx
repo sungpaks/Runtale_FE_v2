@@ -1,8 +1,6 @@
-import { useEffect, useState } from "react";
-import AudioPlayer, { SOUND } from "../../../components/AudioPlayer";
-import { Button, Box, useMediaQuery } from "@mui/material";
-import Status from "../status/Status";
+import { Box, useMediaQuery } from "@mui/material";
 import background from "../../../assets/scenario-background-0.png";
+import styles from "./Scene.module.css";
 
 interface SceneProps {
 	distance: number;
@@ -16,17 +14,7 @@ export default function Scene({ distance, pace }: SceneProps) {
 
 	return (
 		<>
-			<Box
-				sx={{
-					width: "100%",
-					height: "100vh",
-					position: "fixed",
-					top: 0,
-					left: 0,
-					backgroundImage: `url(${background})`,
-					backgroundSize: "cover",
-				}}
-			></Box>
+			<Box className={styles["scene-background"]}></Box>
 		</>
 	);
 }
