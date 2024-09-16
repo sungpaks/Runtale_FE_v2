@@ -34,11 +34,11 @@ export default function Signup() {
 				password,
 				nickname,
 			});
-            navigate('/success', { state: { loginId, password, nickname } });
+			navigate('/success', { state: { loginId, password, nickname } });
 
 		} catch (err) {
 			if (err.response && err.response.status === 409) {
-			    alert('User already exists');
+				alert('User already exists');
 			} else {
 				alert('An error occurred');
 			}
@@ -48,10 +48,10 @@ export default function Signup() {
 	return (
 		<div className={`${styles["Container"]}`}>
 			<div className={`${styles["Content-Container"]}`}>
-				<h3>회원가입</h3>
+				<h3 style={{ fontFamily: 'Chosunilbo_myungjo' }}>회원가입</h3>
 				<div className={`${styles["TextBoxWrap"]}`}>
 					<Box sx={{ "& > :not(style)": { m: 1 }, width: "300px" }}>
-                        <Box sx={{ display: "flex", alignItems: "flex-end", mb: 2 }}>
+						<Box sx={{ display: "flex", alignItems: "flex-end", mb: 2 }}>
 							<TextField
 								id="nickname"
 								label="NAME"
@@ -69,7 +69,7 @@ export default function Signup() {
 								}}
 							/>
 						</Box>
-                        <Box sx={{ display: "flex", alignItems: "flex-end", mb: 2 }}>
+						<Box sx={{ display: "flex", alignItems: "flex-end", mb: 2 }}>
 							<TextField
 								id="loginId"
 								label="ID"
@@ -135,7 +135,7 @@ export default function Signup() {
 						height: "50px",
 						backgroundColor: "#1890FF", // 원하는 배경색
 						color: "#FFFFFF", // 원하는 텍스트 색
-                        fontFamily: "Pretendard-bold",
+						fontFamily: "Pretendard-bold",
 						"&:hover": {
 							backgroundColor: "#096DD9", // 호버 시 배경색
 						},
@@ -150,7 +150,11 @@ export default function Signup() {
 					이미 계정이 있으신가요?
 				</div>
 				<div className={`${styles["Signupbtnbox"]}`}>
-					<button className={`${styles["Signupbtn"]}`} onClick={() => navigate('/login')}>
+					<button
+						onClick={() => navigate("/login")}
+						className={`${styles["Signupbtn"]}`}
+						style={{ fontFamily: "Chosunilbo_myungjo", color: "#F5B65DCC", background: "none" }}
+					>
 						로그인
 					</button>
 				</div>

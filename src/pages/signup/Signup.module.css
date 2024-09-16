@@ -39,13 +39,10 @@ input::placeholder {
 }
 
 .Signupbtn {
-	color: #1890ff;
 	font-size: 14px;
 	font-weight: bold;
 	border: none;
-	background-color: white;
 	text-decoration: underline;
-	font-family: "Pretendard-Bold";
 }
 
 .Success-Container {
