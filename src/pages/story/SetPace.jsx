@@ -76,7 +76,7 @@ export default function SetDistance() {
 		);
 	}
 	return (
-		<Box p={1}>
+		<Box p={1} className={styles["set-pace-container"]}>
 			<div className={`${styles["Content-Container"]}`}>
 				<Box component="picture">
 					<PaceInput

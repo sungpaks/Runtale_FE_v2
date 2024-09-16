@@ -20,7 +20,9 @@ export default function Layout({ children }: { children: ReactNode }) {
 
 	const showTitleBarPaths = ["/home", "/story", "/statistics", "/activities"];
 
-	const hasPreviousButton = !showTitleBarPaths.includes(location.pathname);
+	const hasPreviousButton =
+		location.pathname === "/story/all" ||
+		!showTitleBarPaths.includes(location.pathname);
 	const shouldHideTitleBar =
 		location.pathname === "/startrunning" ||
 		location.pathname === "/running" ||
