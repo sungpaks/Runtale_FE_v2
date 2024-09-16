@@ -1,8 +1,10 @@
 .background-image {
     background-image: url("../../assets/scenario_header_background.png");
     background-size: cover;
-    height: 35vh;
+    height: 30vh;
     padding: 20px;
+    margin-top: -5rem;
+    padding-top: 5.5rem;
 
 
     box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.2);
