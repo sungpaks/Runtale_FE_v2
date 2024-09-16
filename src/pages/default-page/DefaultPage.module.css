@@ -17,10 +17,25 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+	justify-content: center;
+	flex-grow: 1;
 }
 
 .bottom-Wrap {
-    margin-top: 70px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: end;
+	margin-bottom: 20px;
+}
+
+.button-Wrap {
+	display: flex;
+	flex-direction: column;
+}
+
+.LoginText {
+	margin-top: -37px;
 }
 
 .SignupWrap {
