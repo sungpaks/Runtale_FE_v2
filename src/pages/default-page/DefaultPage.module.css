@@ -8,9 +8,12 @@
 	background-position: center;
 	background-repeat: no-repeat;
 	position: fixed;
-	top : 0;
-    width: 100%;
-    height: 100vh;
+	top: 0;
+	width: 100%;
+	height: 100vh;
+	max-width: 480px;
+	left: 50%;
+	transform: translate(-50%, 0);
 }
 
 .Content-Wrap {
@@ -43,7 +46,7 @@
 	flex-direction: row;
 	align-items: center;
 	justify-content: center;
-    margin-top: 30px;
+	margin-top: 30px;
 }
 
 .SignupText {
