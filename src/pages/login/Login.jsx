@@ -1,10 +1,5 @@
 import styles from "./Login.module.css";
 import * as React from "react";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import InputAdornment from "@mui/material/InputAdornment";
-import AccountCircle from "@mui/icons-material/AccountCircle";
-import Lock from "@mui/icons-material/Lock";
 import Button from "@mui/material/Button";
 import { useState, useContext } from "react";
 import requestApi from "../../api/api";
@@ -76,6 +71,7 @@ export default function Login() {
 						</span>
 					</div>
 				</div>
+				</div>
 				<div className={`${styles["bottom-Wrap"]}`}>
 					<Button
 						variant="contained"
@@ -99,21 +95,20 @@ export default function Login() {
 					</Button>
 					<span className={`${styles["LoginText"]}`}>로그인</span>
 				</div>
-			</div>
-			<div className={`${styles["SignupWrap"]}`}>
-				<div className={`${styles["SignupText"]}`}>
-					아직 회원이 아니신가요?
+				<div className={`${styles["SignupWrap"]}`}>
+					<div className={`${styles["SignupText"]}`}>
+						아직 회원이 아니신가요?
+					</div>
+					<div className={`${styles["Signupbtnbox"]}`}>
+						<button
+							onClick={() => navigate("/signup")}
+							className={`${styles["Signupbtn"]}`}
+							style={{ fontFamily: "Chosunilbo_myungjo", color: "#F5B65DCC", background: "none" }}
+						>
+							회원가입
+						</button>
+					</div>
 				</div>
-				<div className={`${styles["Signupbtnbox"]}`}>
-					<button
-						onClick={() => navigate("/signup")}
-						className={`${styles["Signupbtn"]}`}
-						style={{ fontFamily: "Chosunilbo_myungjo", color: "#F5B65DCC", background: "none" }}
-					>
-						회원가입
-					</button>
-				</div>
-			</div>
 		</div>
 	);
 }
