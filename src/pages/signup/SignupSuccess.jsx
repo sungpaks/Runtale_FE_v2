@@ -38,35 +38,32 @@ export default function Success() {
         <div className={`${styles["Success-Container"]}`}>
             <div className={`${styles["Content-Wrap"]}`}>
                 <h2>
-                <span style={{ color: '#1890FF' }}>{nickname}</span>님 환영합니다! <br/>
+                    <span style={{ color: 'rgb(245, 182, 93)' }}>{nickname}</span>님 환영합니다.<br />
                     런테일과 함께 달려볼까요?
                 </h2>
-                <Box component="picture">
-                    <source srcSet="https://fonts.gstatic.com/s/e/notoemoji/latest/1f64c/512.webp" type="image/webp"/>
-                    <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f64c/512.gif"
-                    alt="🙌"
-                    width={SIZE}
-                    height={SIZE}
-                />
-                </Box>
-                <Button
-                    variant="contained"
-                    disableElevation
-                    sx={{
-                        mt: 2,
-                        width: "300px",
-                        height: "50px",
-                        backgroundColor: "#1890FF", // 원하는 배경색
-                        color: "#FFFFFF", // 원하는 텍스트 색
-                        fontFamily: "Pretendard-bold",
-                        "&:hover": {
-                            backgroundColor: "#096DD9", // 호버 시 배경색
-                        },
-                    }}
-                    onClick={handleStart}
-                >
-                    시작하기!
-                </Button>
+                <div className={`${styles["Button-Wrap"]}`}>
+                    <Button
+                        variant="contained"
+                        disableElevation
+                        sx={{
+                            mt: "2",
+                            width: "234px",
+                            height: "50px",
+                            backgroundColor: "#624925",
+                            borderRadius: "100px",
+                            color: "#FFFFFF",
+                            fontWeight: "bold",
+                            fontFamily: "Chosunilbo_myungjo",
+                            background: "rgba(245, 182, 93, 0.3)",
+                            "&:hover": {
+                                background: "rgba(245, 182, 93, 0.4)",
+                            },
+                        }}
+                        onClick={handleStart}
+                    >
+                        시작하기
+                    </Button>
+                </div>
             </div>
         </div>
     );
