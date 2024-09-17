@@ -41,7 +41,8 @@ export default function Success() {
                     <span style={{ color: 'rgb(245, 182, 93)' }}>{nickname}</span>님 환영합니다.<br />
                     런테일과 함께 달려볼까요?
                 </h2>
-                <div className={`${styles["Button-Wrap"]}`}>
+            </div>
+            <div className={`${styles["Button-Wrap"]}`}>
                     <Button
                         variant="contained"
                         disableElevation
@@ -64,7 +65,6 @@ export default function Success() {
                         시작하기
                     </Button>
                 </div>
-            </div>
         </div>
     );
 }

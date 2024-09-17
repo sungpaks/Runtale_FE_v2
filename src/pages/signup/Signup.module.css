@@ -101,17 +101,17 @@ input::placeholder {
 .Content-Wrap {
 	display: flex;
 	flex-direction: column;
-	justify-self: center;
+	justify-content: center;
 	align-items: center;
+	flex-grow: 1;
 }
 
 .Content-Wrap h2 {
 	font-family: "Chosunilbo_myungjo";
-	margin-bottom: 50px;
 }
 
 .Button-Wrap {
-	margin-top: 50px;
+	margin-bottom: 50px;
 }
 
 .bottom-Wrap {
