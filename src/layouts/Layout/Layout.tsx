@@ -15,14 +15,13 @@ export default function Layout({ children }: { children: ReactNode }) {
 		"/running",
 		"/running/end",
 		"/running",
+		"/setpace",
 	];
 	const shouldHideNavBar = hideNavBarPaths.includes(location.pathname);
 
 	const showTitleBarPaths = ["/home", "/story", "/statistics", "/activities"];
 
-	const hasPreviousButton =
-		location.pathname === "/story/all" ||
-		!showTitleBarPaths.includes(location.pathname);
+	const hasPreviousButton = !showTitleBarPaths.includes(location.pathname);
 	const shouldHideTitleBar =
 		location.pathname === "/startrunning" ||
 		location.pathname === "/running" ||

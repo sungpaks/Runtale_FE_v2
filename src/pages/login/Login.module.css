@@ -1,14 +1,18 @@
 .Container {
 	display: flex;
 	flex-direction: column;
-	min-height: 95vh;
-	justify-content: space-between;
+	min-height: 85vh;
+	height: 91vh;
+}
+
+.Content-Container {
+	flex-grow: 1;
 }
 
 .Container h3 {
-	font-size: 20px; 
-	font-weight: 700; 
-	font-family: "Pretendard-Bold"; 
+	font-size: 20px;
+	font-weight: 700;
+	font-family: "Pretendard-Bold";
 	padding: 2rem;
 }
 
@@ -19,12 +23,37 @@
 	align-items: center;
 }
 
+.inputGroup {
+	display: flex;
+	align-items: center;
+	margin-bottom: 5px;
+	background: #000000;
+	box-shadow: inset 0px 0px 15px 3px rgba(247, 176, 75, 0.2);
+	border-radius: 45.0413px;
+	padding: 10px;
+}
+
+.customInput {
+	width: 100%;
+	border: none;
+	outline: none;
+	background: transparent;
+	color: #ffffff;
+	padding: 10px;
+	font-size: 16px;
+}
+
+.iconRight {
+	margin-right: 15px;
+	font-size: 20px;
+}
+
 .SignupWrap {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	justify-content: center;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 }
 
 .SignupText {
@@ -35,11 +64,20 @@
 }
 
 .Signupbtn {
-	color: #1890ff;
 	font-size: 14px;
 	font-weight: bold;
 	border: none;
-	background-color: white;
 	text-decoration: underline;
-	font-family: "Pretendard-Bold";
+}
+
+.bottom-Wrap {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: end;
+	padding: 30px;
+}
+
+.LoginText {
+	margin-top: -37px;
 }

@@ -1,20 +1,14 @@
 import styles from "./Signup.module.css";
 import * as React from "react";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import InputAdornment from "@mui/material/InputAdornment";
-import AccountCircle from "@mui/icons-material/AccountCircle";
-import Lock from "@mui/icons-material/Lock";
-import Flag from "@mui/icons-material/Flag";
-import Button from "@mui/material/Button";
-import { Typography } from "@mui/material";
 import { useState } from "react";
 import requestApi from "../../api/api";
 import { useNavigate } from "react-router-dom";
+import Button from "@mui/material/Button";
 
 export default function Signup() {
 	const SIZE = 150;
 
+	const [step, setStep] = useState(1); // 현재 단계
 	const [loginId, setLoginId] = useState('');
 	const [password, setPassword] = useState('');
 	const [confirmPassword, setConfirmPassword] = useState('');
@@ -22,6 +16,14 @@ export default function Signup() {
 	const [error, setError] = useState('');
 	const navigate = useNavigate();
 	const [signupSuccess, setSignupSuccess] = useState(false);
+
+	const handleNextStep = () => {
+		if (step < 4) {
+			setStep(step + 1);
+		} else {
+			handleSignup(); // 마지막 단계에서는 회원가입 처리
+		}
+	};
 
 	const handleSignup = async () => {
 		if (password !== confirmPassword) {
@@ -34,11 +36,11 @@ export default function Signup() {
 				password,
 				nickname,
 			});
-            navigate('/success', { state: { loginId, password, nickname } });
+			navigate('/success', { state: { loginId, password, nickname } });
 
 		} catch (err) {
 			if (err.response && err.response.status === 409) {
-			    alert('User already exists');
+				alert('User already exists');
 			} else {
 				alert('An error occurred');
 			}
@@ -48,109 +50,88 @@ export default function Signup() {
 	return (
 		<div className={`${styles["Container"]}`}>
 			<div className={`${styles["Content-Container"]}`}>
-				<h3>회원가입</h3>
+				<h3 style={{ fontFamily: 'Chosunilbo_myungjo' }}>회원가입</h3>
+				<p className={styles.StepIndicator}>
+					<span className={step === 1 ? styles.ActiveStep : styles.InactiveStep}>1</span> &nbsp;
+					<span className={step === 2 ? styles.ActiveStep : styles.InactiveStep}>2</span> &nbsp;
+					<span className={step === 3 ? styles.ActiveStep : styles.InactiveStep}>3</span> &nbsp;
+					<span className={step === 4 ? styles.ActiveStep : styles.InactiveStep}>4</span>
+				</p>
 				<div className={`${styles["TextBoxWrap"]}`}>
-					<Box sx={{ "& > :not(style)": { m: 1 }, width: "300px" }}>
-                        <Box sx={{ display: "flex", alignItems: "flex-end", mb: 2 }}>
-							<TextField
-								id="nickname"
-								label="NAME"
-								fullWidth
-								placeholder="이름을 입력해 주세요"
-								value={nickname}
-								onChange={(e) => setNickname(e.target.value)}
-								sx={{ marginBottom: "20px" }}
-								InputProps={{
-									startAdornment: (
-										<InputAdornment position="start">
-											<Flag sx={{ color: "action.active", mr: 1, my: 0.5 }} />
-										</InputAdornment>
-									),
-								}}
-							/>
-						</Box>
-                        <Box sx={{ display: "flex", alignItems: "flex-end", mb: 2 }}>
-							<TextField
-								id="loginId"
-								label="ID"
-								fullWidth
-								placeholder="사용할 아이디를 입력해 주세요"
-								value={loginId}
-								onChange={(e) => setLoginId(e.target.value)}
-								sx={{ marginBottom: "20px" }}
-								InputProps={{
-									startAdornment: (
-										<InputAdornment position="start">
-											<AccountCircle sx={{ color: "action.active", mr: 1, my: 0.5 }} />
-										</InputAdornment>
-									),
-								}}
-							/>
-						</Box>
-						<Box sx={{ display: "flex", alignItems: "flex-end", mb: 2 }}>
-							<TextField
-								id="password"
-								label="PASSWORD"
-								fullWidth
-								placeholder="사용할 비밀번호를 입력해 주세요"
-								type="password"
-								value={password}
-								onChange={(e) => setPassword(e.target.value)}
-								sx={{ marginBottom: "20px" }}
-								InputProps={{
-									startAdornment: (
-										<InputAdornment position="start">
-											<Lock sx={{ color: "action.active", mr: 1, my: 0.5 }} />
-										</InputAdornment>
-									),
-								}}
-							/>
-						</Box>
-						<Box sx={{ display: "flex", alignItems: "flex-end", mb: 2 }}>
-							<TextField
-								id="confirmPassword"
-								label="CONFIRM PASSWORD"
-								fullWidth
-								placeholder="사용할 비밀번호를 재입력해 주세요"
-								type="password"
-								value={confirmPassword}
-								onChange={(e) => setConfirmPassword(e.target.value)}
-								InputProps={{
-									startAdornment: (
-										<InputAdornment position="start">
-											<Lock sx={{ color: "action.active", mr: 1, my: 0.5 }} />
-										</InputAdornment>
-									),
-								}}
-							/>
-						</Box>
-					</Box>
+					{step === 1 && (
+						<input
+							type="text"
+							placeholder="이름을 입력해주세요."
+							value={nickname}
+							onChange={(e) => setNickname(e.target.value)}
+							className={styles.InputField}
+						/>
+					)}
+
+					{step === 2 && (
+						<input
+							type="text"
+							placeholder="사용할 아이디를 입력해주세요."
+							value={loginId}
+							onChange={(e) => setLoginId(e.target.value)}
+							className={styles.InputField}
+						/>
+					)}
+
+					{step === 3 && (
+						<input
+							type="password"
+							placeholder="사용할 비밀번호를 입력해주세요."
+							value={password}
+							onChange={(e) => setPassword(e.target.value)}
+							className={styles.InputField}
+						/>
+					)}
+
+					{step === 4 && (
+						<input
+							type="password"
+							placeholder="다시 한번 비밀번호를 입력해주세요."
+							value={confirmPassword}
+							onChange={(e) => setConfirmPassword(e.target.value)}
+							className={styles.InputField}
+						/>
+					)}
 				</div>
-				<Button
-					variant="contained"
-					disableElevation
-					sx={{
-						mt: 2,
-						width: "300px",
-						height: "50px",
-						backgroundColor: "#1890FF", // 원하는 배경색
-						color: "#FFFFFF", // 원하는 텍스트 색
-                        fontFamily: "Pretendard-bold",
-						"&:hover": {
-							backgroundColor: "#096DD9", // 호버 시 배경색
-						},
-					}}
-					onClick={handleSignup}
-				>
-					회원가입
-				</Button>
 			</div>
+			<div className={`${styles["bottom-Wrap"]}`}>
+					<Button
+						variant="contained"
+						disableElevation
+						sx={{
+							width: "234px",
+							height: "50px",
+							backgroundColor: "#624925",
+							borderRadius: "100px",
+							color: "#FFFFFF",
+							fontWeight: "bold",
+							fontFamily: "Chosunilbo_myungjo",
+							background: "rgba(245, 182, 93, 0.3)",
+							filter: "blur(4px)",
+							"&:hover": {
+								background: "rgba(245, 182, 93, 0.4)",
+							},
+						}}
+						onClick={handleNextStep}
+					>
+					</Button>
+					<span className={`${styles["LoginText"]}`}>{step === 4 ? '회원가입 하기' : '다음'}</span>
+				</div>
 			<div className={`${styles["SignupWrap"]}`}>
 				<div className={`${styles["SignupText"]}`}>
 					이미 계정이 있으신가요?
 				</div>
 				<div className={`${styles["Signupbtnbox"]}`}>
-					<button className={`${styles["Signupbtn"]}`} onClick={() => navigate('/login')}>
+					<button
+						onClick={() => navigate("/login")}
+						className={`${styles["Signupbtn"]}`}
+						style={{ fontFamily: "Chosunilbo_myungjo", color: "#F5B65DCC", background: "none" }}
+					>
 						로그인
 					</button>
 				</div>
