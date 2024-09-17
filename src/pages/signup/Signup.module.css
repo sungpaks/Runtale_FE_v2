@@ -1,19 +1,43 @@
 .Container {
 	display: flex;
 	flex-direction: column;
-	min-height: 95vh;
-	justify-content: space-between;
+	min-height: 85vh;
+	height: 91vh;
 }
 
 .Container h3 {
-	font-size: 20px; /* 원하는 폰트 크기 */
-	font-weight: 700; /* 원하는 폰트 두께 */
+	font-size: 20px;
+	/* 원하는 폰트 크기 */
+	font-weight: 700;
+	/* 원하는 폰트 두께 */
 	padding: 2rem;
 	font-family: "Pretendard-Bold";
 }
 
+.Content-Container {
+	flex-grow: 1;
+}
+
 input::placeholder {
 	font-size: 12px;
+	font-family: "Pretendard-regular";
+}
+
+.StepIndicator {
+	margin-top: -50px;
+	margin-bottom: 50px;
+}
+
+.ActiveStep {
+	color: #FFFFFF;
+	/* 현재 단계 흰색 */
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+.InactiveStep {
+	color: #6F6F6F;
+	/* 비활성 단계 회색 */
 }
 
 .TextBoxWrap {
@@ -23,12 +47,23 @@ input::placeholder {
 	align-items: center;
 }
 
+.InputField {
+	width: 276px;
+	height: 50px;
+	background: #000000;
+	box-shadow: inset 0px 0px 15px 3px rgba(247, 176, 75, 0.2);
+	border-radius: 45.0413px;
+	border: none;
+	padding-left: 20px;
+	color: rgb(245, 182, 93);
+}
+
 .SignupWrap {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	justify-content: center;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 }
 
 .SignupText {
@@ -64,3 +99,14 @@ input::placeholder {
 	margin-bottom: 50px;
 }
 
+.bottom-Wrap {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: end;
+	padding: 30px;
+}
+
+.LoginText {
+	margin-top: -37px;
+}
