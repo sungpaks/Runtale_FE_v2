@@ -1,7 +1,9 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { Box } from "@mui/material";
+import { Box, ListItem } from "@mui/material";
 import AuthContext from "../../../context/AuthContext";
 import { getUserTier, getRunningRecord } from "../../../api/api"; // getUserTier, getRunningRecord 함수 경로를 확인
+import getLevelNumber from "../../../utils/getLevelNumber";
+import LevelBar from "../../../components/LevelBar";
 
 export default function TopPercentage() {
     const SIZE = 160;
@@ -38,74 +40,41 @@ export default function TopPercentage() {
 
     const getFractionText = (fraction) => {
         if (fraction >= 100) {
-            return "지구 한 바퀴를 돌았습니다!";
+            return <>지구 한 바퀴를 돌았습니다.</>;
         } else if (fraction >= 50) {
-            return "지구의 절반을 지점을 달리고 있어요!";
+            return <>지구의 절반을<br />지점을 달리고 있어요.</>;
         } else if (fraction >= 25) {
-            return "지구의 4분의 1을 지점을 달리고 있어요!";
+            return <>지구의 4분의 1을<br />지점을 달리고 있어요.</>;
         } else if (fraction >= 12.5) {
-            return "지구의 8분의 1을 지점을 달리고 있어요!";
+            return <>지구의 8분의 1을<br />지점을 달리고 있어요.</>;
         } else if (fraction >= 6.25) {
-            return "지구의 16분의 1을 지점을 달리고 있어요!";
+            return <>지구의 16분의 1을<br />지점을 달리고 있어요.</>;
         } else if (fraction >= 3.125) {
-            return "지구의 32분의 1을 지점을 달리고 있어요!";
+            return <>지구의 32분의 1을<br />지점을 달리고 있어요.</>;
         } else if (fraction >= 1.5625) {
-            return "지구의 64분의 1 지점을 달리고 있어요!";
+            return <>지구의 64분의 1<br />지점을 달리고 있어요.</>;
         } else {
-            return "지구의 아주 작은 부분을 달리고 있습니다!";
+            return <>지구의 아주 작은<br />부분을 달리고 있습니다.</>;
         }
-    };
+    }
 
     return (
         <Box mt={3} textAlign="left">
             <Box
-                display="flex"
                 sx={{
-                    height: "250px",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    backgroundColor: "#DCE9F5",
-                    borderRadius: 3,
-                    m: 0,
-                    cursor: 'pointer',
-                    transition: 'background-color 0.3s ease',
-                    '&:hover': { backgroundColor: '#B5DBFF' },
-                    position: 'relative', // Added for absolute positioning of text
-                    boxShadow: '0px 4px 16px rgba(0, 0, 0, 0.1)'
+                    display:"flex",
+                    flexDirection:"column",
                 }}
             >
-                <Box
-                    sx={{
-                        position: 'absolute',
-                        top: 20,
-                        left: 20
-                    }}
-                >
-                    <span style={{ fontSize: "23px", fontFamily: "Pretendard-bold" }}>
-                        상위 <br />
-                        {percentile !== null ? `${100 - Math.floor(percentile)}%` : '...'}
-                    </span>
-                </Box>
-                <Box component="picture">
-                    <source srcSet="https://fonts.gstatic.com/s/e/notoemoji/latest/1f30f/512.webp" type="image/webp" />
-                    <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f30f/512.gif"
-                        alt="🌏"
-                        width={SIZE}
-                        height={SIZE}
-                    />
-                </Box>
-                <Box
-                    sx={{
-                        position: 'absolute',
-                        bottom: 10,
-                        textAlign: 'center'
-                    }}
-                >
-                    <span style={{ fontSize: "15px", fontFamily: "Pretendard-bold" }}>
-                        {earthFraction !== null ? getFractionText(earthFraction) : '...'}
-                    </span>
-                </Box>
+                <span style={{ fontSize: "18px", fontFamily: "Chosunilbo_myungjo", color: "#D5D5D5", }}>
+                    상위 &nbsp;
+                    {percentile !== null ? `${100 - Math.floor(percentile)}%` : '...'}
+                </span>
+                <span style={{ fontSize: "10px", fontFamily: "Pretendard-Regular", color: "#909090", }}>
+                    {earthFraction !== null ? getFractionText(earthFraction) : '...'}
+                </span>
             </Box>
         </Box>
+        
     );
 }
