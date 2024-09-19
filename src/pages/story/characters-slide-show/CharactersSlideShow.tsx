@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "./CharactersSlideShow.module.css";
 import React, { Suspense, useState } from "react";
 import { Box } from "@mui/material";
+import AudioPlayer, { SOUND } from "../../../components/AudioPlayer";
 
 interface CharactersSlideShowType {
 	minutes: string;
@@ -103,7 +104,7 @@ const firstScenarioCharactersInfo = [
 	},
 	{
 		name: "저항하는 시민들",
-		description: "페스트가 창궐한 도시에 살고 있는 평범한 사람입니다.",
+		description: "페스트에 맞서 싸우고, 도시를 탈출하려는 사람들입니다.",
 	},
 	{
 		name: "절망에 빠진 시민들",
@@ -132,10 +133,9 @@ const CharactersSlideShow: React.FC = ({
 		setCurIndex((prev) => prev + 1);
 	};
 	const profileImgPath = `/img/scenario_1/scenario_1_character_${curIndex}_profile.png`;
-
-	if (curIndex >= 6) {
-		return (
-			<div className={styles.container}>
+	const content =
+		curIndex >= 6 ? (
+			<>
 				<div
 					style={{
 						marginTop: "60vh",
@@ -157,23 +157,27 @@ const CharactersSlideShow: React.FC = ({
 					<p>도시를 구하기 위해 노력합니다.</p>
 				</div>
 				<button onClick={handleClickStart}>러닝 시작하기</button>
-			</div>
+			</>
+		) : (
+			<>
+				<img className={styles.profile} src={profileImgPath} />
+
+				<div className={styles["info-container"]}>
+					<p className={styles.name}>
+						{firstScenarioCharactersInfo[curIndex - 1].name}
+					</p>
+					<p className={styles.description}>
+						{firstScenarioCharactersInfo[curIndex - 1].description}
+					</p>
+				</div>
+				<Steps index={curIndex - 1} />
+				<button onClick={handleClickNext}>다음</button>
+			</>
 		);
-	}
 	return (
 		<div className={styles.container}>
-			<img className={styles.profile} src={profileImgPath} />
-
-			<div className={styles["info-container"]}>
-				<p className={styles.name}>
-					{firstScenarioCharactersInfo[curIndex - 1].name}
-				</p>
-				<p className={styles.description}>
-					{firstScenarioCharactersInfo[curIndex - 1].description}
-				</p>
-			</div>
-			<Steps index={curIndex - 1} />
-			<button onClick={handleClickNext}>다음</button>
+			{content}
+			<AudioPlayer filename={SOUND.등장인물} play />
 		</div>
 	);
 };

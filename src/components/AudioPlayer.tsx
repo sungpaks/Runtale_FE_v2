@@ -6,6 +6,7 @@ export const SOUND = {
 	바람소리: "wind-sound-long-version.mp3",
 	뛰는소리: "stepping-sound.mp3",
 	카운트: "카운트.mp3",
+	등장인물: "등장인물.mp3",
 };
 
 export default function AudioPlayer({
