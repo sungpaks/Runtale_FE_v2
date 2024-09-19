@@ -1,11 +1,10 @@
-import { Box, ListItem, Stack } from "@mui/material";
+import { Box, ListItem, Typography } from "@mui/material";
 import { Tier } from "../Home";
-import EmojiOfTier from "../../../components/EmojiOfTier";
-import getLevelNumber from "../../../utils/getLevelNumber";
-import LevelBar from "../../../components/LevelBar";
 import { useQuery } from "react-query";
 import { getRunningRecord } from "../../../api/api";
 import { useEffect, useState } from "react";
+import earthImage from "../../../assets/Home_earth.png";
+import backgroundCircle from "../../../assets/Home_background.png";
 
 export interface RunningRecord {
 	id: number;
@@ -64,33 +63,61 @@ export default function Profile({
 			}}
 		>
 			<Box
+				component="img"
+				src={backgroundCircle}
+				alt="Background Circle"
 				sx={{
-					height: "120px",
-					ml: 2,
-					mr: 2,
-					borderRadius: 3,
+					position: "fixed",
+					top: "0",
+					left: "0",
+					zIndex: "-1",
 				}}
-			>
-				<EmojiOfTier tier={tier.tierName} size={120} />
+			/>
+			<Box
+				sx={{
+					display: "flex",
+					justifyContent: "end",
+				}}>
+				<Box
+					component="img"
+					src={earthImage}
+					alt="Earth"
+				/>
+				<Box
+					sx={{
+						marginLeft: "-20px",
+					}}>
+					<ListItem sx={{ display: "flex", flexDirection: "column", alignItems: "flex-end" }}>
+						<Typography
+							sx={{
+								fontSize: "13px",
+								fontFamily: "Chosunilbo_myungjo",
+								color: "#909090", // 폰트 색상
+							}}
+						>
+							총 달린 거리
+						</Typography>
+						<Typography sx={{ fontSize: "13px", fontFamily: "Pretendard-Regular", color: "#D5D5D5", }}>
+							{Math.trunc(totalDistance)} km
+						</Typography>
+					</ListItem>
+
+					<ListItem sx={{ display: "flex", flexDirection: "column", alignItems: "flex-end" }}>
+						<Typography
+							sx={{
+								fontSize: "13px",
+								fontFamily: "Chosunilbo_myungjo",
+								color: "#909090",
+							}}
+						>
+							총 러닝 횟수
+						</Typography>
+						<Typography sx={{ fontSize: "13px", fontFamily: "Pretendard-Regular", color: "#D5D5D5", }}>
+							{totalRunningCount}
+						</Typography>
+					</ListItem>
+				</Box>
 			</Box>
-			<h3 style={{ fontFamily: "Pretendard-bold", fontSize: "20px" }}>
-				{username}
-			</h3>
-			<Stack textAlign={"left"} spacing={0}>
-				<ListItem>
-					랭킹&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<strong>LV.{getLevelNumber(tier.tierName)}</strong>{" "}
-					<LevelBar tier={tier} />
-				</ListItem>
-				<ListItem>
-					총 달린 거리 &nbsp;&nbsp;{" "}
-					<strong>{Math.trunc(totalDistance)} km </strong>
-				</ListItem>
-				<ListItem>
-					총 러닝 횟수 &nbsp;&nbsp;{" "}
-					<strong>{totalRunningCount} 회</strong>
-				</ListItem>
-			</Stack>
 		</Box>
 	);
 }

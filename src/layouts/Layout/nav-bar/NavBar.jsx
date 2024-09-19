@@ -39,11 +39,11 @@ export default function NavBar() {
 					value={value}
 					onChange={handleNavigation}
 					sx={{ 
-						height: "3.5rem",
-						borderRadius: "50px", // border-radius
+						height: "3.5rem",	
             			overflow: "hidden", 
-						background: "black",
-						boxShadow: "0px 4px 15px 0px rgba(245, 182, 93, 0.2)", // 드롭 섀도우
+						background: "#000000",
+						boxShadow: "0px 4px 15px rgba(245, 182, 93, 0.2)",
+						borderRadius: "30px",
 					 }}
 				>
 					{navigationMap.map((navItem, index) => (

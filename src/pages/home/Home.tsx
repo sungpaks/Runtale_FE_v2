@@ -8,6 +8,7 @@ import TopPercentage from "./toppercentage/TopPercentage";
 import { useQuery } from "react-query";
 import { getUserTier, postLogout } from "../../api/api";
 import CustomFadeLoader from "../../components/CustomFadeLoader";
+import { Padding } from "@mui/icons-material";
 
 export interface Tier {
 	description: string;
@@ -35,8 +36,12 @@ export default function Home() {
 	const tier: Tier = data.data.data;
 	return (
 		<Box p={2}>
-			<Profile tier={tier} username={tier.nickname} userId={userId} />
-			<TopPercentage />
+			<Box mb={-9}>
+				<Profile tier={tier} username={tier.nickname} userId={userId} />
+			</Box>
+			<Box mb={6}>
+				<TopPercentage />
+			</Box>
 			<Tutorial />
 		</Box>
 	);
