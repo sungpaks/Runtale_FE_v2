@@ -39,6 +39,7 @@ export default function Running() {
 	const [showScenario, setShowScenario] = useState(true);
 	const [checkpointAudioFile, setCheckpointAudioFile] = useState<string>("");
 	const MAX_WIDTH = "480px";
+	const [isSoundEnd, setIsSoundEnd] = useState(true);
 
 	const refreshPosition = () => {
 		/** 위치 정보 새로 가져옴 */
@@ -104,23 +105,22 @@ export default function Running() {
 		setPace(prevRunningInfo.data.data.pace);
 	}
 
-	const onClickTestMode = () => {
-		if (testMode) {
-			geo.clearWatch(geolocationId.current);
-			geolocationId.current = 0;
-		} else {
-			geolocationId.current = geo.watchPosition((g) => {
-				setLatitude((prev) => {
-					setPrevLatitude(prev);
-					return g.coords.latitude;
-				});
-				setLongitude((prev) => {
-					setPrevLongitude(prev);
-					return g.coords.longitude;
-				});
-			});
-		}
-		setTestMode((prev) => !prev);
+	const handleClickPlusButton = () => {
+		setTimeout(() => {
+			setLongitude((prev) => prev + 0.001125);
+			setTimeout(() => {
+				setLatitude((prev) => prev + 0.001125);
+				setTimeout(() => {
+					setLongitude((prev) => prev - 0.001125);
+					setTimeout(() => {
+						setLatitude((prev) => prev - 0.001125);
+					}, 500);
+				}, 500);
+			}, 500);
+		}, 500);
+		// setLongitude((prev) => prev + 0.00225);
+		// setLatitude((prev) => prev + 0.001125);
+		console.log(latitude, longitude);
 	};
 
 	const onClickEnd = async (e) => {
@@ -298,9 +298,10 @@ export default function Running() {
 					{import.meta.env.DEV ? (
 						<button
 							className={styles.button}
-							onClick={onClickTestMode}
+							onClick={handleClickPlusButton}
+							disabled={!isSoundEnd}
 						>
-							TEST {testMode ? "ON" : "OFF"}
+							+ 500m
 						</button>
 					) : undefined}
 
@@ -315,16 +316,17 @@ export default function Running() {
 					</button>
 				</Box>
 				{/* <AudioPlayer filename={SOUND.러닝발소리} play loop /> */}
-				<AudioPlayer filename={SOUND.교통소음1} play loop />
+				{/* <AudioPlayer filename={SOUND.교통소음1} play loop /> */}
 				{checkpointAudioFile ? (
 					<AudioPlayer
 						filename={checkpointAudioFile}
 						play
 						setCheckpointAudioFile={setCheckpointAudioFile}
+						setIsEnd={setIsSoundEnd}
 					/>
 				) : undefined}
 				<VolumeControl />
-				<RandomEffectSound />
+				{/* <RandomEffectSound /> */}
 				<Status distance={distance} pace={pace} />
 			</Box>
 		</Box>

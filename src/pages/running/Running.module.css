@@ -1,15 +1,15 @@
 .button {
     /* Rectangle 3049 */
 
-    width: 100px;
-    height: 50px;
+    width: 85px;
+    height: 40px;
     padding: 10px;
 
     background: rgba(245, 182, 93, 0.35);
     border-radius: 25px;
     z-index: 1;
     color: white;
-    font-size: 0.8rem;
+    font-size: x-small;
 }
 
 .button.active {

@@ -5,7 +5,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    background-image: url("../../../assets/scenario-background-0.png");
+    background-image: url("/public/img/scenario_1/scenario_1_background.png");
     background-size: cover;
     max-width: 480px;
 }
