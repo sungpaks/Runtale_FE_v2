@@ -1,4 +1,4 @@
-import { Box, Button } from "@mui/material";
+import { Box } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
 import { Map } from "react-kakao-maps-sdk";
 import Tracker from "./tracker/Tracker";
@@ -106,6 +106,7 @@ export default function Running() {
 	}
 
 	const handleClickPlusButton = () => {
+		setIsSoundEnd(false);
 		setTimeout(() => {
 			setLongitude((prev) => prev + 0.001125);
 			setTimeout(() => {
@@ -114,13 +115,11 @@ export default function Running() {
 					setLongitude((prev) => prev - 0.001125);
 					setTimeout(() => {
 						setLatitude((prev) => prev - 0.001125);
+						setIsSoundEnd(true);
 					}, 500);
 				}, 500);
 			}, 500);
 		}, 500);
-		// setLongitude((prev) => prev + 0.00225);
-		// setLatitude((prev) => prev + 0.001125);
-		console.log(latitude, longitude);
 	};
 
 	const onClickEnd = async (e) => {
@@ -221,6 +220,7 @@ export default function Running() {
 			latitude: latitude,
 			longitude: longitude,
 		}).then((res) => {
+			console.log(res.data.data);
 			if (res.data.data.audioUrl) {
 				setCheckpointAudioFile(res.data.data.audioUrl);
 			}
@@ -295,15 +295,13 @@ export default function Running() {
 						justifyContent: "space-evenly",
 					}}
 				>
-					{import.meta.env.DEV ? (
-						<button
-							className={styles.button}
-							onClick={handleClickPlusButton}
-							disabled={!isSoundEnd}
-						>
-							+ 500m
-						</button>
-					) : undefined}
+					<button
+						className={styles.button}
+						onClick={handleClickPlusButton}
+						disabled={!isSoundEnd}
+					>
+						TEST 이동
+					</button>
 
 					<button className={styles.button} onClick={onClickEnd}>
 						러닝 종료
@@ -315,8 +313,8 @@ export default function Running() {
 						{!showScenario ? "시나리오 화면" : "지도 보기"}
 					</button>
 				</Box>
-				{/* <AudioPlayer filename={SOUND.러닝발소리} play loop /> */}
-				{/* <AudioPlayer filename={SOUND.교통소음1} play loop /> */}
+				<AudioPlayer filename={SOUND.뛰는소리} play loop />
+				<AudioPlayer filename={SOUND.바람소리} play loop />
 				{checkpointAudioFile ? (
 					<AudioPlayer
 						filename={checkpointAudioFile}
