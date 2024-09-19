@@ -6,7 +6,8 @@ import { Box } from "@mui/material";
 import styles from "./AllScenarios.module.css";
 import SearchableList from "../../../components/SearchableList/SearchableList";
 import ScenarioListItem from "../../../components/ScenarioListItem";
-import firstScenarioProfile from "/img/scenario_1/scenario_1_character_1_profile.png";
+import firstScenarioProfile from "../../../assets/pest-profile.png";
+import profileImage2 from "../../../assets/scenario-profile-2.png";
 
 export default function AllScenarios() {
 	const scenarios: any = useLoaderData();
@@ -76,16 +77,16 @@ export const mockScenarioList = [
 	},
 	{
 		id: 4,
-		profileImage: profileImage1,
+		profileImage: profileImage2,
 		title: "고전 4",
 		duration: 1,
 	},
-	{
-		id: 5,
-		profileImage: profileImage0,
-		title: "고전 5",
-		duration: 1,
-	},
+	// {
+	// 	id: 5,
+	// 	profileImage: profileImage0,
+	// 	title: "고전 5",
+	// 	duration: 1,
+	// },
 ];
 
 export async function loader({ request, params }) {

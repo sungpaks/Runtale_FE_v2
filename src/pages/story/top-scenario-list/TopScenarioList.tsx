@@ -44,12 +44,17 @@ export default function TopScenarioList() {
 							sx={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}
 						>
 							<div>
-								<img src={item.profileImage} width="150px" />
+								<img
+									src={item.profileImage}
+									width="144px"
+									height="auto"
+								/>
 								<p
 									style={{
 										color: "white",
-										lineHeight: "1rem",
+										lineHeight: "1.1rem",
 										marginBottom: "15px",
+										fontFamily: "Chosunilbo_myungjo",
 									}}
 								>
 									{item.title}

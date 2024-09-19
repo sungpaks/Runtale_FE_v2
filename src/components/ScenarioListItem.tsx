@@ -15,7 +15,7 @@ export default function ScenarioListItem<T>({
 	return (
 		<div>
 			<img src={item.profileImage} width="120px" />
-			<p style={{ color: "white" }}>{item.title}</p>
+			<p style={{ color: "white", fontSize: "0.7rem" }}>{item.title}</p>
 			<br />
 			<button className={buttonClassName} onClick={handleClickStart}>
 				시작하기
