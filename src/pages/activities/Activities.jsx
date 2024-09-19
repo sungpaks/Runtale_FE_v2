@@ -1,18 +1,33 @@
 import { useContext } from "react";
-import { Box, Skeleton, Typography } from "@mui/material";
+import { Box, Skeleton } from "@mui/material";
 import { useQuery } from "react-query";
 import { getUserTier } from "../../api/api";
 import AuthContext from "../../context/AuthContext";
-import EmojiOfTier from "../../components/EmojiOfTier";
+import 산책코스 from "../../assets/산책코스.png";
+import 도전코스 from "../../assets/도전코스.png";
+import 열정코스 from "../../assets/열정코스.png";
+import 하프코스 from "../../assets/하프코스.png";
+import 풀코스 from "../../assets/풀코스.png";
+import Profile from "../../assets/scenario-profile-1.png"
 
-const tiers = [
-	{ name: "돌멩이", description: "데굴데굴 천방지축! 돌멩이", level: 0 },
-	{ name: "달팽이", description: "비를 좋아하는 감성! 달팽이", level: 1 },
-	{ name: "거북이", description: "느리지만 눈치 빠른! 거북이", level: 2 },
-	{ name: "토끼", description: "극강의 인싸! 재주많은 토끼", level: 3 },
-	{ name: "말", description: "토끼와 앙숙인 당근 러버! 말", level: 4 },
-	{ name: "치타", description: "이 구역의 지배자! 날쌘 독수리", level: 5 },
-];
+// 동물 이름과 코스 이미지를 매핑하는 객체
+const tierToCourseImageMap = {
+	돌멩이: 산책코스,
+	달팽이: 산책코스,
+	거북이: 도전코스,
+	토끼: 열정코스,
+	말: 하프코스,
+	치타: 풀코스,
+};
+
+const tierToCourseNameMap = {
+	돌멩이: "산책코스",
+	달팽이: "산책코스",
+	거북이: "도전코스",
+	토끼: "열정코스",
+	말: "하프코스",
+	치타: "풀코스",
+};
 
 function Activities() {
 	const { userId } = useContext(AuthContext);
@@ -37,53 +52,58 @@ function Activities() {
 	}
 
 	const { tierName } = data.data.data;
+	const courseImage = tierToCourseImageMap[tierName] || 산책코스;
+	const courseName = tierToCourseNameMap[tierName] || "산책코스";
 
 	return (
-		<Box p={2} height="110vh">
-			<Typography variant="subtitle1" textAlign="left" fontFamily="Pretendard-bold" fontSize="20px">
-				랭킹
-			</Typography>
-			{tiers.map((tier) => (
+		<Box display="flex" flexDirection="column">
+			<Box
+				p={3.5}
+				display="flex"
+				textAlign="start"
+				justifyContent="flex-start"
+				alignItems="center"
+			>
 				<Box
-					key={tier.name}
+					component="img"
+					src={Profile}
+					alt="profile"
+					width="60px"
+				/>
+				<p style={{ marginLeft: "5px" }}>
+					<span style={{ color: '#D5D5D5' }}>{userId}</span>
+					<span style={{ color: '#909090' }}>님의 랭킹은</span><br />
+					<span style={{ color: 'rgba(245, 182, 93, 0.9)' }}>{courseName}</span>
+					<span style={{ color: 'rgba(245, 182, 93, 0.7)' }}>에요.</span>
+				</p>
+				<Box
+					textAlign="center"
 					sx={{
-						display: "flex",
-						alignItems: "center",
-						height: "100px",
-						borderRadius: 2,
-						backgroundColor:
-							tier.name === tierName ? "#1890FF" : "#f0f0f0",
-						color: tier.name === tierName ? "white" : "black",
-						padding: 2,
-						marginBottom: 1,
+						display: 'flex',
+						flexDirection: 'column',
+						ml: 'auto',
+						alignItems: 'center',
 					}}
 				>
-					<Box sx={{ marginRight: 2 }}>
-						<EmojiOfTier tier={tier.name} size={120} />
-					</Box>
-					<Box>
-						<Typography
-							variant="body1"
-							textAlign="left"
-							fontFamily="Pretendard-bold"
-							color={tier.name === tierName ? "white" : "#7E7A7A"} // 티어에 따라 색상 변경
-						>
-							{tier.description}
-						</Typography>
-						<Typography
-							variant="h6"
-							textAlign="left"
-							fontFamily="Pretendard-Bold"
-							fontSize="40px"
-							color={
-								tier.name === tierName ? "#F3B640" : "#7E7A7A"
-							} // 티어에 따라 색상 변경
-						>
-							Lv. {tier.level}
-						</Typography>
-					</Box>
+					<span style={{ color: '#909090', fontSize: '10px' }}>다음 랭킹까지</span>
+					<span style={{ color: 'rgba(245, 182, 93, 0.7)', fontSize: '10px' }}>5KM<span style={{ color: '#909090', fontSize: '10px' }}> 남았어요.</span></span>
 				</Box>
-			))}
+			</Box>
+			<Box
+				sx={{
+					marginTop: "-15px",
+					display: "flex",
+					justifyContent: "center",
+					alignItems: "center",
+					width: "100%",
+					height: "100%",
+				}}
+			>
+				<img
+					src={courseImage}
+					alt={tierName}
+				/>
+			</Box>
 		</Box>
 	);
 }
