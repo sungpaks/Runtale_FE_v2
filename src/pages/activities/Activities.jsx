@@ -96,12 +96,14 @@ function Activities() {
 					justifyContent: "center",
 					alignItems: "center",
 					width: "100%",
-					height: "100%",
 				}}
 			>
 				<img
 					src={courseImage}
 					alt={tierName}
+					style={{
+						width: '100%',
+					}}
 				/>
 			</Box>
 		</Box>
