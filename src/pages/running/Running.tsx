@@ -301,7 +301,7 @@ export default function Running() {
 						onClick={handleClickPlusButton}
 						disabled={!isSoundEnd}
 					>
-						TEST 이동
+						{isSoundEnd ? "이동하기 (DEMO)" : "wait.. "}
 					</button>
 
 					<button className={styles.button} onClick={onClickEnd}>
