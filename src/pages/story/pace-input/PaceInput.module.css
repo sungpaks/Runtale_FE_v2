@@ -23,7 +23,7 @@
     right: 0;
     bottom: 0;
     background-image: url('../../../assets/pace-background.png');
-    background-size: calc(95vw) calc(90vw);
+    background-size: calc(85vw) calc(80vw);
     background-repeat: no-repeat;
     background-position: center;
     filter: blur(3px);
