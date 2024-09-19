@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { Box, ListItem } from "@mui/material";
+import { Box, ListItem, Typography } from "@mui/material";
 import AuthContext from "../../../context/AuthContext";
 import { getUserTier, getRunningRecord } from "../../../api/api"; // getUserTier, getRunningRecord 함수 경로를 확인
 import getLevelNumber from "../../../utils/getLevelNumber";
@@ -11,6 +11,7 @@ export default function TopPercentage() {
     const [percentile, setPercentile] = useState(null);
     const [totalDistance, setTotalDistance] = useState(0);
     const [earthFraction, setEarthFraction] = useState(null);
+    const [tier, setTier] = useState(null); // 티어 상태 추가
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -19,6 +20,7 @@ export default function TopPercentage() {
                 const tierData = tierResponse.data.data;
                 // API 응답에서 percentile 값을 가져와서 설정
                 setPercentile(tierData.percentile);
+                setTier(tierData); // 티어 데이터 설정
 
                 const distanceResponse = await getRunningRecord({ userId });
                 const runningRecords = distanceResponse.data.data;
@@ -56,25 +58,50 @@ export default function TopPercentage() {
         } else {
             return <>지구의 아주 작은<br />부분을 달리고 있습니다.</>;
         }
-    }
+    };
+
+    if (!tier) return <div>Loading...</div>;
 
     return (
-        <Box mt={3} textAlign="left">
+        <Box
+            sx={{
+                display: "flex",
+                flexDirection: "column",
+            }}
+        >
             <Box
                 sx={{
-                    display:"flex",
-                    flexDirection:"column",
+                    display: "flex",
+                    flexDirection: "column",
+                    textAlign: "left",
+                    marginLeft: "30px",
                 }}
             >
                 <span style={{ fontSize: "18px", fontFamily: "Chosunilbo_myungjo", color: "#D5D5D5", }}>
-                    상위 &nbsp;
+                    상위&nbsp;
                     {percentile !== null ? `${100 - Math.floor(percentile)}%` : '...'}
                 </span>
                 <span style={{ fontSize: "10px", fontFamily: "Pretendard-Regular", color: "#909090", }}>
                     {earthFraction !== null ? getFractionText(earthFraction) : '...'}
                 </span>
+                <ListItem
+                    sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "flex-end",
+                        marginTop: "-35px",
+                    }}
+                >
+                    <span style={{ fontSize: "13px", fontFamily: "Chosunilbo_myungjo", color: "#909090", marginBottom: "5px", }}>
+                        랭킹
+                    </span>
+                    <strong style={{ fontSize: "14px", fontFamily: "Pretendard-Regular", marginBottom: "4px", }}>
+                        LV.{getLevelNumber(tier.tierName)}
+                    </strong>
+                    <LevelBar tier={tier} />
+                </ListItem>
             </Box>
         </Box>
-        
+
     );
 }

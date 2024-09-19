@@ -11,7 +11,9 @@ export default function LevelBar({ tier }: { tier: Tier }) {
 		<Box
 			sx={{
 				height: "10px",
-				backgroundColor: "lightgray",
+				background: "rgba(0, 0, 0, 0.34)",
+				boxShadow: "inset 0px 2px 8px rgba(196, 126, 28, 0.5)",
+				filter: "blur(1px)",
 				borderRadius: 3,
 				width: `200px`,
 				ml: 3,
@@ -20,7 +22,7 @@ export default function LevelBar({ tier }: { tier: Tier }) {
 			<Box
 				sx={{
 					height: "10px",
-					backgroundColor: "#A9E9F2",
+					backgroundColor: "rgba(70, 70, 70, 0.47)",
 					borderRadius: 3,
 					width: `${activeBarWidth}px`,
 				}}

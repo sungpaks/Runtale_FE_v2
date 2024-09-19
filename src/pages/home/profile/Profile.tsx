@@ -1,7 +1,5 @@
 import { Box, ListItem, Typography } from "@mui/material";
 import { Tier } from "../Home";
-import getLevelNumber from "../../../utils/getLevelNumber";
-import LevelBar from "../../../components/LevelBar";
 import { useQuery } from "react-query";
 import { getRunningRecord } from "../../../api/api";
 import { useEffect, useState } from "react";
@@ -78,7 +76,7 @@ export default function Profile({
 			<Box
 				sx={{
 					display: "flex",
-					marginLeft: "55px",
+					justifyContent: "end",
 				}}>
 				<Box
 					component="img"
@@ -109,22 +107,17 @@ export default function Profile({
 							sx={{
 								fontSize: "13px",
 								fontFamily: "Chosunilbo_myungjo",
-								color: "#909090", // 폰트 색상
+								color: "#909090",
 							}}
 						>
 							총 러닝 횟수
 						</Typography>
 						<Typography sx={{ fontSize: "13px", fontFamily: "Pretendard-Regular", color: "#D5D5D5", }}>
-							{totalRunningCount} 회
+							{totalRunningCount}
 						</Typography>
 					</ListItem>
 				</Box>
 			</Box>
-			<ListItem>
-				랭킹&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<strong>LV.{getLevelNumber(tier.tierName)}</strong>{" "}
-				<LevelBar tier={tier} />
-			</ListItem>
 		</Box>
 	);
 }
