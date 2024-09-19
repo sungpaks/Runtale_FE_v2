@@ -9,7 +9,6 @@ import Status from "./status/Status";
 import Scene from "./scene/Scene";
 import AudioPlayer, { SOUND } from "../../components/AudioPlayer";
 import VolumeControl from "../../components/VolumeControl";
-import RandomEffectSound from "./random-effect-sound/RandomEffectSound";
 import styles from "./Running.module.css";
 
 interface PathType {
@@ -23,7 +22,6 @@ export default function Running() {
 	const [longitude, setLongitude] = useState<number>(0);
 	const [prevLatitude, setPrevLatitude] = useState<number>(0);
 	const [prevLongitude, setPrevLongitude] = useState<number>(0);
-	const [testMode, setTestMode] = useState<boolean>(false);
 	const [runningId, setRunningId] = useState<number>();
 	const [distance, setDistance] = useState<number>(0);
 	const [pace, setPace] = useState<number>(0);
@@ -122,7 +120,7 @@ export default function Running() {
 		}, 500);
 	};
 
-	const onClickEnd = async (e) => {
+	const onClickEnd = async () => {
 		/** 러닝 끝내기 */
 		let targetPace;
 		try {
@@ -208,6 +206,12 @@ export default function Running() {
 			latitude,
 			longitude,
 		);
+
+		if (distance > 3.5) {
+			onClickEnd();
+			return;
+		}
+
 		const curPace = getPace(
 			distance,
 			parseInt(localStorage.getItem("curTime")) | 0.001,
@@ -219,12 +223,14 @@ export default function Running() {
 			pace: curPace,
 			latitude: latitude,
 			longitude: longitude,
-		}).then((res) => {
-			console.log(res.data.data);
-			if (res.data.data.audioUrl) {
-				setCheckpointAudioFile(res.data.data.audioUrl);
-			}
-		});
+		})
+			.then((res) => {
+				console.log(res.data.data);
+				if (res.data.data.audioUrl) {
+					setCheckpointAudioFile(res.data.data.audioUrl);
+				}
+			})
+			.catch((error) => {});
 		setDistance((prev) => prev + curDistance);
 		setPace(curPace);
 	}, [latitude, longitude]);
@@ -251,11 +257,6 @@ export default function Running() {
 							maxWidth: MAX_WIDTH,
 						}}
 						level={2}
-						onDragEnd={
-							testMode
-								? (map) => updatePositionManualy(map)
-								: undefined
-						}
 					>
 						<Tracker
 							longitude={longitude}

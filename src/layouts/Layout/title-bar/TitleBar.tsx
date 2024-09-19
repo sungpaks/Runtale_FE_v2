@@ -39,7 +39,9 @@ export default function TitleBar({
 			) : (
 				<div>&nbsp;&nbsp;&nbsp;&nbsp;</div>
 			)}
-			<span className="title-bar title">RUNTALE</span>
+			<span className="title-bar title" onClick={handleTitleClick}>
+				RUNTALE
+			</span>
 			{hideLogout ? undefined : (
 				<Button
 					onClick={handleLogout}
@@ -49,6 +51,7 @@ export default function TitleBar({
 						fontFamily: "Pretendard-regular",
 						textDecoration: "underline",
 						color: "#D0D0D0",
+						zIndex: 2,
 					}}
 				>
 					로그아웃
