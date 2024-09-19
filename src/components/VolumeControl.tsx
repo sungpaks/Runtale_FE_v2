@@ -15,6 +15,7 @@ export default function VolumeControl() {
 				left: "50%",
 				transform: "translate(-50%, 0)",
 				width: "70vw",
+				maxWidth: "300px",
 				opacity: "0.8",
 			}}
 		>
