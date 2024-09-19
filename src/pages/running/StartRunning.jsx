@@ -21,7 +21,7 @@ export default function StartRunning() {
 			pace: 0,
 			targetPace: targetPace,
 			targetDistance: 3, //실제 값 추가
-			scenarioId: scenarioId, //실제 값 추가
+			scenarioId: 1, //실제 값 추가
 			latitude: position.current.latitude,
 			longitude: position.current.longitude,
 		}).then((res) => {
