@@ -1,13 +1,14 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Box, Button, Typography } from "@mui/material";
 import styles from "./DefaultPage.module.css";
+import Logo from "../../assets/RunTale_logo.png";
 
 export default function DefaultPage() {
 	const navigate = useNavigate();
 
 	return (
 		<div className={`${styles["Container"]}`}>
-			<div style={{ display: 'flex', justifyContent: 'flex-start', padding: '25px'}}>
+			<div style={{ display: 'flex', justifyContent: 'flex-start', padding: '25px' }}>
 				<Typography
 					sx={{
 						fontFamily: "Theseasons-regular",
@@ -19,12 +20,15 @@ export default function DefaultPage() {
 				</Typography>
 			</div>
 			<div className={`${styles["Content-Wrap"]}`}>
-				<Typography
-					variant="h2"
-					sx={{ fontFamily: "Theseasons-Bold", color: "#ECE3D7" }}
-				>
-					RUNTALE
-				</Typography>
+				<Box
+					component="img"
+					src={Logo}
+					alt="Logo"
+					sx={{ 
+						width: '400px', 
+						height: 'auto',
+					}}
+				/>
 				<Typography
 					variant="body1"
 					sx={{ fontFamily: "Chosunilbo_myungjo", color: "#D5D5D5" }}
