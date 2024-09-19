@@ -225,7 +225,7 @@ export default function Running() {
 			longitude: longitude,
 		})
 			.then((res) => {
-				// console.log(res.data.data);
+				console.log(res.data.data);
 				if (res.data.data.audioUrl) {
 					setCheckpointAudioFile(res.data.data.audioUrl);
 				}
@@ -301,7 +301,7 @@ export default function Running() {
 						onClick={handleClickPlusButton}
 						disabled={!isSoundEnd}
 					>
-						이동하기 (DEMO)
+						{isSoundEnd ? "이동하기 (DEMO)" : "wait.. "}
 					</button>
 
 					<button className={styles.button} onClick={onClickEnd}>
