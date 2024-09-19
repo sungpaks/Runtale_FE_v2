@@ -33,7 +33,7 @@ const texts = [
 export default function Scene({ distance, pace }: SceneProps) {
 	const curPoint = Math.trunc(distance);
 	const backgroundImageUrl = `/img/scenario_1/scenario_1_running_background_${curPoint > 3 ? 3 : curPoint}.png`;
-	console.log(backgroundImageUrl);
+	//console.log(backgroundImageUrl);
 
 	return (
 		<>
