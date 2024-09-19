@@ -6,6 +6,7 @@ import { Box } from "@mui/material";
 import styles from "./AllScenarios.module.css";
 import SearchableList from "../../../components/SearchableList/SearchableList";
 import ScenarioListItem from "../../../components/ScenarioListItem";
+import firstScenarioProfile from "/img/scenario_1/scenario_1_character_1_profile.png";
 
 export default function AllScenarios() {
 	const scenarios: any = useLoaderData();
@@ -54,40 +55,41 @@ export default function AllScenarios() {
 	);
 }
 
+export const mockScenarioList = [
+	{
+		id: 1,
+		profileImage: firstScenarioProfile,
+		title: "페스트: 숨막히는 도시를 벗어나",
+		duration: 1,
+	},
+	{
+		id: 2,
+		profileImage: profileImage1,
+		title: "고전 2",
+		duration: 1,
+	},
+	{
+		id: 3,
+		profileImage: profileImage0,
+		title: "고전 3",
+		duration: 1,
+	},
+	{
+		id: 4,
+		profileImage: profileImage1,
+		title: "고전 4",
+		duration: 1,
+	},
+	{
+		id: 5,
+		profileImage: profileImage0,
+		title: "고전 5",
+		duration: 1,
+	},
+];
+
 export async function loader({ request, params }) {
 	// 모든 시나리오 리스트 가져오는 로직
 
-	const mockScenarioList = [
-		{
-			id: 1,
-			profileImage: profileImage0,
-			title: "고전 1",
-			duration: 1,
-		},
-		{
-			id: 2,
-			profileImage: profileImage1,
-			title: "고전 2",
-			duration: 1,
-		},
-		{
-			id: 3,
-			profileImage: profileImage0,
-			title: "고전 3",
-			duration: 1,
-		},
-		{
-			id: 4,
-			profileImage: profileImage1,
-			title: "고전 4",
-			duration: 1,
-		},
-		{
-			id: 5,
-			profileImage: profileImage0,
-			title: "고전 5",
-			duration: 1,
-		},
-	];
 	return mockScenarioList;
 }
