@@ -34,7 +34,7 @@
 /* 480px 이상의 화면에서는 제한된 중앙 배치 */
 @media (min-width: 480px) {
     .distanceInputContainer::before {
-        background-size: 320px 320px
+        background-size: 320px 300px
     }
 }
 
