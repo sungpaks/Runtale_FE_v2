@@ -8,7 +8,7 @@ import Title from "../../../components/Title";
 import { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./RunningEnd.module.css";
-import background from "../../../assets/scenario-background-0.png";
+import background from "/img/scenario_1/scenario_1_background.png";
 
 export default function RunningEnd({}) {
 	const navigate = useNavigate();

@@ -30,7 +30,8 @@
 .scenario-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 5px;
+    gap: 10px;
+    row-gap: 30px;
     justify-content: space-evenly;
     padding-bottom: 100px;
 }
@@ -39,7 +40,8 @@
     background: rgba(245, 182, 93, 0.3);
     border-radius: 19.9111px;
     color: white;
-    width: 100%;
+    width: 80%;
+    font-size: small;
 }
 
 .search-window {

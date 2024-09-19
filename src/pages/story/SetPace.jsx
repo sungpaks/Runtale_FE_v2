@@ -7,6 +7,7 @@ import AuthContext from "../../context/AuthContext";
 import { useLocation, useNavigate } from "react-router-dom";
 import { getRunning } from "../../api/api";
 import PaceInput from "./pace-input/PaceInput";
+import CharactersSlideShow from "./characters-slide-show/CharactersSlideShow";
 
 export default function SetDistance() {
 	const [nickname, setNickname] = useState("");
@@ -17,6 +18,7 @@ export default function SetDistance() {
 	const location = useLocation();
 	const { scenarioId } = location.state;
 	const prevRunningId = localStorage.getItem("runningId");
+	const [showCharacters, setShowCharaters] = useState(false);
 
 	useEffect(() => {
 		if (!prevRunningId) return;
@@ -75,6 +77,15 @@ export default function SetDistance() {
 			</>
 		);
 	}
+	if (showCharacters) {
+		return (
+			<CharactersSlideShow
+				minutes={minutes}
+				seconds={seconds}
+				scenarioId={scenarioId}
+			/>
+		);
+	}
 	return (
 		<Box p={1} className={styles["set-pace-container"]}>
 			<div className={`${styles["Content-Container"]}`}>
@@ -102,17 +113,7 @@ export default function SetDistance() {
 				</p>
 				<button
 					className={styles["start-button"]}
-					onClick={() =>
-						navigate("/startrunning", {
-							state: {
-								targetPace:
-									((parseInt(minutes) | 0) * 60 +
-										(parseInt(seconds) | 0)) *
-									1000,
-								scenarioId: scenarioId,
-							},
-						})
-					}
+					onClick={() => setShowCharaters(true)}
 				>
 					시나리오 시작하기
 				</button>

@@ -1,4 +1,4 @@
-import { Box, Button } from "@mui/material";
+import { Box } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
 import { Map } from "react-kakao-maps-sdk";
 import Tracker from "./tracker/Tracker";
@@ -9,7 +9,6 @@ import Status from "./status/Status";
 import Scene from "./scene/Scene";
 import AudioPlayer, { SOUND } from "../../components/AudioPlayer";
 import VolumeControl from "../../components/VolumeControl";
-import RandomEffectSound from "./random-effect-sound/RandomEffectSound";
 import styles from "./Running.module.css";
 
 interface PathType {
@@ -23,7 +22,6 @@ export default function Running() {
 	const [longitude, setLongitude] = useState<number>(0);
 	const [prevLatitude, setPrevLatitude] = useState<number>(0);
 	const [prevLongitude, setPrevLongitude] = useState<number>(0);
-	const [testMode, setTestMode] = useState<boolean>(false);
 	const [runningId, setRunningId] = useState<number>();
 	const [distance, setDistance] = useState<number>(0);
 	const [pace, setPace] = useState<number>(0);
@@ -39,6 +37,7 @@ export default function Running() {
 	const [showScenario, setShowScenario] = useState(true);
 	const [checkpointAudioFile, setCheckpointAudioFile] = useState<string>("");
 	const MAX_WIDTH = "480px";
+	const [isSoundEnd, setIsSoundEnd] = useState(true);
 
 	const refreshPosition = () => {
 		/** 위치 정보 새로 가져옴 */
@@ -104,26 +103,24 @@ export default function Running() {
 		setPace(prevRunningInfo.data.data.pace);
 	}
 
-	const onClickTestMode = () => {
-		if (testMode) {
-			geo.clearWatch(geolocationId.current);
-			geolocationId.current = 0;
-		} else {
-			geolocationId.current = geo.watchPosition((g) => {
-				setLatitude((prev) => {
-					setPrevLatitude(prev);
-					return g.coords.latitude;
-				});
-				setLongitude((prev) => {
-					setPrevLongitude(prev);
-					return g.coords.longitude;
-				});
-			});
-		}
-		setTestMode((prev) => !prev);
+	const handleClickPlusButton = () => {
+		setIsSoundEnd(false);
+		setTimeout(() => {
+			setLongitude((prev) => prev + 0.001125);
+			setTimeout(() => {
+				setLatitude((prev) => prev + 0.001125);
+				setTimeout(() => {
+					setLongitude((prev) => prev - 0.001125);
+					setTimeout(() => {
+						setLatitude((prev) => prev - 0.001125);
+						setIsSoundEnd(true);
+					}, 500);
+				}, 500);
+			}, 500);
+		}, 500);
 	};
 
-	const onClickEnd = async (e) => {
+	const onClickEnd = async () => {
 		/** 러닝 끝내기 */
 		let targetPace;
 		try {
@@ -209,6 +206,12 @@ export default function Running() {
 			latitude,
 			longitude,
 		);
+
+		if (distance > 3.5) {
+			onClickEnd();
+			return;
+		}
+
 		const curPace = getPace(
 			distance,
 			parseInt(localStorage.getItem("curTime")) | 0.001,
@@ -220,11 +223,14 @@ export default function Running() {
 			pace: curPace,
 			latitude: latitude,
 			longitude: longitude,
-		}).then((res) => {
-			if (res.data.data.audioUrl) {
-				setCheckpointAudioFile(res.data.data.audioUrl);
-			}
-		});
+		})
+			.then((res) => {
+				console.log(res.data.data);
+				if (res.data.data.audioUrl) {
+					setCheckpointAudioFile(res.data.data.audioUrl);
+				}
+			})
+			.catch((error) => {});
 		setDistance((prev) => prev + curDistance);
 		setPace(curPace);
 	}, [latitude, longitude]);
@@ -251,11 +257,6 @@ export default function Running() {
 							maxWidth: MAX_WIDTH,
 						}}
 						level={2}
-						onDragEnd={
-							testMode
-								? (map) => updatePositionManualy(map)
-								: undefined
-						}
 					>
 						<Tracker
 							longitude={longitude}
@@ -295,14 +296,13 @@ export default function Running() {
 						justifyContent: "space-evenly",
 					}}
 				>
-					{import.meta.env.DEV ? (
-						<button
-							className={styles.button}
-							onClick={onClickTestMode}
-						>
-							TEST {testMode ? "ON" : "OFF"}
-						</button>
-					) : undefined}
+					<button
+						className={styles.button}
+						onClick={handleClickPlusButton}
+						disabled={!isSoundEnd}
+					>
+						TEST 이동
+					</button>
 
 					<button className={styles.button} onClick={onClickEnd}>
 						러닝 종료
@@ -314,17 +314,18 @@ export default function Running() {
 						{!showScenario ? "시나리오 화면" : "지도 보기"}
 					</button>
 				</Box>
-				{/* <AudioPlayer filename={SOUND.러닝발소리} play loop /> */}
-				<AudioPlayer filename={SOUND.교통소음1} play loop />
+				<AudioPlayer filename={SOUND.뛰는소리} play loop />
+				<AudioPlayer filename={SOUND.바람소리} play loop />
 				{checkpointAudioFile ? (
 					<AudioPlayer
 						filename={checkpointAudioFile}
 						play
 						setCheckpointAudioFile={setCheckpointAudioFile}
+						setIsEnd={setIsSoundEnd}
 					/>
 				) : undefined}
 				<VolumeControl />
-				<RandomEffectSound />
+				{/* <RandomEffectSound /> */}
 				<Status distance={distance} pace={pace} />
 			</Box>
 		</Box>
