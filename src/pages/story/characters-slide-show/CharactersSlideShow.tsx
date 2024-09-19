@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import styles from "./CharactersSlideShow.module.css";
 import React, { Suspense, useState } from "react";
+import { Box } from "@mui/material";
 
 interface CharactersSlideShowType {
 	minutes: string;
@@ -19,10 +20,10 @@ function Steps({ index }) {
 				xmlns="http://www.w3.org/2000/svg"
 			>
 				<circle
+					className={index === 0 ? styles.active : undefined}
 					cx="2.5"
 					cy="2.5"
 					r="2.5"
-					fill={index === 0 ? "#ffffff" : "#909090"}
 				/>
 			</svg>
 			<svg
@@ -33,10 +34,10 @@ function Steps({ index }) {
 				xmlns="http://www.w3.org/2000/svg"
 			>
 				<circle
+					className={index === 1 ? styles.active : undefined}
 					cx="2.5"
 					cy="2.5"
 					r="2.5"
-					fill={index === 1 ? "#ffffff" : "#909090"}
 				/>
 			</svg>
 			<svg
@@ -47,10 +48,10 @@ function Steps({ index }) {
 				xmlns="http://www.w3.org/2000/svg"
 			>
 				<circle
+					className={index === 2 ? styles.active : undefined}
 					cx="2.5"
 					cy="2.5"
 					r="2.5"
-					fill={index === 2 ? "#ffffff" : "#909090"}
 				/>
 			</svg>
 			<svg
@@ -61,10 +62,10 @@ function Steps({ index }) {
 				xmlns="http://www.w3.org/2000/svg"
 			>
 				<circle
+					className={index === 3 ? styles.active : undefined}
 					cx="2.5"
 					cy="2.5"
 					r="2.5"
-					fill={index === 3 ? "#ffffff" : "#909090"}
 				/>
 			</svg>
 			<svg
@@ -75,10 +76,10 @@ function Steps({ index }) {
 				xmlns="http://www.w3.org/2000/svg"
 			>
 				<circle
+					className={index === 4 ? styles.active : undefined}
 					cx="2.5"
 					cy="2.5"
 					r="2.5"
-					fill={index === 4 ? "#ffffff" : "#909090"}
 				/>
 			</svg>
 		</div>
@@ -131,6 +132,34 @@ const CharactersSlideShow: React.FC = ({
 		setCurIndex((prev) => prev + 1);
 	};
 	const profileImgPath = `/img/scenario_1/scenario_1_character_${curIndex}_profile.png`;
+
+	if (curIndex >= 6) {
+		return (
+			<div className={styles.container}>
+				<div
+					style={{
+						marginTop: "60vh",
+						lineHeight: "2rem",
+						fontSize: "small",
+						color: "#ECE3D7",
+					}}
+				>
+					<p>페스트가 창궐한 도시.</p>
+					<p>
+						도시는 점차 고립되고, 사람들은 절망과 공포에 휩싸입니다.
+					</p>
+					<br />
+					<br />
+					<p>
+						주인공은 이러한 상황 속에서도 인간의 연대와 희망을 잃지
+						않고,
+					</p>
+					<p>도시를 구하기 위해 노력합니다.</p>
+				</div>
+				<button onClick={handleClickStart}>러닝 시작하기</button>
+			</div>
+		);
+	}
 	return (
 		<div className={styles.container}>
 			<img className={styles.profile} src={profileImgPath} />
