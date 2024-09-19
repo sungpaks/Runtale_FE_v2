@@ -11,10 +11,10 @@ const Step = ({ stepNumber, description, imageUrl, children }) => {
 
     return (
         <div>
-            <Title level={3} style={{ marginTop: '30px', color: '#626773' }}>
+            <Title level={3} style={{ marginTop: '30px', color: '#D5D5D5' }}>
                 STEP{stepNumber}
             </Title>
-            <p style={{ color: 'black' }}>{description}</p>
+            <p style={{ color: '#D5D5D5' }}>{description}</p>
             <Box
                 display="flex"
                 sx={{
@@ -57,11 +57,11 @@ export default function TutorialExplain() {
 
     return (
         <div className={styles.Container}>
-            <Title level={3} style={{ color: '#1890FF', fontFamily: "Pretendard-Bold" }}>
+            <Title level={3} style={{ color: '#EBA543', fontFamily: "Chosunilbo_myungjo" }}>
                 Runtale과 함께하는 더 재밌는 러닝!
             </Title>
             <Box mt={3} textAlign="center">
-                <p>
+                <p style={{ color: '#909090' }}>
                     마냥 앞만 보고 달리는 러닝, 지루하지 않나요?<br />
                     그래서 저희 Runtale이 준비했습니다!<br />
                     다양한 스토리와 함께 여러분의 더 재밌고 짜릿한<br />
@@ -72,7 +72,7 @@ export default function TutorialExplain() {
                         <div>
                             <SlideContent
                                 stepNumber={1}
-                                imageUrl="/img/storylist.png"
+                                imageUrl="/img/Story_choice.png"
                                 description="스토리 목록에서 원하는 시나리오를 택합니다."
                                 text=""
                             />
@@ -80,7 +80,7 @@ export default function TutorialExplain() {
                         <div>
                             <SlideContent
                                 stepNumber={2}
-                                imageUrl="/img/setpace.png"
+                                imageUrl="/img/Story_start.png"
                                 description="원하는 목표 페이스를 설정합니다."
                                 text=""
                             />
@@ -88,8 +88,8 @@ export default function TutorialExplain() {
                         <div>
                             <SlideContent
                                 stepNumber={3}
-                                imageUrl="/img/endrunning.png"
-                                description="재미있는 러닝 시작!"
+                                imageUrl="/img/Story_0km.png"
+                                description="시나리오와 함께하는 새롭고 즐거운 러닝 시작!"
                                 text=""
                             />
                         </div>
