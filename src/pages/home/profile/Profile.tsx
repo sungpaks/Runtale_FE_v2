@@ -67,10 +67,12 @@ export default function Profile({
 				src={backgroundCircle}
 				alt="Background Circle"
 				sx={{
-					position: "fixed",
-					top: "0",
+					position: "absolute",
+					top: "-55px",
 					left: "0",
 					zIndex: "-1",
+					width: "480px",
+					height: "500px",
 				}}
 			/>
 			<Box
@@ -101,7 +103,6 @@ export default function Profile({
 							{Math.trunc(totalDistance)} km
 						</Typography>
 					</ListItem>
-
 					<ListItem sx={{ display: "flex", flexDirection: "column", alignItems: "flex-end" }}>
 						<Typography
 							sx={{

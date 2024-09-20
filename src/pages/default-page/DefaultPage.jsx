@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Box, Button, Typography } from "@mui/material";
 import styles from "./DefaultPage.module.css";
-import Logo from "../../assets/RunTale_logo.png";
+import Logo from "../../assets/Runtale_logo.png";
 
 export default function DefaultPage() {
 	const navigate = useNavigate();
