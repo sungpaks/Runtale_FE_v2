@@ -35,7 +35,7 @@ export default function Home() {
 	if (!isSuccess) return <CustomFadeLoader />;
 	const tier: Tier = data.data.data;
 	return (
-		<Box p={2}>
+		<Box p={2} position="relative">
 			<Box mb={-9}>
 				<Profile tier={tier} username={tier.nickname} userId={userId} />
 			</Box>
